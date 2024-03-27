@@ -62,7 +62,7 @@ await fs.writeFile('eslint-typegen.d.ts', dts)
 
 ## Credits
 
-The initial idea comes from [@Shinigami92](https://github.com/Shinigami92) via [this PR](https://github.com/eslint-stylistic/eslint-stylistic/pull/14), thanks to him!
+The initial idea comes from [@Shinigami92](https://github.com/Shinigami92) via his work on [`eslint-define-config`](https://github.com/eslint-types/eslint-define-config), thanks to him!
 
 ## License
 
