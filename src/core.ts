@@ -1,5 +1,6 @@
 import type { ESLint, Linter, Rule } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
+import type { Options as CompileOptions } from 'json-schema-to-typescript'
 import { compile as compileSchema } from 'json-schema-to-typescript'
 
 export interface RulesTypeGenOptions {
@@ -31,6 +32,10 @@ export interface RulesTypeGenOptions {
    */
   exportTypeName?: string
 
+  /**
+   * Options for json-schema-to-typescript
+   */
+  compileOptions?: Partial<CompileOptions>
 }
 
 export interface FlatConfigsToPluginsOptions {
@@ -86,6 +91,7 @@ export async function pluginsToRulesDTS(
     includeIgnoreComments = true,
     includeAugmentation = true,
     exportTypeName = 'RuleOptions',
+    compileOptions = {},
   } = options
 
   const rules: [name: string, rule: Rule.RuleModule][] = []
@@ -100,7 +106,8 @@ export async function pluginsToRulesDTS(
   }
 
   rules.sort(([a], [b]) => a.localeCompare(b))
-  const resolved = await Promise.all(rules.map(([name, rule]) => compileRule(name, rule)))
+  const resolved = await Promise.all(rules
+    .map(([name, rule]) => compileRule(name, rule, compileOptions)))
 
   const exports = [
     ...(includeIgnoreComments
@@ -143,7 +150,11 @@ export async function pluginsToRulesDTS(
   ].join('\n')
 }
 
-export async function compileRule(name: string, rule: Rule.RuleModule) {
+export async function compileRule(
+  name: string,
+  rule: Rule.RuleModule,
+  compileOptions: Partial<CompileOptions> = {},
+) {
   const meta = rule.meta ?? {}
   let schemas = meta.schema as JSONSchema4[] ?? []
   if (!Array.isArray(schemas))
@@ -161,12 +172,11 @@ export async function compileRule(name: string, rule: Rule.RuleModule) {
   }
 
   async function compile(schema: JSONSchema4, name: string, ruleName: string) {
-    schema = JSON.parse(JSON.stringify(schema).replace(/\#\/items\/0\/\$defs\//g, '#/$defs/'))
-
     try {
       const compiled = await compileSchema(schema, name, {
         bannerComment: '',
-        format: false,
+        format: 'style' in compileOptions,
+        ...compileOptions,
       })
       return compiled
         .replace(/\/\*[\s\S]*?\*\//g, '')

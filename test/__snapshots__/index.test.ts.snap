@@ -1954,6 +1954,17 @@ declare module 'eslint' {
 
 export interface RuleOptions {
   /**
+   * Having line breaks styles to object, array and named imports
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/consistent-list-newline.md
+   */
+  'antfu/consistent-list-newline'?: Linter.RuleEntry<AntfuConsistentListNewline>
+  'antfu/if-newline'?: Linter.RuleEntry<[]>
+  'antfu/import-dedupe'?: Linter.RuleEntry<[]>
+  'antfu/no-import-dist'?: Linter.RuleEntry<[]>
+  'antfu/no-import-node-modules-by-path'?: Linter.RuleEntry<[]>
+  'antfu/no-ts-export-equal'?: Linter.RuleEntry<[]>
+  'antfu/top-level-function'?: Linter.RuleEntry<[]>
+  /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/consistent-type-specifier-style.md
    */
@@ -2119,565 +2130,392 @@ export interface RuleOptions {
    */
   'import/prefer-default-export'?: Linter.RuleEntry<ImportPreferDefaultExport>
   'import/unambiguous'?: Linter.RuleEntry<[]>
-  /**
-   * require \`return\` statements after callbacks
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
-   */
-  'node/callback-return'?: Linter.RuleEntry<NodeCallbackReturn>
-  /**
-   * enforce either \`module.exports\` or \`exports\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/exports-style.md
-   */
-  'node/exports-style'?: Linter.RuleEntry<NodeExportsStyle>
-  /**
-   * enforce the style of file extensions in \`import\` declarations
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/file-extension-in-import.md
-   */
-  'node/file-extension-in-import'?: Linter.RuleEntry<NodeFileExtensionInImport>
-  'node/global-require'?: Linter.RuleEntry<[]>
-  /**
-   * require error handling in callbacks
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/handle-callback-err.md
-   */
-  'node/handle-callback-err'?: Linter.RuleEntry<NodeHandleCallbackErr>
-  'node/no-callback-literal'?: Linter.RuleEntry<[]>
-  /**
-   * disallow deprecated APIs
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-deprecated-api.md
-   */
-  'node/no-deprecated-api'?: Linter.RuleEntry<NodeNoDeprecatedApi>
-  'node/no-exports-assign'?: Linter.RuleEntry<[]>
-  /**
-   * disallow \`import\` declarations which import extraneous modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-extraneous-import.md
-   */
-  'node/no-extraneous-import'?: Linter.RuleEntry<NodeNoExtraneousImport>
-  /**
-   * disallow \`require()\` expressions which import extraneous modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-extraneous-require.md
-   */
-  'node/no-extraneous-require'?: Linter.RuleEntry<NodeNoExtraneousRequire>
-  /**
-   * disallow third-party modules which are hiding core modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-hide-core-modules.md
-   * @deprecated
-   */
-  'node/no-hide-core-modules'?: Linter.RuleEntry<NodeNoHideCoreModules>
-  /**
-   * disallow \`import\` declarations which import non-existence modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-missing-import.md
-   */
-  'node/no-missing-import'?: Linter.RuleEntry<NodeNoMissingImport>
-  /**
-   * disallow \`require()\` expressions which import non-existence modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-missing-require.md
-   */
-  'node/no-missing-require'?: Linter.RuleEntry<NodeNoMissingRequire>
-  /**
-   * disallow \`require\` calls to be mixed with regular variable declarations
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-mixed-requires.md
-   */
-  'node/no-mixed-requires'?: Linter.RuleEntry<NodeNoMixedRequires>
-  'node/no-new-require'?: Linter.RuleEntry<[]>
-  'node/no-path-concat'?: Linter.RuleEntry<[]>
-  'node/no-process-env'?: Linter.RuleEntry<[]>
-  'node/no-process-exit'?: Linter.RuleEntry<[]>
-  /**
-   * disallow specified modules when loaded by \`import\` declarations
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-restricted-import.md
-   */
-  'node/no-restricted-import'?: Linter.RuleEntry<NodeNoRestrictedImport>
-  /**
-   * disallow specified modules when loaded by \`require\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-restricted-require.md
-   */
-  'node/no-restricted-require'?: Linter.RuleEntry<NodeNoRestrictedRequire>
-  /**
-   * disallow synchronous methods
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-sync.md
-   */
-  'node/no-sync'?: Linter.RuleEntry<NodeNoSync>
-  /**
-   * disallow \`bin\` files that npm ignores
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-bin.md
-   */
-  'node/no-unpublished-bin'?: Linter.RuleEntry<NodeNoUnpublishedBin>
-  /**
-   * disallow \`import\` declarations which import private modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-import.md
-   */
-  'node/no-unpublished-import'?: Linter.RuleEntry<NodeNoUnpublishedImport>
-  /**
-   * disallow \`require()\` expressions which import private modules
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-require.md
-   */
-  'node/no-unpublished-require'?: Linter.RuleEntry<NodeNoUnpublishedRequire>
-  /**
-   * disallow unsupported ECMAScript features on the specified version
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features.md
-   * @deprecated
-   */
-  'node/no-unsupported-features'?: Linter.RuleEntry<NodeNoUnsupportedFeatures>
-  /**
-   * disallow unsupported ECMAScript built-ins on the specified version
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/es-builtins.md
-   */
-  'node/no-unsupported-features/es-builtins'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesEsBuiltins>
-  /**
-   * disallow unsupported ECMAScript syntax on the specified version
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/es-syntax.md
-   */
-  'node/no-unsupported-features/es-syntax'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesEsSyntax>
-  /**
-   * disallow unsupported Node.js built-in APIs on the specified version
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/node-builtins.md
-   */
-  'node/no-unsupported-features/node-builtins'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesNodeBuiltins>
-  /**
-   * enforce either \`Buffer\` or \`require("buffer").Buffer\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/buffer.md
-   */
-  'node/prefer-global/buffer'?: Linter.RuleEntry<NodePreferGlobalBuffer>
-  /**
-   * enforce either \`console\` or \`require("console")\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/console.md
-   */
-  'node/prefer-global/console'?: Linter.RuleEntry<NodePreferGlobalConsole>
-  /**
-   * enforce either \`process\` or \`require("process")\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/process.md
-   */
-  'node/prefer-global/process'?: Linter.RuleEntry<NodePreferGlobalProcess>
-  /**
-   * enforce either \`TextDecoder\` or \`require("util").TextDecoder\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/text-decoder.md
-   */
-  'node/prefer-global/text-decoder'?: Linter.RuleEntry<NodePreferGlobalTextDecoder>
-  /**
-   * enforce either \`TextEncoder\` or \`require("util").TextEncoder\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/text-encoder.md
-   */
-  'node/prefer-global/text-encoder'?: Linter.RuleEntry<NodePreferGlobalTextEncoder>
-  /**
-   * enforce either \`URL\` or \`require("url").URL\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url.md
-   */
-  'node/prefer-global/url'?: Linter.RuleEntry<NodePreferGlobalUrl>
-  /**
-   * enforce either \`URLSearchParams\` or \`require("url").URLSearchParams\`
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url-search-params.md
-   */
-  'node/prefer-global/url-search-params'?: Linter.RuleEntry<NodePreferGlobalUrlSearchParams>
-  'node/prefer-promises/dns'?: Linter.RuleEntry<[]>
-  'node/prefer-promises/fs'?: Linter.RuleEntry<[]>
-  'node/process-exit-as-throw'?: Linter.RuleEntry<[]>
-  /**
-   * require correct usage of shebang
-   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/shebang.md
-   */
-  'node/shebang'?: Linter.RuleEntry<NodeShebang>
 }
 
 /* ======= Declarations ======= */
+// ----- antfu/consistent-list-newline -----
+type AntfuConsistentListNewline =
+  | []
+  | [
+      {
+        ArrayExpression?: boolean;
+        ArrowFunctionExpression?: boolean;
+        CallExpression?: boolean;
+        ExportNamedDeclaration?: boolean;
+        FunctionDeclaration?: boolean;
+        FunctionExpression?: boolean;
+        ImportDeclaration?: boolean;
+        NewExpression?: boolean;
+        ObjectExpression?: boolean;
+        TSInterfaceDeclaration?: boolean;
+        TSTupleType?: boolean;
+        TSTypeLiteral?: boolean;
+        TSTypeParameterDeclaration?: boolean;
+        TSTypeParameterInstantiation?: boolean;
+        ObjectPattern?: boolean;
+        ArrayPattern?: boolean;
+      }
+    ];
 // ----- import/consistent-type-specifier-style -----
-type ImportConsistentTypeSpecifierStyle = []|[("prefer-inline" | "prefer-top-level")]
+type ImportConsistentTypeSpecifierStyle = [] | ['prefer-inline' | 'prefer-top-level'];
 // ----- import/dynamic-import-chunkname -----
-type ImportDynamicImportChunkname = []|[{
-importFunctions?: string[]
-allowEmpty?: boolean
-webpackChunknameFormat?: string
-[k: string]: unknown
-}]
+type ImportDynamicImportChunkname =
+  | []
+  | [
+      {
+        importFunctions?: string[];
+        allowEmpty?: boolean;
+        webpackChunknameFormat?: string;
+        [k: string]: unknown;
+      }
+    ];
 // ----- import/extensions -----
-type ImportExtensions = ([]|[("always" | "ignorePackages" | "never")] | []|[("always" | "ignorePackages" | "never")]|[("always" | "ignorePackages" | "never"), {
-pattern?: {
-[k: string]: ("always" | "ignorePackages" | "never")
-}
-ignorePackages?: boolean
-[k: string]: unknown
-}] | []|[{
-pattern?: {
-[k: string]: ("always" | "ignorePackages" | "never")
-}
-ignorePackages?: boolean
-[k: string]: unknown
-}] | []|[{
-[k: string]: ("always" | "ignorePackages" | "never")
-}] | []|[("always" | "ignorePackages" | "never")]|[("always" | "ignorePackages" | "never"), {
-[k: string]: ("always" | "ignorePackages" | "never")
-}])
+type ImportExtensions =
+  | []
+  | ['always' | 'ignorePackages' | 'never']
+  | []
+  | ['always' | 'ignorePackages' | 'never']
+  | [
+      'always' | 'ignorePackages' | 'never',
+      {
+        pattern?: {
+          
+          [k: string]: 'always' | 'ignorePackages' | 'never';
+        };
+        ignorePackages?: boolean;
+        [k: string]: unknown;
+      }
+    ]
+  | []
+  | [
+      {
+        pattern?: {
+          
+          [k: string]: 'always' | 'ignorePackages' | 'never';
+        };
+        ignorePackages?: boolean;
+        [k: string]: unknown;
+      }
+    ]
+  | []
+  | [
+      {
+        
+        [k: string]: 'always' | 'ignorePackages' | 'never';
+      }
+    ]
+  | []
+  | ['always' | 'ignorePackages' | 'never']
+  | [
+      'always' | 'ignorePackages' | 'never',
+      {
+        
+        [k: string]: 'always' | 'ignorePackages' | 'never';
+      }
+    ];
 // ----- import/first -----
-type ImportFirst = []|[("absolute-first" | "disable-absolute-first")]
+type ImportFirst = [] | ['absolute-first' | 'disable-absolute-first'];
 // ----- import/group-exports -----
 interface ImportGroupExports {
-[k: string]: unknown
+  [k: string]: unknown;
 }
 // ----- import/imports-first -----
-type ImportImportsFirst = []|[("absolute-first" | "disable-absolute-first")]
+type ImportImportsFirst = [] | ['absolute-first' | 'disable-absolute-first'];
 // ----- import/max-dependencies -----
-type ImportMaxDependencies = []|[{
-max?: number
-ignoreTypeImports?: boolean
-}]
+type ImportMaxDependencies =
+  | []
+  | [
+      {
+        max?: number;
+        ignoreTypeImports?: boolean;
+      }
+    ];
 // ----- import/named -----
-type ImportNamed = []|[{
-commonjs?: boolean
-}]
+type ImportNamed =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+      }
+    ];
 // ----- import/namespace -----
-type ImportNamespace = []|[{
-allowComputed?: boolean
-}]
+type ImportNamespace =
+  | []
+  | [
+      {
+        
+        allowComputed?: boolean;
+      }
+    ];
 // ----- import/newline-after-import -----
-type ImportNewlineAfterImport = []|[{
-count?: number
-exactCount?: boolean
-considerComments?: boolean
-}]
+type ImportNewlineAfterImport =
+  | []
+  | [
+      {
+        count?: number;
+        exactCount?: boolean;
+        considerComments?: boolean;
+      }
+    ];
 // ----- import/no-absolute-path -----
-type ImportNoAbsolutePath = []|[{
-commonjs?: boolean
-amd?: boolean
-esmodule?: boolean
-ignore?: [string, ...(string)[]]
-}]
+type ImportNoAbsolutePath =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        amd?: boolean;
+        esmodule?: boolean;
+        
+        ignore?: [string, ...string[]];
+      }
+    ];
 // ----- import/no-anonymous-default-export -----
-type ImportNoAnonymousDefaultExport = []|[{
-allowArray?: boolean
-allowArrowFunction?: boolean
-allowCallExpression?: boolean
-allowAnonymousClass?: boolean
-allowAnonymousFunction?: boolean
-allowLiteral?: boolean
-allowObject?: boolean
-allowNew?: boolean
-}]
+type ImportNoAnonymousDefaultExport =
+  | []
+  | [
+      {
+        
+        allowArray?: boolean;
+        
+        allowArrowFunction?: boolean;
+        
+        allowCallExpression?: boolean;
+        
+        allowAnonymousClass?: boolean;
+        
+        allowAnonymousFunction?: boolean;
+        
+        allowLiteral?: boolean;
+        
+        allowObject?: boolean;
+        
+        allowNew?: boolean;
+      }
+    ];
 // ----- import/no-commonjs -----
-type ImportNoCommonjs = ([]|["allow-primitive-modules"] | []|[{
-allowPrimitiveModules?: boolean
-allowRequire?: boolean
-allowConditionalRequire?: boolean
-}])
+type ImportNoCommonjs =
+  | []
+  | ['allow-primitive-modules']
+  | []
+  | [
+      {
+        allowPrimitiveModules?: boolean;
+        allowRequire?: boolean;
+        allowConditionalRequire?: boolean;
+      }
+    ];
 // ----- import/no-cycle -----
-type ImportNoCycle = []|[{
-commonjs?: boolean
-amd?: boolean
-esmodule?: boolean
-ignore?: [string, ...(string)[]]
-maxDepth?: (number | "∞")
-ignoreExternal?: boolean
-allowUnsafeDynamicCyclicDependency?: boolean
-}]
+type ImportNoCycle =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        amd?: boolean;
+        esmodule?: boolean;
+        
+        ignore?: [string, ...string[]];
+        maxDepth?: number | '∞';
+        
+        ignoreExternal?: boolean;
+        
+        allowUnsafeDynamicCyclicDependency?: boolean;
+      }
+    ];
 // ----- import/no-duplicates -----
-type ImportNoDuplicates = []|[{
-considerQueryString?: boolean
-"prefer-inline"?: boolean
-}]
+type ImportNoDuplicates =
+  | []
+  | [
+      {
+        considerQueryString?: boolean;
+        'prefer-inline'?: boolean;
+      }
+    ];
 // ----- import/no-dynamic-require -----
-type ImportNoDynamicRequire = []|[{
-esmodule?: boolean
-}]
+type ImportNoDynamicRequire =
+  | []
+  | [
+      {
+        esmodule?: boolean;
+      }
+    ];
 // ----- import/no-extraneous-dependencies -----
-type ImportNoExtraneousDependencies = []|[{
-devDependencies?: (boolean | unknown[])
-optionalDependencies?: (boolean | unknown[])
-peerDependencies?: (boolean | unknown[])
-bundledDependencies?: (boolean | unknown[])
-packageDir?: (string | unknown[])
-includeInternal?: boolean
-includeTypes?: boolean
-}]
+type ImportNoExtraneousDependencies =
+  | []
+  | [
+      {
+        devDependencies?: boolean | unknown[];
+        optionalDependencies?: boolean | unknown[];
+        peerDependencies?: boolean | unknown[];
+        bundledDependencies?: boolean | unknown[];
+        packageDir?: string | unknown[];
+        includeInternal?: boolean;
+        includeTypes?: boolean;
+      }
+    ];
 // ----- import/no-import-module-exports -----
-type ImportNoImportModuleExports = []|[{
-exceptions?: unknown[]
-}]
+type ImportNoImportModuleExports =
+  | []
+  | [
+      {
+        exceptions?: unknown[];
+      }
+    ];
 // ----- import/no-internal-modules -----
-type ImportNoInternalModules = []|[({
-allow?: string[]
-} | {
-forbid?: string[]
-})]
+type ImportNoInternalModules =
+  | []
+  | [
+      | {
+          allow?: string[];
+        }
+      | {
+          forbid?: string[];
+        }
+    ];
 // ----- import/no-namespace -----
-type ImportNoNamespace = []|[{
-ignore?: string[]
-[k: string]: unknown
-}]
+type ImportNoNamespace =
+  | []
+  | [
+      {
+        ignore?: string[];
+        [k: string]: unknown;
+      }
+    ];
 // ----- import/no-nodejs-modules -----
-type ImportNoNodejsModules = []|[{
-allow?: string[]
-}]
+type ImportNoNodejsModules =
+  | []
+  | [
+      {
+        allow?: string[];
+      }
+    ];
 // ----- import/no-relative-packages -----
-type ImportNoRelativePackages = []|[{
-commonjs?: boolean
-amd?: boolean
-esmodule?: boolean
-ignore?: [string, ...(string)[]]
-}]
+type ImportNoRelativePackages =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        amd?: boolean;
+        esmodule?: boolean;
+        
+        ignore?: [string, ...string[]];
+      }
+    ];
 // ----- import/no-relative-parent-imports -----
-type ImportNoRelativeParentImports = []|[{
-commonjs?: boolean
-amd?: boolean
-esmodule?: boolean
-ignore?: [string, ...(string)[]]
-}]
+type ImportNoRelativeParentImports =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        amd?: boolean;
+        esmodule?: boolean;
+        
+        ignore?: [string, ...string[]];
+      }
+    ];
 // ----- import/no-restricted-paths -----
-type ImportNoRestrictedPaths = []|[{
-zones?: [{
-target?: (string | string[])
-from?: (string | string[])
-except?: string[]
-message?: string
-}, ...({
-target?: (string | string[])
-from?: (string | string[])
-except?: string[]
-message?: string
-})[]]
-basePath?: string
-}]
+type ImportNoRestrictedPaths =
+  | []
+  | [
+      {
+        
+        zones?: [
+          {
+            target?: string | string[];
+            from?: string | string[];
+            except?: string[];
+            message?: string;
+          },
+          ...{
+            target?: string | string[];
+            from?: string | string[];
+            except?: string[];
+            message?: string;
+          }[]
+        ];
+        basePath?: string;
+      }
+    ];
 // ----- import/no-unassigned-import -----
-type ImportNoUnassignedImport = []|[{
-devDependencies?: (boolean | unknown[])
-optionalDependencies?: (boolean | unknown[])
-peerDependencies?: (boolean | unknown[])
-allow?: string[]
-}]
+type ImportNoUnassignedImport =
+  | []
+  | [
+      {
+        devDependencies?: boolean | unknown[];
+        optionalDependencies?: boolean | unknown[];
+        peerDependencies?: boolean | unknown[];
+        allow?: string[];
+      }
+    ];
 // ----- import/no-unresolved -----
-type ImportNoUnresolved = []|[{
-commonjs?: boolean
-amd?: boolean
-esmodule?: boolean
-ignore?: [string, ...(string)[]]
-caseSensitive?: boolean
-caseSensitiveStrict?: boolean
-}]
+type ImportNoUnresolved =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        amd?: boolean;
+        esmodule?: boolean;
+        
+        ignore?: [string, ...string[]];
+        caseSensitive?: boolean;
+        caseSensitiveStrict?: boolean;
+      }
+    ];
 // ----- import/no-unused-modules -----
-type ImportNoUnusedModules = []|[({
-unusedExports: true
-src?: {
-[k: string]: unknown
-}
-[k: string]: unknown
-} | {
-missingExports: true
-[k: string]: unknown
-})]
+type ImportNoUnusedModules =
+  | []
+  | [
+      | {
+          unusedExports: true;
+          src?: {
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        }
+      | {
+          missingExports: true;
+          [k: string]: unknown;
+        }
+    ];
 // ----- import/no-useless-path-segments -----
-type ImportNoUselessPathSegments = []|[{
-commonjs?: boolean
-noUselessIndex?: boolean
-}]
+type ImportNoUselessPathSegments =
+  | []
+  | [
+      {
+        commonjs?: boolean;
+        noUselessIndex?: boolean;
+      }
+    ];
 // ----- import/order -----
-type ImportOrder = []|[{
-groups?: unknown[]
-pathGroupsExcludedImportTypes?: unknown[]
-distinctGroup?: boolean
-pathGroups?: {
-pattern: string
-patternOptions?: {
-[k: string]: unknown
-}
-group: ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type")
-position?: ("after" | "before")
-}[]
-"newlines-between"?: ("ignore" | "always" | "always-and-inside-groups" | "never")
-alphabetize?: {
-caseInsensitive?: boolean
-order?: ("ignore" | "asc" | "desc")
-orderImportKind?: ("ignore" | "asc" | "desc")
-}
-warnOnUnassignedImports?: boolean
-}]
+type ImportOrder =
+  | []
+  | [
+      {
+        groups?: unknown[];
+        pathGroupsExcludedImportTypes?: unknown[];
+        distinctGroup?: boolean;
+        pathGroups?: {
+          pattern: string;
+          patternOptions?: {
+            [k: string]: unknown;
+          };
+          group: 'builtin' | 'external' | 'internal' | 'unknown' | 'parent' | 'sibling' | 'index' | 'object' | 'type';
+          position?: 'after' | 'before';
+        }[];
+        'newlines-between'?: 'ignore' | 'always' | 'always-and-inside-groups' | 'never';
+        alphabetize?: {
+          caseInsensitive?: boolean;
+          order?: 'ignore' | 'asc' | 'desc';
+          orderImportKind?: 'ignore' | 'asc' | 'desc';
+        };
+        warnOnUnassignedImports?: boolean;
+      }
+    ];
 // ----- import/prefer-default-export -----
-type ImportPreferDefaultExport = []|[{
-target?: ("single" | "any")
-}]
-// ----- node/callback-return -----
-type NodeCallbackReturn = []|[string[]]
-// ----- node/exports-style -----
-type NodeExportsStyle = []|[("module.exports" | "exports")]|[("module.exports" | "exports"), {
-allowBatchAssign?: boolean
-}]
-// ----- node/file-extension-in-import -----
-type NodeFileExtensionInImport = []|[("always" | "never")]|[("always" | "never"), {
-[k: string]: ("always" | "never")
-}]
-// ----- node/handle-callback-err -----
-type NodeHandleCallbackErr = []|[string]
-// ----- node/no-deprecated-api -----
-type NodeNoDeprecatedApi = []|[{
-version?: string
-ignoreModuleItems?: ("_linklist" | "_stream_wrap" | "async_hooks.currentId" | "async_hooks.triggerId" | "buffer.Buffer()" | "new buffer.Buffer()" | "buffer.SlowBuffer" | "constants" | "crypto._toBuf" | "crypto.Credentials" | "crypto.DEFAULT_ENCODING" | "crypto.createCipher" | "crypto.createCredentials" | "crypto.createDecipher" | "crypto.fips" | "crypto.prng" | "crypto.pseudoRandomBytes" | "crypto.rng" | "domain" | "events.EventEmitter.listenerCount" | "events.listenerCount" | "freelist" | "fs.SyncWriteStream" | "fs.exists" | "fs.lchmod" | "fs.lchmodSync" | "http.createClient" | "module.Module.createRequireFromPath" | "module.Module.requireRepl" | "module.Module._debug" | "module.createRequireFromPath" | "module.requireRepl" | "module._debug" | "net._setSimultaneousAccepts" | "os.getNetworkInterfaces" | "os.tmpDir" | "path._makeLong" | "process.EventEmitter" | "process.assert" | "process.binding" | "process.env.NODE_REPL_HISTORY_FILE" | "process.report.triggerReport" | "punycode" | "readline.codePointAt" | "readline.getStringWidth" | "readline.isFullWidthCodePoint" | "readline.stripVTControlCharacters" | "safe-buffer.Buffer()" | "new safe-buffer.Buffer()" | "safe-buffer.SlowBuffer" | "sys" | "timers.enroll" | "timers.unenroll" | "tls.CleartextStream" | "tls.CryptoStream" | "tls.SecurePair" | "tls.convertNPNProtocols" | "tls.createSecurePair" | "tls.parseCertString" | "tty.setRawMode" | "url.parse" | "url.resolve" | "util.debug" | "util.error" | "util.isArray" | "util.isBoolean" | "util.isBuffer" | "util.isDate" | "util.isError" | "util.isFunction" | "util.isNull" | "util.isNullOrUndefined" | "util.isNumber" | "util.isObject" | "util.isPrimitive" | "util.isRegExp" | "util.isString" | "util.isSymbol" | "util.isUndefined" | "util.log" | "util.print" | "util.pump" | "util.puts" | "util._extend" | "vm.runInDebugContext")[]
-ignoreGlobalItems?: ("Buffer()" | "new Buffer()" | "COUNTER_NET_SERVER_CONNECTION" | "COUNTER_NET_SERVER_CONNECTION_CLOSE" | "COUNTER_HTTP_SERVER_REQUEST" | "COUNTER_HTTP_SERVER_RESPONSE" | "COUNTER_HTTP_CLIENT_REQUEST" | "COUNTER_HTTP_CLIENT_RESPONSE" | "GLOBAL" | "Intl.v8BreakIterator" | "require.extensions" | "root" | "process.EventEmitter" | "process.assert" | "process.binding" | "process.env.NODE_REPL_HISTORY_FILE" | "process.report.triggerReport")[]
-ignoreIndirectDependencies?: boolean
-}]
-// ----- node/no-extraneous-import -----
-type NodeNoExtraneousImport = []|[{
-allowModules?: string[]
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-resolvePaths?: string[]
-}]
-// ----- node/no-extraneous-require -----
-type NodeNoExtraneousRequire = []|[{
-allowModules?: string[]
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-resolvePaths?: string[]
-tryExtensions?: string[]
-}]
-// ----- node/no-hide-core-modules -----
-type NodeNoHideCoreModules = []|[{
-allow?: ("assert" | "buffer" | "child_process" | "cluster" | "console" | "constants" | "crypto" | "dgram" | "dns" | "events" | "fs" | "http" | "https" | "module" | "net" | "os" | "path" | "querystring" | "readline" | "repl" | "stream" | "string_decoder" | "timers" | "tls" | "tty" | "url" | "util" | "vm" | "zlib")[]
-ignoreDirectDependencies?: boolean
-ignoreIndirectDependencies?: boolean
-}]
-// ----- node/no-missing-import -----
-type NodeNoMissingImport = []|[{
-allowModules?: string[]
-resolvePaths?: string[]
-typescriptExtensionMap?: (unknown[][] | ("react" | "react-jsx" | "react-jsxdev" | "react-native" | "preserve"))
-tsconfigPath?: string
-}]
-// ----- node/no-missing-require -----
-type NodeNoMissingRequire = []|[{
-allowModules?: string[]
-tryExtensions?: string[]
-resolvePaths?: string[]
-typescriptExtensionMap?: (unknown[][] | ("react" | "react-jsx" | "react-jsxdev" | "react-native" | "preserve"))
-tsconfigPath?: string
-}]
-// ----- node/no-mixed-requires -----
-type NodeNoMixedRequires = []|[(boolean | {
-grouping?: boolean
-allowCall?: boolean
-})]
-// ----- node/no-restricted-import -----
-type NodeNoRestrictedImport = []|[(string | {
-name: (string | string[])
-message?: string
-})[]]
-// ----- node/no-restricted-require -----
-type NodeNoRestrictedRequire = []|[(string | {
-name: (string | string[])
-message?: string
-})[]]
-// ----- node/no-sync -----
-type NodeNoSync = []|[{
-allowAtRootLevel?: boolean
-}]
-// ----- node/no-unpublished-bin -----
-type NodeNoUnpublishedBin = []|[{
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-[k: string]: unknown
-}]
-// ----- node/no-unpublished-import -----
-type NodeNoUnpublishedImport = []|[{
-allowModules?: string[]
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-resolvePaths?: string[]
-ignoreTypeImport?: boolean
-}]
-// ----- node/no-unpublished-require -----
-type NodeNoUnpublishedRequire = []|[{
-allowModules?: string[]
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-resolvePaths?: string[]
-tryExtensions?: string[]
-}]
-// ----- node/no-unsupported-features -----
-type NodeNoUnsupportedFeatures = []|[((0.1 | 0.12 | 4 | 5 | 6 | 6.5 | 7 | 7.6 | 8 | 8.3 | 9 | 10) | string | {
-version?: ((0.1 | 0.12 | 4 | 5 | 6 | 6.5 | 7 | 7.6 | 8 | 8.3 | 9 | 10) | string)
-ignores?: ("syntax" | "defaultParameters" | "restParameters" | "spreadOperators" | "objectLiteralExtensions" | "objectPropertyShorthandOfGetSet" | "forOf" | "binaryNumberLiterals" | "octalNumberLiterals" | "templateStrings" | "regexpY" | "regexpU" | "destructuring" | "unicodeCodePointEscapes" | "new.target" | "const" | "let" | "blockScopedFunctions" | "arrowFunctions" | "generatorFunctions" | "classes" | "modules" | "exponentialOperators" | "asyncAwait" | "trailingCommasInFunctions" | "templateLiteralRevision" | "regexpS" | "regexpNamedCaptureGroups" | "regexpLookbehind" | "regexpUnicodeProperties" | "restProperties" | "spreadProperties" | "asyncGenerators" | "forAwaitOf" | "runtime" | "globalObjects" | "typedArrays" | "Int8Array" | "Uint8Array" | "Uint8ClampedArray" | "Int16Array" | "Uint16Array" | "Int32Array" | "Uint32Array" | "Float32Array" | "Float64Array" | "DataView" | "Map" | "Set" | "WeakMap" | "WeakSet" | "Proxy" | "Reflect" | "Promise" | "Symbol" | "SharedArrayBuffer" | "Atomics" | "staticMethods" | "Object.*" | "Object.assign" | "Object.is" | "Object.getOwnPropertySymbols" | "Object.setPrototypeOf" | "Object.values" | "Object.entries" | "Object.getOwnPropertyDescriptors" | "String.*" | "String.raw" | "String.fromCodePoint" | "Array.*" | "Array.from" | "Array.of" | "Number.*" | "Number.isFinite" | "Number.isInteger" | "Number.isSafeInteger" | "Number.isNaN" | "Number.EPSILON" | "Number.MIN_SAFE_INTEGER" | "Number.MAX_SAFE_INTEGER" | "Math.*" | "Math.clz32" | "Math.imul" | "Math.sign" | "Math.log10" | "Math.log2" | "Math.log1p" | "Math.expm1" | "Math.cosh" | "Math.sinh" | "Math.tanh" | "Math.acosh" | "Math.asinh" | "Math.atanh" | "Math.trunc" | "Math.fround" | "Math.cbrt" | "Math.hypot" | "Symbol.*" | "Symbol.hasInstance" | "Symbol.isConcatSpreadablec" | "Symbol.iterator" | "Symbol.species" | "Symbol.replace" | "Symbol.search" | "Symbol.split" | "Symbol.match" | "Symbol.toPrimitive" | "Symbol.toStringTag" | "Symbol.unscopables" | "Atomics.*" | "Atomics.add" | "Atomics.and" | "Atomics.compareExchange" | "Atomics.exchange" | "Atomics.wait" | "Atomics.wake" | "Atomics.isLockFree" | "Atomics.load" | "Atomics.or" | "Atomics.store" | "Atomics.sub" | "Atomics.xor" | "extends" | "extendsArray" | "extendsRegExp" | "extendsFunction" | "extendsPromise" | "extendsBoolean" | "extendsNumber" | "extendsString" | "extendsMap" | "extendsSet" | "extendsNull")[]
-})]
-// ----- node/no-unsupported-features/es-builtins -----
-type NodeNoUnsupportedFeaturesEsBuiltins = []|[{
-version?: string
-ignores?: ("AggregateError" | "Array.from" | "Array.of" | "BigInt" | "FinalizationRegistry" | "Map" | "Math.acosh" | "Math.asinh" | "Math.atanh" | "Math.cbrt" | "Math.clz32" | "Math.cosh" | "Math.expm1" | "Math.fround" | "Math.hypot" | "Math.imul" | "Math.log10" | "Math.log1p" | "Math.log2" | "Math.sign" | "Math.sinh" | "Math.tanh" | "Math.trunc" | "Number.EPSILON" | "Number.isFinite" | "Number.isInteger" | "Number.isNaN" | "Number.isSafeInteger" | "Number.MAX_SAFE_INTEGER" | "Number.MIN_SAFE_INTEGER" | "Number.parseFloat" | "Number.parseInt" | "Object.assign" | "Object.fromEntries" | "Object.getOwnPropertySymbols" | "Object.is" | "Object.setPrototypeOf" | "Object.values" | "Object.entries" | "Object.getOwnPropertyDescriptors" | "Promise" | "Promise.allSettled" | "Promise.any" | "Proxy" | "Reflect" | "Set" | "String.fromCodePoint" | "String.raw" | "Symbol" | "Int8Array" | "Uint8Array" | "Uint8ClampedArray" | "Int16Array" | "Uint16Array" | "Int32Array" | "Uint32Array" | "BigInt64Array" | "BigUint64Array" | "Float32Array" | "Float64Array" | "DataView" | "WeakMap" | "WeakRef" | "WeakSet" | "Atomics" | "SharedArrayBuffer" | "globalThis")[]
-}]
-// ----- node/no-unsupported-features/es-syntax -----
-type NodeNoUnsupportedFeaturesEsSyntax = []|[{
-version?: string
-ignores?: ("arrowFunctions" | "binaryNumericLiterals" | "blockScopedFunctions" | "blockScopedVariables" | "classes" | "computedProperties" | "defaultParameters" | "destructuring" | "forOfLoops" | "generators" | "modules" | "new.target" | "objectSuperProperties" | "octalNumericLiterals" | "propertyShorthands" | "regexpU" | "regexpY" | "restParameters" | "spreadElements" | "templateLiterals" | "unicodeCodePointEscapes" | "exponentialOperators" | "asyncFunctions" | "trailingCommasInFunctions" | "asyncIteration" | "malformedTemplateLiterals" | "regexpLookbehind" | "regexpNamedCaptureGroups" | "regexpS" | "regexpUnicodeProperties" | "restSpreadProperties" | "jsonSuperset" | "optionalCatchBinding" | "bigint" | "dynamicImport" | "optionalChaining" | "nullishCoalescingOperators" | "logicalAssignmentOperators" | "numericSeparators")[]
-}]
-// ----- node/no-unsupported-features/node-builtins -----
-type NodeNoUnsupportedFeaturesNodeBuiltins = []|[{
-version?: string
-ignores?: ("queueMicrotask" | "require.resolve.paths" | "Buffer.alloc" | "Buffer.allocUnsafe" | "Buffer.allocUnsafeSlow" | "Buffer.from" | "TextDecoder" | "TextEncoder" | "URL" | "URLSearchParams" | "console.clear" | "console.count" | "console.countReset" | "console.debug" | "console.dirxml" | "console.group" | "console.groupCollapsed" | "console.groupEnd" | "console.table" | "console.markTimeline" | "console.profile" | "console.profileEnd" | "console.timeLog" | "console.timeStamp" | "console.timeline" | "console.timelineEnd" | "process.allowedNodeEnvironmentFlags" | "process.argv0" | "process.channel" | "process.cpuUsage" | "process.emitWarning" | "process.getegid" | "process.geteuid" | "process.hasUncaughtExceptionCaptureCallback" | "process.hrtime.bigint" | "process.ppid" | "process.release" | "process.report" | "process.resourceUsage" | "process.setegid" | "process.seteuid" | "process.setUncaughtExceptionCaptureCallback" | "process.stdout.getColorDepth" | "process.stdout.hasColor" | "process.stderr.getColorDepth" | "process.stderr.hasColor" | "assert.strict" | "assert.strict.doesNotReject" | "assert.strict.rejects" | "assert.deepStrictEqual" | "assert.doesNotReject" | "assert.notDeepStrictEqual" | "assert.rejects" | "assert.CallTracker" | "async_hooks" | "async_hooks.createHook" | "async_hooks.AsyncLocalStorage" | "buffer.Buffer.alloc" | "buffer.Buffer.allocUnsafe" | "buffer.Buffer.allocUnsafeSlow" | "buffer.Buffer.from" | "buffer.kMaxLength" | "buffer.transcode" | "buffer.constants" | "buffer.Blob" | "child_process.ChildProcess" | "crypto.Certificate.exportChallenge" | "crypto.Certificate.exportPublicKey" | "crypto.Certificate.verifySpkac" | "crypto.ECDH" | "crypto.KeyObject" | "crypto.createPrivateKey" | "crypto.createPublicKey" | "crypto.createSecretKey" | "crypto.constants" | "crypto.fips" | "crypto.generateKeyPair" | "crypto.generateKeyPairSync" | "crypto.getCurves" | "crypto.getFips" | "crypto.privateEncrypt" | "crypto.publicDecrypt" | "crypto.randomFillSync" | "crypto.randomFill" | "crypto.scrypt" | "crypto.scryptSync" | "crypto.setFips" | "crypto.sign" | "crypto.timingSafeEqual" | "crypto.verify" | "dns.Resolver" | "dns.resolvePtr" | "dns.promises" | "events.EventEmitter.once" | "events.once" | "fs.Dirent" | "fs.copyFile" | "fs.copyFileSync" | "fs.mkdtemp" | "fs.mkdtempSync" | "fs.realpath.native" | "fs.realpathSync.native" | "fs.promises" | "fs.writev" | "fs.writevSync" | "fs.readv" | "fs.readvSync" | "fs.lutimes" | "fs.lutimesSync" | "fs.opendir" | "fs.opendirSync" | "fs.rm" | "fs.rmSync" | "fs.read" | "fs.readSync" | "fs.Dir" | "fs.StatWatcher" | "fs/promises" | "http2" | "inspector" | "module.Module.builtinModules" | "module.Module.createRequireFromPath" | "module.Module.createRequire" | "module.Module.syncBuiltinESMExports" | "module.builtinModules" | "module.createRequireFromPath" | "module.createRequire" | "module.syncBuiltinESMExports" | "os.constants" | "os.constants.priority" | "os.getPriority" | "os.homedir" | "os.setPriority" | "os.userInfo" | "path.toNamespacedPath" | "perf_hooks" | "perf_hooks.monitorEventLoopDelay" | "stream.Readable.from" | "stream.finished" | "stream.pipeline" | "trace_events" | "url.URL" | "url.URLSearchParams" | "url.domainToASCII" | "url.domainToUnicode" | "util.callbackify" | "util.formatWithOptions" | "util.getSystemErrorName" | "util.inspect.custom" | "util.inspect.defaultOptions" | "util.inspect.replDefaults" | "util.isDeepStrictEqual" | "util.promisify" | "util.TextDecoder" | "util.TextEncoder" | "util.types" | "util.types.isBoxedPrimitive" | "v8" | "v8.DefaultDeserializer" | "v8.DefaultSerializer" | "v8.Deserializer" | "v8.Serializer" | "v8.cachedDataVersionTag" | "v8.deserialize" | "v8.getHeapCodeStatistics" | "v8.getHeapSnapshot" | "v8.getHeapSpaceStatistics" | "v8.serialize" | "v8.writeHeapSnapshot" | "vm.Module" | "vm.compileFunction" | "worker_threads")[]
-}]
-// ----- node/prefer-global/buffer -----
-type NodePreferGlobalBuffer = []|[("always" | "never")]
-// ----- node/prefer-global/console -----
-type NodePreferGlobalConsole = []|[("always" | "never")]
-// ----- node/prefer-global/process -----
-type NodePreferGlobalProcess = []|[("always" | "never")]
-// ----- node/prefer-global/text-decoder -----
-type NodePreferGlobalTextDecoder = []|[("always" | "never")]
-// ----- node/prefer-global/text-encoder -----
-type NodePreferGlobalTextEncoder = []|[("always" | "never")]
-// ----- node/prefer-global/url -----
-type NodePreferGlobalUrl = []|[("always" | "never")]
-// ----- node/prefer-global/url-search-params -----
-type NodePreferGlobalUrlSearchParams = []|[("always" | "never")]
-// ----- node/shebang -----
-type NodeShebang = []|[{
-convertPath?: ({
-[k: string]: [string, string]
-} | [{
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-}, ...({
-include: [string, ...(string)[]]
-exclude?: string[]
-replace: [string, string]
-})[]])
-}]"
+type ImportPreferDefaultExport =
+  | []
+  | [
+      {
+        target?: 'single' | 'any';
+      }
+    ];"
 `;
