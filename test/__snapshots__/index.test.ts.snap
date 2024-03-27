@@ -1253,9 +1253,9 @@ after?: boolean
 // ----- vue/attribute-hyphenation -----
 type VueAttributeHyphenation = []|[("always" | "never")]|[("always" | "never"), {
 ignore?: (string & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 } & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 })[]
 }]
 // ----- vue/attributes-order -----
@@ -1322,7 +1322,7 @@ after?: boolean
 // ----- vue/comma-style -----
 type VueCommaStyle = []|[("first" | "last")]|[("first" | "last"), {
 exceptions?: {
-[k: string]: boolean
+[k: string]: boolean | undefined
 }
 }]
 // ----- vue/comment-directive -----
@@ -1433,9 +1433,9 @@ selfClosingTag?: number
 switchCase?: number
 alignAttributesVertically?: boolean
 ignores?: (string & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 } & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 })[]
 }]
 // ----- vue/html-quotes -----
@@ -1902,7 +1902,7 @@ allowEmptyLines?: boolean
 // ----- vue/multiline-ternary -----
 type VueMultilineTernary = []|[("always" | "always-multiline" | "never")]|[("always" | "always-multiline" | "never"), {
 ignoreJSX?: boolean
-[k: string]: unknown
+[k: string]: unknown | undefined
 }]
 // ----- vue/mustache-interpolation-spacing -----
 type VueMustacheInterpolationSpacing = []|[("always" | "never")]
@@ -2231,7 +2231,7 @@ avoidExplicitReturnArrows?: boolean
 // ----- vue/operator-linebreak -----
 type VueOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("after" | "before" | "none") | null), {
 overrides?: {
-[k: string]: ("after" | "before" | "none" | "ignore")
+[k: string]: ("after" | "before" | "none" | "ignore") | undefined
 }
 }]
 // ----- vue/order-in-components -----
@@ -2296,9 +2296,9 @@ type VueScriptIndent = []|[(number | "tab")]|[(number | "tab"), {
 baseIndent?: number
 switchCase?: number
 ignores?: (string & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 } & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 })[]
 }]
 // ----- vue/singleline-html-element-content-newline -----
@@ -2330,7 +2330,7 @@ type VueSpaceUnaryOps = []|[{
 words?: boolean
 nonwords?: boolean
 overrides?: {
-[k: string]: boolean
+[k: string]: boolean | undefined
 }
 }]
 // ----- vue/template-curly-spacing -----
@@ -2347,9 +2347,9 @@ type VueVForDelimiterStyle = []|[("in" | "of")]
 type VueVOnEventHyphenation = []|[("always" | "never")]|[("always" | "never"), {
 autofix?: boolean
 ignore?: (string & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 } & {
-[k: string]: unknown
+[k: string]: unknown | undefined
 })[]
 }]
 // ----- vue/v-on-function-call -----
@@ -2686,7 +2686,7 @@ type ImportDynamicImportChunkname =
         importFunctions?: string[];
         allowEmpty?: boolean;
         webpackChunknameFormat?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     ];
 // ----- import/extensions -----
@@ -2703,7 +2703,7 @@ type ImportExtensions =
           [k: string]: 'always' | 'ignorePackages' | 'never';
         };
         ignorePackages?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     ]
   | []
@@ -2714,7 +2714,7 @@ type ImportExtensions =
           [k: string]: 'always' | 'ignorePackages' | 'never';
         };
         ignorePackages?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     ]
   | []
@@ -2737,7 +2737,7 @@ type ImportExtensions =
 type ImportFirst = [] | ['absolute-first' | 'disable-absolute-first'];
 // ----- import/group-exports -----
 interface ImportGroupExports {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 // ----- import/imports-first -----
 type ImportImportsFirst = [] | ['absolute-first' | 'disable-absolute-first'];
@@ -2897,7 +2897,7 @@ type ImportNoNamespace =
   | [
       {
         ignore?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     ];
 // ----- import/no-nodejs-modules -----
@@ -2987,13 +2987,13 @@ type ImportNoUnusedModules =
       | {
           unusedExports: true;
           src?: {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | {
           missingExports: true;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     ];
 // ----- import/no-useless-path-segments -----
@@ -3016,7 +3016,7 @@ type ImportOrder =
         pathGroups?: {
           pattern: string;
           patternOptions?: {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
           group: 'builtin' | 'external' | 'internal' | 'unknown' | 'parent' | 'sibling' | 'index' | 'object' | 'type';
           position?: 'after' | 'before';

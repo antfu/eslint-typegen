@@ -184,6 +184,8 @@ export async function compileRule(
       const compiled = await compileSchema(schema, name, {
         bannerComment: '',
         format: 'style' in compileOptions,
+        unreachableDefinitions: false,
+        strictIndexSignatures: true,
         ...compileOptions,
       })
       return compiled
