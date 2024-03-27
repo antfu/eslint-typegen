@@ -1,6 +1,7 @@
 import type { ESLint, Linter, Rule } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
-import { compile as compileSchema } from 'json-schema-to-typescript'
+import type { Options as CompileOptions } from 'json-schema-to-typescript-lite'
+import { compile as compileSchema } from 'json-schema-to-typescript-lite'
 
 export interface RulesTypeGenOptions {
   /**
@@ -34,7 +35,7 @@ export interface RulesTypeGenOptions {
   /**
    * Options for json-schema-to-typescript
    */
-  compileOptions?: any // Partial<CompileOptions>
+  compileOptions?: Partial<CompileOptions>
 }
 
 export interface FlatConfigsToPluginsOptions {
@@ -152,7 +153,7 @@ export async function pluginsToRulesDTS(
 export async function compileRule(
   name: string,
   rule: Rule.RuleModule,
-  compileOptions: Partial<any> = {},
+  compileOptions: Partial<CompileOptions> = {},
 ) {
   const meta = rule.meta ?? {}
   let schemas = meta.schema as JSONSchema4[] ?? []
@@ -181,8 +182,6 @@ export async function compileRule(
   async function compile(schema: JSONSchema4, name: string, ruleName: string) {
     try {
       const compiled = await compileSchema(schema, name, {
-        bannerComment: '',
-        format: 'style' in compileOptions,
         unreachableDefinitions: false,
         strictIndexSignatures: true,
         customName(schema, keyName) {

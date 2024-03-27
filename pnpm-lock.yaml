@@ -13,18 +13,12 @@ importers:
 
   .:
     dependencies:
-      '@bcherny/json-schema-ref-parser':
-        specifier: 10.0.5-fork
-        version: 10.0.5-fork
-      '@jsdevtools/ono':
-        specifier: ^7.1.3
-        version: 7.1.3
       '@types/eslint':
         specifier: ^8.56.6
         version: 8.56.6
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
+      json-schema-to-typescript-lite:
+        specifier: ^14.0.0
+        version: 14.0.0
       ohash:
         specifier: ^1.1.3
         version: 1.1.3
@@ -192,6 +186,15 @@ packages:
   /@antfu/utils@0.7.7:
     resolution: {integrity: sha512-gFPqTG7otEJ8uP6wrhDv6mqwGWYZKNvAcCq6u9hOj0c+IKCEsY4L1oC9trPq2SaWIzAfHvqfBDxF591JkMf+kg==}
     dev: true
+
+  /@apidevtools/json-schema-ref-parser@11.5.4:
+    resolution: {integrity: sha512-o2fsypTGU0WxRxbax8zQoHiIB4dyrkwYfcm8TxZ+bx9pCzcWZbQtiMqpgBvWA/nJ2TrGjK5adCLfTH8wUeU/Wg==}
+    engines: {node: '>= 16'}
+    dependencies:
+      '@jsdevtools/ono': 7.1.3
+      '@types/json-schema': 7.0.15
+      js-yaml: 4.1.0
+    dev: false
 
   /@babel/code-frame@7.22.13:
     resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
@@ -398,6 +401,7 @@ packages:
       '@types/json-schema': 7.0.15
       call-me-maybe: 1.0.1
       js-yaml: 4.1.0
+    dev: true
 
   /@clack/core@0.3.4:
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
@@ -2070,6 +2074,7 @@ packages:
 
   /call-me-maybe@1.0.1:
     resolution: {integrity: sha512-wCyFsDQkKPwwF8BDwOiWNx/9K45L/hvggQiDbve+viMNMQnWhrlYIuBk09offfwCRtCO9P6XwUttufzU11WCVw==}
+    dev: true
 
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -3537,6 +3542,14 @@ packages:
   /json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
     dev: true
+
+  /json-schema-to-typescript-lite@14.0.0:
+    resolution: {integrity: sha512-On0b6UdEgdotLzWk37yNId2wK77P7UfxuCWDEgduoz1VLR4rPbDcQGW6zlHVgL62Bq7gERq0JMmUyAjJigxYHg==}
+    engines: {node: '>=20.0.0'}
+    dependencies:
+      '@apidevtools/json-schema-ref-parser': 11.5.4
+      '@types/json-schema': 7.0.15
+    dev: false
 
   /json-schema-to-typescript@13.1.2(patch_hash=xyemipxmolv6k3zdgqbqlil2vq):
     resolution: {integrity: sha512-17G+mjx4nunvOpkPvcz7fdwUwYCEwyH8vR3Ym3rFiQ8uzAL3go+c1306Kk7iGRk8HuXBXqy+JJJmpYl0cvOllw==}

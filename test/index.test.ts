@@ -7,14 +7,6 @@ it('pluginsToRuleOptions', async () => {
     // @ts-expect-error missing types
     import: await import('eslint-plugin-import-x').then(m => m.default),
     antfu: await import('eslint-plugin-antfu').then(m => m.default),
-  }, {
-    compileOptions: {
-      style: {
-        printWidth: 1_000,
-        tabWidth: 2,
-        singleQuote: true,
-      },
-    },
   }))
     .toMatchSnapshot()
 })

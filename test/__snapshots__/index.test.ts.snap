@@ -1227,107 +1227,108 @@ export interface RuleOptions {
 /* ======= Declarations ======= */
 // ----- vue/array-bracket-newline -----
 type VueArrayBracketNewline = []|[(("always" | "never" | "consistent") | {
-multiline?: boolean
-minItems?: (number | null)
+  multiline?: boolean
+  minItems?: (number | null)
 })]
 // ----- vue/array-bracket-spacing -----
 type VueArrayBracketSpacing = []|[("always" | "never")]|[("always" | "never"), {
-singleValue?: boolean
-objectsInArrays?: boolean
-arraysInArrays?: boolean
+  singleValue?: boolean
+  objectsInArrays?: boolean
+  arraysInArrays?: boolean
 }]
 // ----- vue/array-element-newline -----
 type VueArrayElementNewline = []|[(_VueArrayElementNewlineBasicConfig | {
-ArrayExpression?: _VueArrayElementNewlineBasicConfig
-ArrayPattern?: _VueArrayElementNewlineBasicConfig
+  ArrayExpression?: _VueArrayElementNewlineBasicConfig
+  ArrayPattern?: _VueArrayElementNewlineBasicConfig
 })]
 type _VueArrayElementNewlineBasicConfig = (("always" | "never" | "consistent") | {
-multiline?: boolean
-minItems?: (number | null)
+  multiline?: boolean
+  minItems?: (number | null)
 })
 // ----- vue/arrow-spacing -----
 type VueArrowSpacing = []|[{
-before?: boolean
-after?: boolean
+  before?: boolean
+  after?: boolean
 }]
 // ----- vue/attribute-hyphenation -----
 type VueAttributeHyphenation = []|[("always" | "never")]|[("always" | "never"), {
-ignore?: (string & {
-[k: string]: unknown | undefined
-} & {
-[k: string]: unknown | undefined
-})[]
+  ignore?: (string & {
+    [k: string]: unknown | undefined
+  } & {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- vue/attributes-order -----
 type VueAttributesOrder = []|[{
-order?: (("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT") | ("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT")[])[]
-alphabetical?: boolean
+  order?: (("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT") | ("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT")[])[]
+  alphabetical?: boolean
 }]
 // ----- vue/block-lang -----
 type VueBlockLang = []|[{
-[k: string]: {
-lang?: (string | string[])
-allowNoLang?: boolean
-}
+  [k: string]: {
+    lang?: (string | string[])
+    allowNoLang?: boolean
+  }
 }]
 // ----- vue/block-order -----
 type VueBlockOrder = []|[{
-order?: (string | string[])[]
+  order?: (string | string[])[]
 }]
 // ----- vue/block-spacing -----
 type VueBlockSpacing = []|[("always" | "never")]
 // ----- vue/block-tag-newline -----
 type VueBlockTagNewline = []|[{
-singleline?: ("always" | "never" | "consistent" | "ignore")
-multiline?: ("always" | "never" | "consistent" | "ignore")
-maxEmptyLines?: number
-blocks?: {
-[k: string]: {
-singleline?: ("always" | "never" | "consistent" | "ignore")
-multiline?: ("always" | "never" | "consistent" | "ignore")
-maxEmptyLines?: number
-}
-}
+  singleline?: ("always" | "never" | "consistent" | "ignore")
+  multiline?: ("always" | "never" | "consistent" | "ignore")
+  maxEmptyLines?: number
+  blocks?: {
+    [k: string]: {
+      singleline?: ("always" | "never" | "consistent" | "ignore")
+      multiline?: ("always" | "never" | "consistent" | "ignore")
+      maxEmptyLines?: number
+    }
+  }
 }]
 // ----- vue/brace-style -----
 type VueBraceStyle = []|[("1tbs" | "stroustrup" | "allman")]|[("1tbs" | "stroustrup" | "allman"), {
-allowSingleLine?: boolean
+  allowSingleLine?: boolean
 }]
 // ----- vue/camelcase -----
 type VueCamelcase = []|[{
-ignoreDestructuring?: boolean
-ignoreImports?: boolean
-ignoreGlobals?: boolean
-properties?: ("always" | "never")
-allow?: []|[string]
+  ignoreDestructuring?: boolean
+  ignoreImports?: boolean
+  ignoreGlobals?: boolean
+  properties?: ("always" | "never")
+  
+  allow?: []|[string]
 }]
 // ----- vue/comma-dangle -----
 type VueCommaDangle = []|[(_VueCommaDangleValue | {
-arrays?: _VueCommaDangleValueWithIgnore
-objects?: _VueCommaDangleValueWithIgnore
-imports?: _VueCommaDangleValueWithIgnore
-exports?: _VueCommaDangleValueWithIgnore
-functions?: _VueCommaDangleValueWithIgnore
-enums?: _VueCommaDangleValueWithIgnore
-generics?: _VueCommaDangleValueWithIgnore
-tuples?: _VueCommaDangleValueWithIgnore
+  arrays?: _VueCommaDangleValueWithIgnore
+  objects?: _VueCommaDangleValueWithIgnore
+  imports?: _VueCommaDangleValueWithIgnore
+  exports?: _VueCommaDangleValueWithIgnore
+  functions?: _VueCommaDangleValueWithIgnore
+  enums?: _VueCommaDangleValueWithIgnore
+  generics?: _VueCommaDangleValueWithIgnore
+  tuples?: _VueCommaDangleValueWithIgnore
 })]
 type _VueCommaDangleValue = ("always-multiline" | "always" | "never" | "only-multiline")
 type _VueCommaDangleValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore")
 // ----- vue/comma-spacing -----
 type VueCommaSpacing = []|[{
-before?: boolean
-after?: boolean
+  before?: boolean
+  after?: boolean
 }]
 // ----- vue/comma-style -----
 type VueCommaStyle = []|[("first" | "last")]|[("first" | "last"), {
-exceptions?: {
-[k: string]: boolean | undefined
-}
+  exceptions?: {
+    [k: string]: boolean | undefined
+  }
 }]
 // ----- vue/comment-directive -----
 type VueCommentDirective = []|[{
-reportUnusedDisableDirectives?: boolean
+  reportUnusedDisableDirectives?: boolean
 }]
 // ----- vue/component-api-style -----
 type VueComponentApiStyle = []|[[("script-setup" | "composition" | "composition-vue2" | "options"), ...(("script-setup" | "composition" | "composition-vue2" | "options"))[]]]
@@ -1335,28 +1336,28 @@ type VueComponentApiStyle = []|[[("script-setup" | "composition" | "composition-
 type VueComponentDefinitionNameCasing = []|[("PascalCase" | "kebab-case")]
 // ----- vue/component-name-in-template-casing -----
 type VueComponentNameInTemplateCasing = []|[("PascalCase" | "kebab-case")]|[("PascalCase" | "kebab-case"), {
-globals?: string[]
-ignores?: string[]
-registeredComponentsOnly?: boolean
+  globals?: string[]
+  ignores?: string[]
+  registeredComponentsOnly?: boolean
 }]
 // ----- vue/component-options-name-casing -----
 type VueComponentOptionsNameCasing = []|[("camelCase" | "kebab-case" | "PascalCase")]
 // ----- vue/component-tags-order -----
 type VueComponentTagsOrder = []|[{
-order?: (string | string[])[]
+  order?: (string | string[])[]
 }]
 // ----- vue/custom-event-name-casing -----
 type VueCustomEventNameCasing = ([]|[("kebab-case" | "camelCase")]|[("kebab-case" | "camelCase"), {
-ignores?: string[]
+  ignores?: string[]
 }] | []|[{
-ignores?: string[]
+  ignores?: string[]
 }])
 // ----- vue/define-emits-declaration -----
 type VueDefineEmitsDeclaration = []|[("type-based" | "type-literal" | "runtime")]
 // ----- vue/define-macros-order -----
 type VueDefineMacrosOrder = []|[{
-order?: ("defineEmits" | "defineProps" | "defineOptions" | "defineSlots" | "defineModel")[]
-defineExposeLast?: boolean
+  order?: ("defineEmits" | "defineProps" | "defineOptions" | "defineSlots" | "defineModel")[]
+  defineExposeLast?: boolean
 }]
 // ----- vue/define-props-declaration -----
 type VueDefinePropsDeclaration = []|[("type-based" | "runtime")]
@@ -1364,898 +1365,905 @@ type VueDefinePropsDeclaration = []|[("type-based" | "runtime")]
 type VueDotLocation = []|[("object" | "property")]
 // ----- vue/dot-notation -----
 type VueDotNotation = []|[{
-allowKeywords?: boolean
-allowPattern?: string
+  allowKeywords?: boolean
+  allowPattern?: string
 }]
 // ----- vue/enforce-style-attribute -----
 type VueEnforceStyleAttribute = []|[{
-allow?: [("plain" | "scoped" | "module"), ...(("plain" | "scoped" | "module"))[]]
+  
+  allow?: [("plain" | "scoped" | "module"), ...(("plain" | "scoped" | "module"))[]]
 }]
 // ----- vue/eqeqeq -----
 type VueEqeqeq = ([]|["always"]|["always", {
-null?: ("always" | "never" | "ignore")
+  null?: ("always" | "never" | "ignore")
 }] | []|[("smart" | "allow-null")])
 // ----- vue/first-attribute-linebreak -----
 type VueFirstAttributeLinebreak = []|[{
-multiline?: ("below" | "beside" | "ignore")
-singleline?: ("below" | "beside" | "ignore")
+  multiline?: ("below" | "beside" | "ignore")
+  singleline?: ("below" | "beside" | "ignore")
 }]
 // ----- vue/func-call-spacing -----
 type VueFuncCallSpacing = ([]|["never"] | []|["always"]|["always", {
-allowNewlines?: boolean
+  allowNewlines?: boolean
 }])
 // ----- vue/html-button-has-type -----
 type VueHtmlButtonHasType = []|[{
-button?: boolean
-submit?: boolean
-reset?: boolean
+  button?: boolean
+  submit?: boolean
+  reset?: boolean
 }]
 // ----- vue/html-closing-bracket-newline -----
 type VueHtmlClosingBracketNewline = []|[{
-singleline?: ("always" | "never")
-multiline?: ("always" | "never")
-selfClosingTag?: {
-singleline?: ("always" | "never")
-multiline?: ("always" | "never")
-}
+  singleline?: ("always" | "never")
+  multiline?: ("always" | "never")
+  selfClosingTag?: {
+    singleline?: ("always" | "never")
+    multiline?: ("always" | "never")
+  }
 }]
 // ----- vue/html-closing-bracket-spacing -----
 type VueHtmlClosingBracketSpacing = []|[{
-startTag?: ("always" | "never")
-endTag?: ("always" | "never")
-selfClosingTag?: ("always" | "never")
+  startTag?: ("always" | "never")
+  endTag?: ("always" | "never")
+  selfClosingTag?: ("always" | "never")
 }]
 // ----- vue/html-comment-content-newline -----
 type VueHtmlCommentContentNewline = []|[(("always" | "never") | {
-singleline?: ("always" | "never" | "ignore")
-multiline?: ("always" | "never" | "ignore")
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
 })]|[(("always" | "never") | {
-singleline?: ("always" | "never" | "ignore")
-multiline?: ("always" | "never" | "ignore")
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
 }), {
-exceptions?: string[]
+  exceptions?: string[]
 }]
 // ----- vue/html-comment-content-spacing -----
 type VueHtmlCommentContentSpacing = []|[("always" | "never")]|[("always" | "never"), {
-exceptions?: string[]
+  exceptions?: string[]
 }]
 // ----- vue/html-comment-indent -----
 type VueHtmlCommentIndent = []|[(number | "tab")]
 // ----- vue/html-indent -----
 type VueHtmlIndent = []|[(number | "tab")]|[(number | "tab"), {
-attribute?: number
-baseIndent?: number
-closeBracket?: (number | {
-startTag?: number
-endTag?: number
-selfClosingTag?: number
-})
-switchCase?: number
-alignAttributesVertically?: boolean
-ignores?: (string & {
-[k: string]: unknown | undefined
-} & {
-[k: string]: unknown | undefined
-})[]
+  attribute?: number
+  baseIndent?: number
+  closeBracket?: (number | {
+    startTag?: number
+    endTag?: number
+    selfClosingTag?: number
+  })
+  switchCase?: number
+  alignAttributesVertically?: boolean
+  ignores?: (string & {
+    [k: string]: unknown | undefined
+  } & {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- vue/html-quotes -----
 type VueHtmlQuotes = []|[("double" | "single")]|[("double" | "single"), {
-avoidEscape?: boolean
+  avoidEscape?: boolean
 }]
 // ----- vue/html-self-closing -----
 type VueHtmlSelfClosing = []|[{
-html?: {
-normal?: _VueHtmlSelfClosingOptionValue
-void?: _VueHtmlSelfClosingOptionValue
-component?: _VueHtmlSelfClosingOptionValue
-}
-svg?: _VueHtmlSelfClosingOptionValue
-math?: _VueHtmlSelfClosingOptionValue
+  html?: {
+    normal?: _VueHtmlSelfClosingOptionValue
+    void?: _VueHtmlSelfClosingOptionValue
+    component?: _VueHtmlSelfClosingOptionValue
+  }
+  svg?: _VueHtmlSelfClosingOptionValue
+  math?: _VueHtmlSelfClosingOptionValue
 }]
 type _VueHtmlSelfClosingOptionValue = ("always" | "never" | "any")
 // ----- vue/key-spacing -----
 type VueKeySpacing = []|[({
-align?: (("colon" | "value") | {
-mode?: ("strict" | "minimum")
-on?: ("colon" | "value")
-beforeColon?: boolean
-afterColon?: boolean
-})
-mode?: ("strict" | "minimum")
-beforeColon?: boolean
-afterColon?: boolean
+  align?: (("colon" | "value") | {
+    mode?: ("strict" | "minimum")
+    on?: ("colon" | "value")
+    beforeColon?: boolean
+    afterColon?: boolean
+  })
+  mode?: ("strict" | "minimum")
+  beforeColon?: boolean
+  afterColon?: boolean
 } | {
-singleLine?: {
-mode?: ("strict" | "minimum")
-beforeColon?: boolean
-afterColon?: boolean
-}
-multiLine?: {
-align?: (("colon" | "value") | {
-mode?: ("strict" | "minimum")
-on?: ("colon" | "value")
-beforeColon?: boolean
-afterColon?: boolean
-})
-mode?: ("strict" | "minimum")
-beforeColon?: boolean
-afterColon?: boolean
-}
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    align?: (("colon" | "value") | {
+      mode?: ("strict" | "minimum")
+      on?: ("colon" | "value")
+      beforeColon?: boolean
+      afterColon?: boolean
+    })
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
 } | {
-singleLine?: {
-mode?: ("strict" | "minimum")
-beforeColon?: boolean
-afterColon?: boolean
-}
-multiLine?: {
-mode?: ("strict" | "minimum")
-beforeColon?: boolean
-afterColon?: boolean
-}
-align?: {
-mode?: ("strict" | "minimum")
-on?: ("colon" | "value")
-beforeColon?: boolean
-afterColon?: boolean
-}
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  align?: {
+    mode?: ("strict" | "minimum")
+    on?: ("colon" | "value")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
 })]
 // ----- vue/keyword-spacing -----
 type VueKeywordSpacing = []|[{
-before?: boolean
-after?: boolean
-overrides?: {
-abstract?: {
-before?: boolean
-after?: boolean
-}
-as?: {
-before?: boolean
-after?: boolean
-}
-async?: {
-before?: boolean
-after?: boolean
-}
-await?: {
-before?: boolean
-after?: boolean
-}
-boolean?: {
-before?: boolean
-after?: boolean
-}
-break?: {
-before?: boolean
-after?: boolean
-}
-byte?: {
-before?: boolean
-after?: boolean
-}
-case?: {
-before?: boolean
-after?: boolean
-}
-catch?: {
-before?: boolean
-after?: boolean
-}
-char?: {
-before?: boolean
-after?: boolean
-}
-class?: {
-before?: boolean
-after?: boolean
-}
-const?: {
-before?: boolean
-after?: boolean
-}
-continue?: {
-before?: boolean
-after?: boolean
-}
-debugger?: {
-before?: boolean
-after?: boolean
-}
-default?: {
-before?: boolean
-after?: boolean
-}
-delete?: {
-before?: boolean
-after?: boolean
-}
-do?: {
-before?: boolean
-after?: boolean
-}
-double?: {
-before?: boolean
-after?: boolean
-}
-else?: {
-before?: boolean
-after?: boolean
-}
-enum?: {
-before?: boolean
-after?: boolean
-}
-export?: {
-before?: boolean
-after?: boolean
-}
-extends?: {
-before?: boolean
-after?: boolean
-}
-false?: {
-before?: boolean
-after?: boolean
-}
-final?: {
-before?: boolean
-after?: boolean
-}
-finally?: {
-before?: boolean
-after?: boolean
-}
-float?: {
-before?: boolean
-after?: boolean
-}
-for?: {
-before?: boolean
-after?: boolean
-}
-from?: {
-before?: boolean
-after?: boolean
-}
-function?: {
-before?: boolean
-after?: boolean
-}
-get?: {
-before?: boolean
-after?: boolean
-}
-goto?: {
-before?: boolean
-after?: boolean
-}
-if?: {
-before?: boolean
-after?: boolean
-}
-implements?: {
-before?: boolean
-after?: boolean
-}
-import?: {
-before?: boolean
-after?: boolean
-}
-in?: {
-before?: boolean
-after?: boolean
-}
-instanceof?: {
-before?: boolean
-after?: boolean
-}
-int?: {
-before?: boolean
-after?: boolean
-}
-interface?: {
-before?: boolean
-after?: boolean
-}
-let?: {
-before?: boolean
-after?: boolean
-}
-long?: {
-before?: boolean
-after?: boolean
-}
-native?: {
-before?: boolean
-after?: boolean
-}
-new?: {
-before?: boolean
-after?: boolean
-}
-null?: {
-before?: boolean
-after?: boolean
-}
-of?: {
-before?: boolean
-after?: boolean
-}
-package?: {
-before?: boolean
-after?: boolean
-}
-private?: {
-before?: boolean
-after?: boolean
-}
-protected?: {
-before?: boolean
-after?: boolean
-}
-public?: {
-before?: boolean
-after?: boolean
-}
-return?: {
-before?: boolean
-after?: boolean
-}
-set?: {
-before?: boolean
-after?: boolean
-}
-short?: {
-before?: boolean
-after?: boolean
-}
-static?: {
-before?: boolean
-after?: boolean
-}
-super?: {
-before?: boolean
-after?: boolean
-}
-switch?: {
-before?: boolean
-after?: boolean
-}
-synchronized?: {
-before?: boolean
-after?: boolean
-}
-this?: {
-before?: boolean
-after?: boolean
-}
-throw?: {
-before?: boolean
-after?: boolean
-}
-throws?: {
-before?: boolean
-after?: boolean
-}
-transient?: {
-before?: boolean
-after?: boolean
-}
-true?: {
-before?: boolean
-after?: boolean
-}
-try?: {
-before?: boolean
-after?: boolean
-}
-typeof?: {
-before?: boolean
-after?: boolean
-}
-var?: {
-before?: boolean
-after?: boolean
-}
-void?: {
-before?: boolean
-after?: boolean
-}
-volatile?: {
-before?: boolean
-after?: boolean
-}
-while?: {
-before?: boolean
-after?: boolean
-}
-with?: {
-before?: boolean
-after?: boolean
-}
-yield?: {
-before?: boolean
-after?: boolean
-}
-type?: {
-before?: boolean
-after?: boolean
-}
-}
+  before?: boolean
+  after?: boolean
+  overrides?: {
+    abstract?: {
+      before?: boolean
+      after?: boolean
+    }
+    as?: {
+      before?: boolean
+      after?: boolean
+    }
+    async?: {
+      before?: boolean
+      after?: boolean
+    }
+    await?: {
+      before?: boolean
+      after?: boolean
+    }
+    boolean?: {
+      before?: boolean
+      after?: boolean
+    }
+    break?: {
+      before?: boolean
+      after?: boolean
+    }
+    byte?: {
+      before?: boolean
+      after?: boolean
+    }
+    case?: {
+      before?: boolean
+      after?: boolean
+    }
+    catch?: {
+      before?: boolean
+      after?: boolean
+    }
+    char?: {
+      before?: boolean
+      after?: boolean
+    }
+    class?: {
+      before?: boolean
+      after?: boolean
+    }
+    const?: {
+      before?: boolean
+      after?: boolean
+    }
+    continue?: {
+      before?: boolean
+      after?: boolean
+    }
+    debugger?: {
+      before?: boolean
+      after?: boolean
+    }
+    default?: {
+      before?: boolean
+      after?: boolean
+    }
+    delete?: {
+      before?: boolean
+      after?: boolean
+    }
+    do?: {
+      before?: boolean
+      after?: boolean
+    }
+    double?: {
+      before?: boolean
+      after?: boolean
+    }
+    else?: {
+      before?: boolean
+      after?: boolean
+    }
+    enum?: {
+      before?: boolean
+      after?: boolean
+    }
+    export?: {
+      before?: boolean
+      after?: boolean
+    }
+    extends?: {
+      before?: boolean
+      after?: boolean
+    }
+    false?: {
+      before?: boolean
+      after?: boolean
+    }
+    final?: {
+      before?: boolean
+      after?: boolean
+    }
+    finally?: {
+      before?: boolean
+      after?: boolean
+    }
+    float?: {
+      before?: boolean
+      after?: boolean
+    }
+    for?: {
+      before?: boolean
+      after?: boolean
+    }
+    from?: {
+      before?: boolean
+      after?: boolean
+    }
+    function?: {
+      before?: boolean
+      after?: boolean
+    }
+    get?: {
+      before?: boolean
+      after?: boolean
+    }
+    goto?: {
+      before?: boolean
+      after?: boolean
+    }
+    if?: {
+      before?: boolean
+      after?: boolean
+    }
+    implements?: {
+      before?: boolean
+      after?: boolean
+    }
+    import?: {
+      before?: boolean
+      after?: boolean
+    }
+    in?: {
+      before?: boolean
+      after?: boolean
+    }
+    instanceof?: {
+      before?: boolean
+      after?: boolean
+    }
+    int?: {
+      before?: boolean
+      after?: boolean
+    }
+    interface?: {
+      before?: boolean
+      after?: boolean
+    }
+    let?: {
+      before?: boolean
+      after?: boolean
+    }
+    long?: {
+      before?: boolean
+      after?: boolean
+    }
+    native?: {
+      before?: boolean
+      after?: boolean
+    }
+    new?: {
+      before?: boolean
+      after?: boolean
+    }
+    null?: {
+      before?: boolean
+      after?: boolean
+    }
+    of?: {
+      before?: boolean
+      after?: boolean
+    }
+    package?: {
+      before?: boolean
+      after?: boolean
+    }
+    private?: {
+      before?: boolean
+      after?: boolean
+    }
+    protected?: {
+      before?: boolean
+      after?: boolean
+    }
+    public?: {
+      before?: boolean
+      after?: boolean
+    }
+    return?: {
+      before?: boolean
+      after?: boolean
+    }
+    set?: {
+      before?: boolean
+      after?: boolean
+    }
+    short?: {
+      before?: boolean
+      after?: boolean
+    }
+    static?: {
+      before?: boolean
+      after?: boolean
+    }
+    super?: {
+      before?: boolean
+      after?: boolean
+    }
+    switch?: {
+      before?: boolean
+      after?: boolean
+    }
+    synchronized?: {
+      before?: boolean
+      after?: boolean
+    }
+    this?: {
+      before?: boolean
+      after?: boolean
+    }
+    throw?: {
+      before?: boolean
+      after?: boolean
+    }
+    throws?: {
+      before?: boolean
+      after?: boolean
+    }
+    transient?: {
+      before?: boolean
+      after?: boolean
+    }
+    true?: {
+      before?: boolean
+      after?: boolean
+    }
+    try?: {
+      before?: boolean
+      after?: boolean
+    }
+    typeof?: {
+      before?: boolean
+      after?: boolean
+    }
+    var?: {
+      before?: boolean
+      after?: boolean
+    }
+    void?: {
+      before?: boolean
+      after?: boolean
+    }
+    volatile?: {
+      before?: boolean
+      after?: boolean
+    }
+    while?: {
+      before?: boolean
+      after?: boolean
+    }
+    with?: {
+      before?: boolean
+      after?: boolean
+    }
+    yield?: {
+      before?: boolean
+      after?: boolean
+    }
+    type?: {
+      before?: boolean
+      after?: boolean
+    }
+  }
 }]
 // ----- vue/match-component-file-name -----
 type VueMatchComponentFileName = []|[{
-extensions?: string[]
-shouldMatchCase?: boolean
+  extensions?: string[]
+  shouldMatchCase?: boolean
 }]
 // ----- vue/max-attributes-per-line -----
 type VueMaxAttributesPerLine = []|[{
-singleline?: (number | {
-max?: number
-})
-multiline?: (number | {
-max?: number
-})
+  singleline?: (number | {
+    max?: number
+  })
+  multiline?: (number | {
+    max?: number
+  })
 }]
 // ----- vue/max-len -----
 type VueMaxLen = []|[({
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 } | number)]|[({
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 } | number), ({
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 } | number)]|[({
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 } | number), ({
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 } | number), {
-code?: number
-template?: number
-comments?: number
-tabWidth?: number
-ignorePattern?: string
-ignoreComments?: boolean
-ignoreTrailingComments?: boolean
-ignoreUrls?: boolean
-ignoreStrings?: boolean
-ignoreTemplateLiterals?: boolean
-ignoreRegExpLiterals?: boolean
-ignoreHTMLAttributeValues?: boolean
-ignoreHTMLTextContents?: boolean
+  code?: number
+  template?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreHTMLAttributeValues?: boolean
+  ignoreHTMLTextContents?: boolean
 }]
 // ----- vue/max-lines-per-block -----
 type VueMaxLinesPerBlock = []|[{
-style?: number
-template?: number
-script?: number
-skipBlankLines?: boolean
+  style?: number
+  template?: number
+  script?: number
+  skipBlankLines?: boolean
 }]
 // ----- vue/multi-word-component-names -----
 type VueMultiWordComponentNames = []|[{
-ignores?: string[]
+  ignores?: string[]
 }]
 // ----- vue/multiline-html-element-content-newline -----
 type VueMultilineHtmlElementContentNewline = []|[{
-ignoreWhenEmpty?: boolean
-ignores?: string[]
-allowEmptyLines?: boolean
+  ignoreWhenEmpty?: boolean
+  ignores?: string[]
+  allowEmptyLines?: boolean
 }]
 // ----- vue/multiline-ternary -----
 type VueMultilineTernary = []|[("always" | "always-multiline" | "never")]|[("always" | "always-multiline" | "never"), {
-ignoreJSX?: boolean
-[k: string]: unknown | undefined
+  ignoreJSX?: boolean
+  [k: string]: unknown | undefined
 }]
 // ----- vue/mustache-interpolation-spacing -----
 type VueMustacheInterpolationSpacing = []|[("always" | "never")]
 // ----- vue/new-line-between-multi-line-property -----
 type VueNewLineBetweenMultiLineProperty = []|[{
-minLineOfMultilineProperty?: number
+  minLineOfMultilineProperty?: number
 }]
 // ----- vue/next-tick-style -----
 type VueNextTickStyle = []|[("promise" | "callback")]
 // ----- vue/no-bare-strings-in-template -----
 type VueNoBareStringsInTemplate = []|[{
-allowlist?: string[]
-attributes?: {
-[k: string]: string[]
-}
-directives?: string[]
+  allowlist?: string[]
+  attributes?: {
+    [k: string]: string[]
+  }
+  directives?: string[]
 }]
 // ----- vue/no-boolean-default -----
 type VueNoBooleanDefault = []|[("default-false" | "no-default")]
 // ----- vue/no-child-content -----
 type VueNoChildContent = []|[{
-additionalDirectives: [string, ...(string)[]]
+  
+  additionalDirectives: [string, ...(string)[]]
 }]
 // ----- vue/no-console -----
 type VueNoConsole = []|[{
-allow?: [string, ...(string)[]]
+  
+  allow?: [string, ...(string)[]]
 }]
 // ----- vue/no-constant-condition -----
 type VueNoConstantCondition = []|[{
-checkLoops?: boolean
+  checkLoops?: boolean
 }]
 // ----- vue/no-deprecated-model-definition -----
 type VueNoDeprecatedModelDefinition = []|[{
-allowVue3Compat?: boolean
+  allowVue3Compat?: boolean
 }]
 // ----- vue/no-deprecated-router-link-tag-prop -----
 type VueNoDeprecatedRouterLinkTagProp = []|[{
-components?: [string, ...(string)[]]
+  
+  components?: [string, ...(string)[]]
 }]
 // ----- vue/no-deprecated-slot-attribute -----
 type VueNoDeprecatedSlotAttribute = []|[{
-ignore?: string[]
+  ignore?: string[]
 }]
 // ----- vue/no-dupe-keys -----
 type VueNoDupeKeys = []|[{
-groups?: unknown[]
+  groups?: unknown[]
 }]
 // ----- vue/no-duplicate-attributes -----
 type VueNoDuplicateAttributes = []|[{
-allowCoexistClass?: boolean
-allowCoexistStyle?: boolean
+  allowCoexistClass?: boolean
+  allowCoexistStyle?: boolean
 }]
 // ----- vue/no-empty-pattern -----
 type VueNoEmptyPattern = []|[{
-allowObjectPatternsAsParameters?: boolean
+  allowObjectPatternsAsParameters?: boolean
 }]
 // ----- vue/no-extra-parens -----
 type VueNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
-conditionalAssign?: boolean
-ternaryOperandBinaryExpressions?: boolean
-nestedBinaryExpressions?: boolean
-returnAssign?: boolean
-ignoreJSX?: ("none" | "all" | "single-line" | "multi-line")
-enforceForArrowConditionals?: boolean
-enforceForSequenceExpressions?: boolean
-enforceForNewInMemberExpressions?: boolean
-enforceForFunctionPrototypeMethods?: boolean
-allowParensAfterCommentPattern?: string
+  conditionalAssign?: boolean
+  ternaryOperandBinaryExpressions?: boolean
+  nestedBinaryExpressions?: boolean
+  returnAssign?: boolean
+  ignoreJSX?: ("none" | "all" | "single-line" | "multi-line")
+  enforceForArrowConditionals?: boolean
+  enforceForSequenceExpressions?: boolean
+  enforceForNewInMemberExpressions?: boolean
+  enforceForFunctionPrototypeMethods?: boolean
+  allowParensAfterCommentPattern?: string
 }])
 // ----- vue/no-irregular-whitespace -----
 type VueNoIrregularWhitespace = []|[{
-skipComments?: boolean
-skipStrings?: boolean
-skipTemplates?: boolean
-skipRegExps?: boolean
-skipHTMLAttributeValues?: boolean
-skipHTMLTextContents?: boolean
+  skipComments?: boolean
+  skipStrings?: boolean
+  skipTemplates?: boolean
+  skipRegExps?: boolean
+  skipHTMLAttributeValues?: boolean
+  skipHTMLTextContents?: boolean
 }]
 // ----- vue/no-lone-template -----
 type VueNoLoneTemplate = []|[{
-ignoreAccessible?: boolean
+  ignoreAccessible?: boolean
 }]
 // ----- vue/no-multi-spaces -----
 type VueNoMultiSpaces = []|[{
-ignoreProperties?: boolean
+  ignoreProperties?: boolean
 }]
 // ----- vue/no-mutating-props -----
 type VueNoMutatingProps = []|[{
-shallowOnly?: boolean
+  shallowOnly?: boolean
 }]
 // ----- vue/no-parsing-error -----
 type VueNoParsingError = []|[{
-"abrupt-closing-of-empty-comment"?: boolean
-"absence-of-digits-in-numeric-character-reference"?: boolean
-"cdata-in-html-content"?: boolean
-"character-reference-outside-unicode-range"?: boolean
-"control-character-in-input-stream"?: boolean
-"control-character-reference"?: boolean
-"eof-before-tag-name"?: boolean
-"eof-in-cdata"?: boolean
-"eof-in-comment"?: boolean
-"eof-in-tag"?: boolean
-"incorrectly-closed-comment"?: boolean
-"incorrectly-opened-comment"?: boolean
-"invalid-first-character-of-tag-name"?: boolean
-"missing-attribute-value"?: boolean
-"missing-end-tag-name"?: boolean
-"missing-semicolon-after-character-reference"?: boolean
-"missing-whitespace-between-attributes"?: boolean
-"nested-comment"?: boolean
-"noncharacter-character-reference"?: boolean
-"noncharacter-in-input-stream"?: boolean
-"null-character-reference"?: boolean
-"surrogate-character-reference"?: boolean
-"surrogate-in-input-stream"?: boolean
-"unexpected-character-in-attribute-name"?: boolean
-"unexpected-character-in-unquoted-attribute-value"?: boolean
-"unexpected-equals-sign-before-attribute-name"?: boolean
-"unexpected-null-character"?: boolean
-"unexpected-question-mark-instead-of-tag-name"?: boolean
-"unexpected-solidus-in-tag"?: boolean
-"unknown-named-character-reference"?: boolean
-"end-tag-with-attributes"?: boolean
-"duplicate-attribute"?: boolean
-"end-tag-with-trailing-solidus"?: boolean
-"non-void-html-element-start-tag-with-trailing-solidus"?: boolean
-"x-invalid-end-tag"?: boolean
-"x-invalid-namespace"?: boolean
+  "abrupt-closing-of-empty-comment"?: boolean
+  "absence-of-digits-in-numeric-character-reference"?: boolean
+  "cdata-in-html-content"?: boolean
+  "character-reference-outside-unicode-range"?: boolean
+  "control-character-in-input-stream"?: boolean
+  "control-character-reference"?: boolean
+  "eof-before-tag-name"?: boolean
+  "eof-in-cdata"?: boolean
+  "eof-in-comment"?: boolean
+  "eof-in-tag"?: boolean
+  "incorrectly-closed-comment"?: boolean
+  "incorrectly-opened-comment"?: boolean
+  "invalid-first-character-of-tag-name"?: boolean
+  "missing-attribute-value"?: boolean
+  "missing-end-tag-name"?: boolean
+  "missing-semicolon-after-character-reference"?: boolean
+  "missing-whitespace-between-attributes"?: boolean
+  "nested-comment"?: boolean
+  "noncharacter-character-reference"?: boolean
+  "noncharacter-in-input-stream"?: boolean
+  "null-character-reference"?: boolean
+  "surrogate-character-reference"?: boolean
+  "surrogate-in-input-stream"?: boolean
+  "unexpected-character-in-attribute-name"?: boolean
+  "unexpected-character-in-unquoted-attribute-value"?: boolean
+  "unexpected-equals-sign-before-attribute-name"?: boolean
+  "unexpected-null-character"?: boolean
+  "unexpected-question-mark-instead-of-tag-name"?: boolean
+  "unexpected-solidus-in-tag"?: boolean
+  "unknown-named-character-reference"?: boolean
+  "end-tag-with-attributes"?: boolean
+  "duplicate-attribute"?: boolean
+  "end-tag-with-trailing-solidus"?: boolean
+  "non-void-html-element-start-tag-with-trailing-solidus"?: boolean
+  "x-invalid-end-tag"?: boolean
+  "x-invalid-namespace"?: boolean
 }]
 // ----- vue/no-potential-component-option-typo -----
 type VueNoPotentialComponentOptionTypo = []|[{
-presets?: ("all" | "vue" | "vue-router" | "nuxt")[]
-custom?: string[]
-threshold?: number
+  
+  presets?: ("all" | "vue" | "vue-router" | "nuxt")[]
+  
+  custom?: string[]
+  threshold?: number
 }]
 // ----- vue/no-required-prop-with-default -----
 type VueNoRequiredPropWithDefault = []|[{
-autofix?: boolean
+  autofix?: boolean
 }]
 // ----- vue/no-reserved-component-names -----
 type VueNoReservedComponentNames = []|[{
-disallowVueBuiltInComponents?: boolean
-disallowVue3BuiltInComponents?: boolean
+  disallowVueBuiltInComponents?: boolean
+  disallowVue3BuiltInComponents?: boolean
 }]
 // ----- vue/no-reserved-keys -----
 type VueNoReservedKeys = []|[{
-reserved?: unknown[]
-groups?: unknown[]
+  reserved?: unknown[]
+  groups?: unknown[]
 }]
 // ----- vue/no-reserved-props -----
 type VueNoReservedProps = []|[{
-vueVersion?: (2 | 3)
+  vueVersion?: (2 | 3)
 }]
 // ----- vue/no-restricted-block -----
 type VueNoRestrictedBlock = (string | {
-element: string
-message?: string
+  element: string
+  message?: string
 })[]
 // ----- vue/no-restricted-call-after-await -----
 type VueNoRestrictedCallAfterAwait = {
-module: string
-path?: (string | string[])
-message?: string
+  module: string
+  path?: (string | string[])
+  message?: string
 }[]
 // ----- vue/no-restricted-class -----
 type VueNoRestrictedClass = string[]
 // ----- vue/no-restricted-component-names -----
 type VueNoRestrictedComponentNames = (string | {
-name: string
-message?: string
-suggest?: string
+  name: string
+  message?: string
+  suggest?: string
 })[]
 // ----- vue/no-restricted-component-options -----
 type VueNoRestrictedComponentOptions = (string | string[] | {
-name: (string | string[])
-message?: string
+  name: (string | string[])
+  message?: string
 })[]
 // ----- vue/no-restricted-custom-event -----
 type VueNoRestrictedCustomEvent = (string | {
-event: string
-message?: string
-suggest?: string
+  event: string
+  message?: string
+  suggest?: string
 })[]
 // ----- vue/no-restricted-html-elements -----
 type VueNoRestrictedHtmlElements = (string | {
-element: string
-message?: string
+  element: string
+  message?: string
 })[]
 // ----- vue/no-restricted-props -----
 type VueNoRestrictedProps = (string | {
-name: string
-message?: string
-suggest?: string
+  name: string
+  message?: string
+  suggest?: string
 })[]
 // ----- vue/no-restricted-static-attribute -----
 type VueNoRestrictedStaticAttribute = (string | {
-key: string
-value?: (string | true)
-element?: string
-message?: string
+  key: string
+  value?: (string | true)
+  element?: string
+  message?: string
 })[]
 // ----- vue/no-restricted-syntax -----
 type VueNoRestrictedSyntax = (string | {
-selector: string
-message?: string
+  selector: string
+  message?: string
 })[]
 // ----- vue/no-restricted-v-bind -----
 type VueNoRestrictedVBind = ((string | null) | {
-argument: (string | null)
-modifiers?: ("prop" | "camel" | "sync" | "attr")[]
-element?: string
-message?: string
+  argument: (string | null)
+  modifiers?: ("prop" | "camel" | "sync" | "attr")[]
+  element?: string
+  message?: string
 })[]
 // ----- vue/no-restricted-v-on -----
 type VueNoRestrictedVOn = ((string | null) | {
-argument: (string | null)
-element?: string
-message?: string
-modifiers?: [("prevent" | "stop" | "capture" | "self" | "once" | "passive"), ...(("prevent" | "stop" | "capture" | "self" | "once" | "passive"))[]]
+  argument: (string | null)
+  element?: string
+  message?: string
+  
+  modifiers?: [("prevent" | "stop" | "capture" | "self" | "once" | "passive"), ...(("prevent" | "stop" | "capture" | "self" | "once" | "passive"))[]]
 })[]
 // ----- vue/no-static-inline-styles -----
 type VueNoStaticInlineStyles = []|[{
-allowBinding?: boolean
+  allowBinding?: boolean
 }]
 // ----- vue/no-template-shadow -----
 type VueNoTemplateShadow = []|[{
-allow?: string[]
+  allow?: string[]
 }]
 // ----- vue/no-template-target-blank -----
 type VueNoTemplateTargetBlank = []|[{
-allowReferrer?: boolean
-enforceDynamicLinks?: ("always" | "never")
+  allowReferrer?: boolean
+  enforceDynamicLinks?: ("always" | "never")
 }]
 // ----- vue/no-undef-components -----
 type VueNoUndefComponents = []|[{
-ignorePatterns?: unknown[]
+  ignorePatterns?: unknown[]
 }]
 // ----- vue/no-undef-properties -----
 type VueNoUndefProperties = []|[{
-ignores?: string[]
+  ignores?: string[]
 }]
 // ----- vue/no-unsupported-features -----
 type VueNoUnsupportedFeatures = []|[{
-version?: string
-ignores?: ("slot-scope-attribute" | "dynamic-directive-arguments" | "v-slot" | "script-setup" | "style-css-vars-injection" | "v-model-argument" | "v-model-custom-modifiers" | "v-is" | "is-attribute-with-vue-prefix" | "v-memo" | "v-bind-prop-modifier-shorthand" | "v-bind-attr-modifier" | "define-options" | "define-slots" | "define-model" | "v-bind-same-name-shorthand")[]
+  version?: string
+  ignores?: ("slot-scope-attribute" | "dynamic-directive-arguments" | "v-slot" | "script-setup" | "style-css-vars-injection" | "v-model-argument" | "v-model-custom-modifiers" | "v-is" | "is-attribute-with-vue-prefix" | "v-memo" | "v-bind-prop-modifier-shorthand" | "v-bind-attr-modifier" | "define-options" | "define-slots" | "define-model" | "v-bind-same-name-shorthand")[]
 }]
 // ----- vue/no-unused-components -----
 type VueNoUnusedComponents = []|[{
-ignoreWhenBindingPresent?: boolean
+  ignoreWhenBindingPresent?: boolean
 }]
 // ----- vue/no-unused-properties -----
 type VueNoUnusedProperties = []|[{
-groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup")[]
-deepData?: boolean
-ignorePublicMembers?: boolean
-unreferencedOptions?: ("unknownMemberAsUnreferenced" | "returnAsUnreferenced")[]
+  groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup")[]
+  deepData?: boolean
+  ignorePublicMembers?: boolean
+  unreferencedOptions?: ("unknownMemberAsUnreferenced" | "returnAsUnreferenced")[]
 }]
 // ----- vue/no-unused-vars -----
 type VueNoUnusedVars = []|[{
-ignorePattern?: string
+  ignorePattern?: string
 }]
 // ----- vue/no-use-v-if-with-v-for -----
 type VueNoUseVIfWithVFor = []|[{
-allowUsingIterationVar?: boolean
+  allowUsingIterationVar?: boolean
 }]
 // ----- vue/no-useless-mustaches -----
 type VueNoUselessMustaches = []|[{
-ignoreIncludesComment?: boolean
-ignoreStringEscape?: boolean
+  ignoreIncludesComment?: boolean
+  ignoreStringEscape?: boolean
 }]
 // ----- vue/no-useless-v-bind -----
 type VueNoUselessVBind = []|[{
-ignoreIncludesComment?: boolean
-ignoreStringEscape?: boolean
+  ignoreIncludesComment?: boolean
+  ignoreStringEscape?: boolean
 }]
 // ----- vue/no-v-text-v-html-on-component -----
 type VueNoVTextVHtmlOnComponent = []|[{
-allow?: string[]
+  allow?: string[]
 }]
 // ----- vue/object-curly-newline -----
 type VueObjectCurlyNewline = []|[((("always" | "never") | {
-multiline?: boolean
-minProperties?: number
-consistent?: boolean
+  multiline?: boolean
+  minProperties?: number
+  consistent?: boolean
 }) | {
-ObjectExpression?: (("always" | "never") | {
-multiline?: boolean
-minProperties?: number
-consistent?: boolean
-})
-ObjectPattern?: (("always" | "never") | {
-multiline?: boolean
-minProperties?: number
-consistent?: boolean
-})
-ImportDeclaration?: (("always" | "never") | {
-multiline?: boolean
-minProperties?: number
-consistent?: boolean
-})
-ExportDeclaration?: (("always" | "never") | {
-multiline?: boolean
-minProperties?: number
-consistent?: boolean
-})
+  ObjectExpression?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ObjectPattern?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ImportDeclaration?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ExportDeclaration?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
 })]
 // ----- vue/object-curly-spacing -----
 type VueObjectCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
-arraysInObjects?: boolean
-objectsInObjects?: boolean
+  arraysInObjects?: boolean
+  objectsInObjects?: boolean
 }]
 // ----- vue/object-property-newline -----
 type VueObjectPropertyNewline = []|[{
-allowAllPropertiesOnSameLine?: boolean
-allowMultiplePropertiesPerLine?: boolean
+  allowAllPropertiesOnSameLine?: boolean
+  allowMultiplePropertiesPerLine?: boolean
 }]
 // ----- vue/object-shorthand -----
 type VueObjectShorthand = ([]|[("always" | "methods" | "properties" | "never" | "consistent" | "consistent-as-needed")] | []|[("always" | "methods" | "properties")]|[("always" | "methods" | "properties"), {
-avoidQuotes?: boolean
+  avoidQuotes?: boolean
 }] | []|[("always" | "methods")]|[("always" | "methods"), {
-ignoreConstructors?: boolean
-methodsIgnorePattern?: string
-avoidQuotes?: boolean
-avoidExplicitReturnArrows?: boolean
+  ignoreConstructors?: boolean
+  methodsIgnorePattern?: string
+  avoidQuotes?: boolean
+  avoidExplicitReturnArrows?: boolean
 }])
 // ----- vue/operator-linebreak -----
 type VueOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("after" | "before" | "none") | null), {
-overrides?: {
-[k: string]: ("after" | "before" | "none" | "ignore") | undefined
-}
+  overrides?: {
+    [k: string]: ("after" | "before" | "none" | "ignore") | undefined
+  }
 }]
 // ----- vue/order-in-components -----
 type VueOrderInComponents = []|[{
-order?: unknown[]
+  order?: unknown[]
 }]
 // ----- vue/padding-line-between-blocks -----
 type VuePaddingLineBetweenBlocks = []|[("never" | "always")]
 // ----- vue/padding-line-between-tags -----
 type VuePaddingLineBetweenTags = []|[{
-blankLine: ("always" | "never" | "consistent")
-prev: string
-next: string
+  blankLine: ("always" | "never" | "consistent")
+  prev: string
+  next: string
 }[]]
 // ----- vue/padding-lines-in-component-definition -----
 type VuePaddingLinesInComponentDefinition = []|[(("always" | "never") | {
-betweenOptions?: ("never" | "always" | "ignore")
-withinOption?: (("never" | "always" | "ignore") | {
-[k: string]: (("never" | "always" | "ignore") | {
-betweenItems?: ("never" | "always" | "ignore")
-withinEach?: ("never" | "always" | "ignore")
-})
-})
-groupSingleLineProperties?: boolean
+  betweenOptions?: ("never" | "always" | "ignore")
+  withinOption?: (("never" | "always" | "ignore") | {
+    [k: string]: (("never" | "always" | "ignore") | {
+      betweenItems?: ("never" | "always" | "ignore")
+      withinEach?: ("never" | "always" | "ignore")
+    })
+  })
+  groupSingleLineProperties?: boolean
 })]
 // ----- vue/prefer-true-attribute-shorthand -----
 type VuePreferTrueAttributeShorthand = []|[("always" | "never")]
@@ -2263,75 +2271,75 @@ type VuePreferTrueAttributeShorthand = []|[("always" | "never")]
 type VuePropNameCasing = []|[("camelCase" | "snake_case")]
 // ----- vue/quote-props -----
 type VueQuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
-keywords?: boolean
-unnecessary?: boolean
-numbers?: boolean
+  keywords?: boolean
+  unnecessary?: boolean
+  numbers?: boolean
 }])
 // ----- vue/require-direct-export -----
 type VueRequireDirectExport = []|[{
-disallowFunctionalComponentFunction?: boolean
+  disallowFunctionalComponentFunction?: boolean
 }]
 // ----- vue/require-explicit-emits -----
 type VueRequireExplicitEmits = []|[{
-allowProps?: boolean
+  allowProps?: boolean
 }]
 // ----- vue/require-macro-variable-name -----
 type VueRequireMacroVariableName = []|[{
-defineProps?: string
-defineEmits?: string
-defineSlots?: string
-useSlots?: string
-useAttrs?: string
+  defineProps?: string
+  defineEmits?: string
+  defineSlots?: string
+  useSlots?: string
+  useAttrs?: string
 }]
 // ----- vue/require-prop-comment -----
 type VueRequirePropComment = []|[{
-type?: ("JSDoc" | "line" | "block" | "any")
+  type?: ("JSDoc" | "line" | "block" | "any")
 }]
 // ----- vue/return-in-computed-property -----
 type VueReturnInComputedProperty = []|[{
-treatUndefinedAsUnspecified?: boolean
+  treatUndefinedAsUnspecified?: boolean
 }]
 // ----- vue/script-indent -----
 type VueScriptIndent = []|[(number | "tab")]|[(number | "tab"), {
-baseIndent?: number
-switchCase?: number
-ignores?: (string & {
-[k: string]: unknown | undefined
-} & {
-[k: string]: unknown | undefined
-})[]
+  baseIndent?: number
+  switchCase?: number
+  ignores?: (string & {
+    [k: string]: unknown | undefined
+  } & {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- vue/singleline-html-element-content-newline -----
 type VueSinglelineHtmlElementContentNewline = []|[{
-ignoreWhenNoAttributes?: boolean
-ignoreWhenEmpty?: boolean
-ignores?: string[]
-externalIgnores?: string[]
+  ignoreWhenNoAttributes?: boolean
+  ignoreWhenEmpty?: boolean
+  ignores?: string[]
+  externalIgnores?: string[]
 }]
 // ----- vue/sort-keys -----
 type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
-caseSensitive?: boolean
-ignoreChildrenOf?: unknown[]
-ignoreGrandchildrenOf?: unknown[]
-minKeys?: number
-natural?: boolean
-runOutsideVue?: boolean
+  caseSensitive?: boolean
+  ignoreChildrenOf?: unknown[]
+  ignoreGrandchildrenOf?: unknown[]
+  minKeys?: number
+  natural?: boolean
+  runOutsideVue?: boolean
 }]
 // ----- vue/space-in-parens -----
 type VueSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
-exceptions?: ("{}" | "[]" | "()" | "empty")[]
+  exceptions?: ("{}" | "[]" | "()" | "empty")[]
 }]
 // ----- vue/space-infix-ops -----
 type VueSpaceInfixOps = []|[{
-int32Hint?: boolean
+  int32Hint?: boolean
 }]
 // ----- vue/space-unary-ops -----
 type VueSpaceUnaryOps = []|[{
-words?: boolean
-nonwords?: boolean
-overrides?: {
-[k: string]: boolean | undefined
-}
+  words?: boolean
+  nonwords?: boolean
+  overrides?: {
+    [k: string]: boolean | undefined
+  }
 }]
 // ----- vue/template-curly-spacing -----
 type VueTemplateCurlySpacing = []|[("always" | "never")]
@@ -2339,42 +2347,42 @@ type VueTemplateCurlySpacing = []|[("always" | "never")]
 type VueThisInTemplate = []|[("always" | "never")]
 // ----- vue/v-bind-style -----
 type VueVBindStyle = []|[("shorthand" | "longform")]|[("shorthand" | "longform"), {
-sameNameShorthand?: ("always" | "never" | "ignore")
+  sameNameShorthand?: ("always" | "never" | "ignore")
 }]
 // ----- vue/v-for-delimiter-style -----
 type VueVForDelimiterStyle = []|[("in" | "of")]
 // ----- vue/v-on-event-hyphenation -----
 type VueVOnEventHyphenation = []|[("always" | "never")]|[("always" | "never"), {
-autofix?: boolean
-ignore?: (string & {
-[k: string]: unknown | undefined
-} & {
-[k: string]: unknown | undefined
-})[]
+  autofix?: boolean
+  ignore?: (string & {
+    [k: string]: unknown | undefined
+  } & {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- vue/v-on-function-call -----
 type VueVOnFunctionCall = []|[("always" | "never")]|[("always" | "never"), {
-ignoreIncludesComment?: boolean
+  ignoreIncludesComment?: boolean
 }]
 // ----- vue/v-on-handler-style -----
 type VueVOnHandlerStyle = []|[(("inline" | "inline-function") | ["method", ("inline" | "inline-function")])]|[(("inline" | "inline-function") | ["method", ("inline" | "inline-function")]), {
-ignoreIncludesComment?: boolean
+  ignoreIncludesComment?: boolean
 }]
 // ----- vue/v-on-style -----
 type VueVOnStyle = []|[("shorthand" | "longform")]
 // ----- vue/v-slot-style -----
 type VueVSlotStyle = []|[(("shorthand" | "longform") | {
-atComponent?: ("shorthand" | "longform" | "v-slot")
-default?: ("shorthand" | "longform" | "v-slot")
-named?: ("shorthand" | "longform")
+  atComponent?: ("shorthand" | "longform" | "v-slot")
+  default?: ("shorthand" | "longform" | "v-slot")
+  named?: ("shorthand" | "longform")
 })]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
-modifiers?: unknown[]
+  modifiers?: unknown[]
 }]
 // ----- vue/valid-v-slot -----
 type VueValidVSlot = []|[{
-allowModifiers?: boolean
+  allowModifiers?: boolean
 }]"
 `;
 
@@ -2654,388 +2662,251 @@ export interface RuleOptions {
 
 /* ======= Declarations ======= */
 // ----- antfu/consistent-list-newline -----
-type AntfuConsistentListNewline =
-  | []
-  | [
-      {
-        ArrayExpression?: boolean;
-        ArrowFunctionExpression?: boolean;
-        CallExpression?: boolean;
-        ExportNamedDeclaration?: boolean;
-        FunctionDeclaration?: boolean;
-        FunctionExpression?: boolean;
-        ImportDeclaration?: boolean;
-        NewExpression?: boolean;
-        ObjectExpression?: boolean;
-        TSInterfaceDeclaration?: boolean;
-        TSTupleType?: boolean;
-        TSTypeLiteral?: boolean;
-        TSTypeParameterDeclaration?: boolean;
-        TSTypeParameterInstantiation?: boolean;
-        ObjectPattern?: boolean;
-        ArrayPattern?: boolean;
-      }
-    ];
+type AntfuConsistentListNewline = []|[{
+  ArrayExpression?: boolean
+  ArrowFunctionExpression?: boolean
+  CallExpression?: boolean
+  ExportNamedDeclaration?: boolean
+  FunctionDeclaration?: boolean
+  FunctionExpression?: boolean
+  ImportDeclaration?: boolean
+  NewExpression?: boolean
+  ObjectExpression?: boolean
+  TSInterfaceDeclaration?: boolean
+  TSTupleType?: boolean
+  TSTypeLiteral?: boolean
+  TSTypeParameterDeclaration?: boolean
+  TSTypeParameterInstantiation?: boolean
+  ObjectPattern?: boolean
+  ArrayPattern?: boolean
+}]
 // ----- import/consistent-type-specifier-style -----
-type ImportConsistentTypeSpecifierStyle = [] | ['prefer-inline' | 'prefer-top-level'];
+type ImportConsistentTypeSpecifierStyle = []|[("prefer-inline" | "prefer-top-level")]
 // ----- import/dynamic-import-chunkname -----
-type ImportDynamicImportChunkname =
-  | []
-  | [
-      {
-        importFunctions?: string[];
-        allowEmpty?: boolean;
-        webpackChunknameFormat?: string;
-        [k: string]: unknown | undefined;
-      }
-    ];
+type ImportDynamicImportChunkname = []|[{
+  importFunctions?: string[]
+  allowEmpty?: boolean
+  webpackChunknameFormat?: string
+  [k: string]: unknown | undefined
+}]
 // ----- import/extensions -----
-type ImportExtensions =
-  | []
-  | ['always' | 'ignorePackages' | 'never']
-  | []
-  | ['always' | 'ignorePackages' | 'never']
-  | [
-      'always' | 'ignorePackages' | 'never',
-      {
-        pattern?: {
-          
-          [k: string]: 'always' | 'ignorePackages' | 'never';
-        };
-        ignorePackages?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    ]
-  | []
-  | [
-      {
-        pattern?: {
-          
-          [k: string]: 'always' | 'ignorePackages' | 'never';
-        };
-        ignorePackages?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    ]
-  | []
-  | [
-      {
-        
-        [k: string]: 'always' | 'ignorePackages' | 'never';
-      }
-    ]
-  | []
-  | ['always' | 'ignorePackages' | 'never']
-  | [
-      'always' | 'ignorePackages' | 'never',
-      {
-        
-        [k: string]: 'always' | 'ignorePackages' | 'never';
-      }
-    ];
+type ImportExtensions = ([]|[("always" | "ignorePackages" | "never")] | []|[("always" | "ignorePackages" | "never")]|[("always" | "ignorePackages" | "never"), {
+  pattern?: {
+    [k: string]: ("always" | "ignorePackages" | "never")
+  }
+  ignorePackages?: boolean
+  [k: string]: unknown | undefined
+}] | []|[{
+  pattern?: {
+    [k: string]: ("always" | "ignorePackages" | "never")
+  }
+  ignorePackages?: boolean
+  [k: string]: unknown | undefined
+}] | []|[{
+  [k: string]: ("always" | "ignorePackages" | "never")
+}] | []|[("always" | "ignorePackages" | "never")]|[("always" | "ignorePackages" | "never"), {
+  [k: string]: ("always" | "ignorePackages" | "never")
+}])
 // ----- import/first -----
-type ImportFirst = [] | ['absolute-first' | 'disable-absolute-first'];
+type ImportFirst = []|[("absolute-first" | "disable-absolute-first")]
 // ----- import/group-exports -----
 interface ImportGroupExports {
-  [k: string]: unknown | undefined;
+  [k: string]: unknown | undefined
 }
 // ----- import/imports-first -----
-type ImportImportsFirst = [] | ['absolute-first' | 'disable-absolute-first'];
+type ImportImportsFirst = []|[("absolute-first" | "disable-absolute-first")]
 // ----- import/max-dependencies -----
-type ImportMaxDependencies =
-  | []
-  | [
-      {
-        max?: number;
-        ignoreTypeImports?: boolean;
-      }
-    ];
+type ImportMaxDependencies = []|[{
+  max?: number
+  ignoreTypeImports?: boolean
+}]
 // ----- import/named -----
-type ImportNamed =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-      }
-    ];
+type ImportNamed = []|[{
+  commonjs?: boolean
+}]
 // ----- import/namespace -----
-type ImportNamespace =
-  | []
-  | [
-      {
-        
-        allowComputed?: boolean;
-      }
-    ];
+type ImportNamespace = []|[{
+  
+  allowComputed?: boolean
+}]
 // ----- import/newline-after-import -----
-type ImportNewlineAfterImport =
-  | []
-  | [
-      {
-        count?: number;
-        exactCount?: boolean;
-        considerComments?: boolean;
-      }
-    ];
+type ImportNewlineAfterImport = []|[{
+  count?: number
+  exactCount?: boolean
+  considerComments?: boolean
+}]
 // ----- import/no-absolute-path -----
-type ImportNoAbsolutePath =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        amd?: boolean;
-        esmodule?: boolean;
-        
-        ignore?: [string, ...string[]];
-      }
-    ];
+type ImportNoAbsolutePath = []|[{
+  commonjs?: boolean
+  amd?: boolean
+  esmodule?: boolean
+  
+  ignore?: [string, ...(string)[]]
+}]
 // ----- import/no-anonymous-default-export -----
-type ImportNoAnonymousDefaultExport =
-  | []
-  | [
-      {
-        
-        allowArray?: boolean;
-        
-        allowArrowFunction?: boolean;
-        
-        allowCallExpression?: boolean;
-        
-        allowAnonymousClass?: boolean;
-        
-        allowAnonymousFunction?: boolean;
-        
-        allowLiteral?: boolean;
-        
-        allowObject?: boolean;
-        
-        allowNew?: boolean;
-      }
-    ];
+type ImportNoAnonymousDefaultExport = []|[{
+  
+  allowArray?: boolean
+  
+  allowArrowFunction?: boolean
+  
+  allowCallExpression?: boolean
+  
+  allowAnonymousClass?: boolean
+  
+  allowAnonymousFunction?: boolean
+  
+  allowLiteral?: boolean
+  
+  allowObject?: boolean
+  
+  allowNew?: boolean
+}]
 // ----- import/no-commonjs -----
-type ImportNoCommonjs =
-  | []
-  | ['allow-primitive-modules']
-  | []
-  | [
-      {
-        allowPrimitiveModules?: boolean;
-        allowRequire?: boolean;
-        allowConditionalRequire?: boolean;
-      }
-    ];
+type ImportNoCommonjs = ([]|["allow-primitive-modules"] | []|[{
+  allowPrimitiveModules?: boolean
+  allowRequire?: boolean
+  allowConditionalRequire?: boolean
+}])
 // ----- import/no-cycle -----
-type ImportNoCycle =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        amd?: boolean;
-        esmodule?: boolean;
-        
-        ignore?: [string, ...string[]];
-        maxDepth?: number | '∞';
-        
-        ignoreExternal?: boolean;
-        
-        allowUnsafeDynamicCyclicDependency?: boolean;
-      }
-    ];
+type ImportNoCycle = []|[{
+  commonjs?: boolean
+  amd?: boolean
+  esmodule?: boolean
+  
+  ignore?: [string, ...(string)[]]
+  maxDepth?: (number | "∞")
+  
+  ignoreExternal?: boolean
+  
+  allowUnsafeDynamicCyclicDependency?: boolean
+}]
 // ----- import/no-duplicates -----
-type ImportNoDuplicates =
-  | []
-  | [
-      {
-        considerQueryString?: boolean;
-        'prefer-inline'?: boolean;
-      }
-    ];
+type ImportNoDuplicates = []|[{
+  considerQueryString?: boolean
+  "prefer-inline"?: boolean
+}]
 // ----- import/no-dynamic-require -----
-type ImportNoDynamicRequire =
-  | []
-  | [
-      {
-        esmodule?: boolean;
-      }
-    ];
+type ImportNoDynamicRequire = []|[{
+  esmodule?: boolean
+}]
 // ----- import/no-extraneous-dependencies -----
-type ImportNoExtraneousDependencies =
-  | []
-  | [
-      {
-        devDependencies?: boolean | unknown[];
-        optionalDependencies?: boolean | unknown[];
-        peerDependencies?: boolean | unknown[];
-        bundledDependencies?: boolean | unknown[];
-        packageDir?: string | unknown[];
-        includeInternal?: boolean;
-        includeTypes?: boolean;
-      }
-    ];
+type ImportNoExtraneousDependencies = []|[{
+  devDependencies?: (boolean | unknown[])
+  optionalDependencies?: (boolean | unknown[])
+  peerDependencies?: (boolean | unknown[])
+  bundledDependencies?: (boolean | unknown[])
+  packageDir?: (string | unknown[])
+  includeInternal?: boolean
+  includeTypes?: boolean
+}]
 // ----- import/no-import-module-exports -----
-type ImportNoImportModuleExports =
-  | []
-  | [
-      {
-        exceptions?: unknown[];
-      }
-    ];
+type ImportNoImportModuleExports = []|[{
+  exceptions?: unknown[]
+}]
 // ----- import/no-internal-modules -----
-type ImportNoInternalModules =
-  | []
-  | [
-      | {
-          allow?: string[];
-        }
-      | {
-          forbid?: string[];
-        }
-    ];
+type ImportNoInternalModules = []|[({
+  allow?: string[]
+} | {
+  forbid?: string[]
+})]
 // ----- import/no-namespace -----
-type ImportNoNamespace =
-  | []
-  | [
-      {
-        ignore?: string[];
-        [k: string]: unknown | undefined;
-      }
-    ];
+type ImportNoNamespace = []|[{
+  ignore?: string[]
+  [k: string]: unknown | undefined
+}]
 // ----- import/no-nodejs-modules -----
-type ImportNoNodejsModules =
-  | []
-  | [
-      {
-        allow?: string[];
-      }
-    ];
+type ImportNoNodejsModules = []|[{
+  allow?: string[]
+}]
 // ----- import/no-relative-packages -----
-type ImportNoRelativePackages =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        amd?: boolean;
-        esmodule?: boolean;
-        
-        ignore?: [string, ...string[]];
-      }
-    ];
+type ImportNoRelativePackages = []|[{
+  commonjs?: boolean
+  amd?: boolean
+  esmodule?: boolean
+  
+  ignore?: [string, ...(string)[]]
+}]
 // ----- import/no-relative-parent-imports -----
-type ImportNoRelativeParentImports =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        amd?: boolean;
-        esmodule?: boolean;
-        
-        ignore?: [string, ...string[]];
-      }
-    ];
+type ImportNoRelativeParentImports = []|[{
+  commonjs?: boolean
+  amd?: boolean
+  esmodule?: boolean
+  
+  ignore?: [string, ...(string)[]]
+}]
 // ----- import/no-restricted-paths -----
-type ImportNoRestrictedPaths =
-  | []
-  | [
-      {
-        
-        zones?: [
-          {
-            target?: string | string[];
-            from?: string | string[];
-            except?: string[];
-            message?: string;
-          },
-          ...{
-            target?: string | string[];
-            from?: string | string[];
-            except?: string[];
-            message?: string;
-          }[]
-        ];
-        basePath?: string;
-      }
-    ];
+type ImportNoRestrictedPaths = []|[{
+  
+  zones?: [{
+    target?: (string | string[])
+    from?: (string | string[])
+    except?: string[]
+    message?: string
+  }, ...({
+    target?: (string | string[])
+    from?: (string | string[])
+    except?: string[]
+    message?: string
+  })[]]
+  basePath?: string
+}]
 // ----- import/no-unassigned-import -----
-type ImportNoUnassignedImport =
-  | []
-  | [
-      {
-        devDependencies?: boolean | unknown[];
-        optionalDependencies?: boolean | unknown[];
-        peerDependencies?: boolean | unknown[];
-        allow?: string[];
-      }
-    ];
+type ImportNoUnassignedImport = []|[{
+  devDependencies?: (boolean | unknown[])
+  optionalDependencies?: (boolean | unknown[])
+  peerDependencies?: (boolean | unknown[])
+  allow?: string[]
+}]
 // ----- import/no-unresolved -----
-type ImportNoUnresolved =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        amd?: boolean;
-        esmodule?: boolean;
-        
-        ignore?: [string, ...string[]];
-        caseSensitive?: boolean;
-        caseSensitiveStrict?: boolean;
-      }
-    ];
+type ImportNoUnresolved = []|[{
+  commonjs?: boolean
+  amd?: boolean
+  esmodule?: boolean
+  
+  ignore?: [string, ...(string)[]]
+  caseSensitive?: boolean
+  caseSensitiveStrict?: boolean
+}]
 // ----- import/no-unused-modules -----
-type ImportNoUnusedModules =
-  | []
-  | [
-      | {
-          unusedExports: true;
-          src?: {
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        }
-      | {
-          missingExports: true;
-          [k: string]: unknown | undefined;
-        }
-    ];
+type ImportNoUnusedModules = []|[({
+  unusedExports: true
+  src?: {
+    [k: string]: unknown | undefined
+  }
+  [k: string]: unknown | undefined
+} | {
+  missingExports: true
+  [k: string]: unknown | undefined
+})]
 // ----- import/no-useless-path-segments -----
-type ImportNoUselessPathSegments =
-  | []
-  | [
-      {
-        commonjs?: boolean;
-        noUselessIndex?: boolean;
-      }
-    ];
+type ImportNoUselessPathSegments = []|[{
+  commonjs?: boolean
+  noUselessIndex?: boolean
+}]
 // ----- import/order -----
-type ImportOrder =
-  | []
-  | [
-      {
-        groups?: unknown[];
-        pathGroupsExcludedImportTypes?: unknown[];
-        distinctGroup?: boolean;
-        pathGroups?: {
-          pattern: string;
-          patternOptions?: {
-            [k: string]: unknown | undefined;
-          };
-          group: 'builtin' | 'external' | 'internal' | 'unknown' | 'parent' | 'sibling' | 'index' | 'object' | 'type';
-          position?: 'after' | 'before';
-        }[];
-        'newlines-between'?: 'ignore' | 'always' | 'always-and-inside-groups' | 'never';
-        alphabetize?: {
-          caseInsensitive?: boolean;
-          order?: 'ignore' | 'asc' | 'desc';
-          orderImportKind?: 'ignore' | 'asc' | 'desc';
-        };
-        warnOnUnassignedImports?: boolean;
-      }
-    ];
+type ImportOrder = []|[{
+  groups?: unknown[]
+  pathGroupsExcludedImportTypes?: unknown[]
+  distinctGroup?: boolean
+  pathGroups?: {
+    pattern: string
+    patternOptions?: {
+      [k: string]: unknown | undefined
+    }
+    group: ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type")
+    position?: ("after" | "before")
+  }[]
+  "newlines-between"?: ("ignore" | "always" | "always-and-inside-groups" | "never")
+  alphabetize?: {
+    caseInsensitive?: boolean
+    order?: ("ignore" | "asc" | "desc")
+    orderImportKind?: ("ignore" | "asc" | "desc")
+  }
+  warnOnUnassignedImports?: boolean
+}]
 // ----- import/prefer-default-export -----
-type ImportPreferDefaultExport =
-  | []
-  | [
-      {
-        target?: 'single' | 'any';
-      }
-    ];"
+type ImportPreferDefaultExport = []|[{
+  target?: ("single" | "any")
+}]"
 `;
