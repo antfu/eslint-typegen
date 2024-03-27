@@ -328,7 +328,7 @@ export interface RulesOptions {
   'import/imports-first'?: Linter.RuleEntry<ImportImportsFirst>
 }
 
-/** ===== Declrations ===== **/
+/** ===== Declarations ===== **/
 /** ----- node/callback-return ----- **/
 type _NodeCallbackReturn0 = string[]
 type NodeCallbackReturn = [_NodeCallbackReturn0]
