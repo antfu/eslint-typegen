@@ -16,7 +16,7 @@ npm i eslint-typegen
 
 ```ts
 import fs from 'node:fs/promises'
-import { generateTypes } from 'eslint-typegen'
+import { pluginsToRulesOptions } from 'eslint-typegen'
 import pluginTs from '@typescript-eslint/eslint-plugin'
 import pluginN from 'eslint-plugin-n'
 
