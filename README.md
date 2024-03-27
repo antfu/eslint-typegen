@@ -60,6 +60,10 @@ This can be useful if you want to have more control over the generation process,
 
 Thanks to that [ESLint requires rules to provide the JSONSchema for options](https://eslint.org/docs/latest/extend/custom-rules#options-schemas), we could leverage that to generate types with [`json-schema-to-typescript`](https://github.com/bcherny/json-schema-to-typescript). With the new flat config allowing you to execute the code with fully resolved configs, we managed to sneak in the type generation process on the fly.
 
+## Credits
+
+The initial idea comes from [@Shinigami92](https://github.com/Shinigami92) via his work on [`eslint-define-config`](https://github.com/eslint-types/eslint-define-config), thanks to him!
+
 ## Sponsors
 
 <p align="center">
@@ -67,10 +71,6 @@ Thanks to that [ESLint requires rules to provide the JSONSchema for options](htt
     <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
   </a>
 </p>
-
-## Credits
-
-The initial idea comes from [@Shinigami92](https://github.com/Shinigami92) via his work on [`eslint-define-config`](https://github.com/eslint-types/eslint-define-config), thanks to him!
 
 ## License
 

@@ -151,7 +151,7 @@ export async function compileRule(name: string, rule: Rule.RuleModule) {
 
   const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z])/g, (_, c) => c.toUpperCase())
 
-  if (!schemas.length) {
+  if (!meta.schema || !schemas.length) {
     return {
       jsdoc: [],
       name,
@@ -173,23 +173,20 @@ export async function compileRule(name: string, rule: Rule.RuleModule) {
     }
     catch (error) {
       console.warn(`Failed to compile schema ${name} for rule ${ruleName}. Falling back to unknown.`)
+      console.error(error)
       return `export type ${name} = unknown\n`
     }
   }
 
-  let lines: string[] = []
-  if (Array.isArray(meta.schema)) {
-    lines = await Promise.all(schemas.map(async (schema, index) => {
-      return compile(schema, `_${capitalizedName}${index}`, name)
-    }))
-    lines.push(`type ${capitalizedName} = [${schemas.map((_, index) => `_${capitalizedName}${index}`).join(', ')}]`)
-  }
-  else {
-    lines = [
-      await compile(meta.schema as JSONSchema4, capitalizedName, name),
-      `type ${capitalizedName} = ${capitalizedName}[]`,
-    ]
-  }
+  let lines: string[] = [
+    await compile(
+      Array.isArray(meta.schema)
+        ? { type: 'array', items: meta.schema }
+        : meta.schema,
+      capitalizedName,
+      name,
+    ),
+  ]
 
   lines = lines
     .join('\n')
