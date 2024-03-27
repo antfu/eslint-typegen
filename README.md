@@ -56,6 +56,10 @@ await fs.writeFile('eslint-typegen.d.ts', dts)
 
 This can be useful if you want to have more control over the generation process, or even bundle the types with your config package. For example, [here](https://github.com/antfu/eslint-config/blob/95963ac345d27cd06a4eeb5ebc16e1848cb2fd81/scripts/typegen.ts#L29-L33) is how [`@antfu/eslint-config`](https://github.com/antfu/eslint-config) does.
 
+## How it works
+
+Thanks to that [ESLint requires rules to provide the JSONSchema for options](https://eslint.org/docs/latest/extend/custom-rules#options-schemas), we could leverage that to generate types with [`json-schema-to-typescript`](https://github.com/bcherny/json-schema-to-typescript). With the new flat config allowing you to execute the code with fully resolved configs, we managed to sneak in the type generation process on the fly.
+
 ## Sponsors
 
 <p align="center">
