@@ -197,6 +197,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/html-comment-indent.html
    */
   'vue/html-comment-indent'?: Linter.RuleEntry<VueHtmlCommentIndent>
+  /**
+   * enforce end tag style
+   * @see https://eslint.vuejs.org/rules/html-end-tags.html
+   */
   'vue/html-end-tags'?: Linter.RuleEntry<[]>
   /**
    * enforce consistent indentation in \`<template>\`
@@ -213,6 +217,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/html-self-closing.html
    */
   'vue/html-self-closing'?: Linter.RuleEntry<VueHtmlSelfClosing>
+  /**
+   * prevent variables used in JSX to be marked as unused
+   * @see https://eslint.vuejs.org/rules/jsx-uses-vars.html
+   */
   'vue/jsx-uses-vars'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent spacing between keys and values in object literal properties in \`<template>\`
@@ -229,6 +237,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/match-component-file-name.html
    */
   'vue/match-component-file-name'?: Linter.RuleEntry<VueMatchComponentFileName>
+  /**
+   * require the registered component name to match the imported component name
+   * @see https://eslint.vuejs.org/rules/match-component-import-name.html
+   */
   'vue/match-component-import-name'?: Linter.RuleEntry<[]>
   /**
    * enforce the maximum number of attributes per line
@@ -275,7 +287,15 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/next-tick-style.html
    */
   'vue/next-tick-style'?: Linter.RuleEntry<VueNextTickStyle>
+  /**
+   * disallow using arrow functions to define watcher
+   * @see https://eslint.vuejs.org/rules/no-arrow-functions-in-watch.html
+   */
   'vue/no-arrow-functions-in-watch'?: Linter.RuleEntry<[]>
+  /**
+   * disallow asynchronous actions in computed properties
+   * @see https://eslint.vuejs.org/rules/no-async-in-computed-properties.html
+   */
   'vue/no-async-in-computed-properties'?: Linter.RuleEntry<[]>
   /**
    * disallow the use of bare strings in \`<template>\`
@@ -292,6 +312,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-child-content.html
    */
   'vue/no-child-content'?: Linter.RuleEntry<VueNoChildContent>
+  /**
+   * disallow accessing computed properties in \`data\`.
+   * @see https://eslint.vuejs.org/rules/no-computed-properties-in-data.html
+   */
   'vue/no-computed-properties-in-data'?: Linter.RuleEntry<[]>
   /**
    * Disallow the use of \`console\` in \`<template>\`
@@ -303,84 +327,201 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-constant-condition.html
    */
   'vue/no-constant-condition'?: Linter.RuleEntry<VueNoConstantCondition>
+  /**
+   * disallow custom modifiers on v-model used on the component
+   * @see https://eslint.vuejs.org/rules/no-custom-modifiers-on-v-model.html
+   */
   'vue/no-custom-modifiers-on-v-model'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated object declaration on data (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-data-object-declaration.html
+   */
   'vue/no-deprecated-data-object-declaration'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`destroyed\` and \`beforeDestroy\` lifecycle hooks (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-destroyed-lifecycle.html
+   */
   'vue/no-deprecated-destroyed-lifecycle'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`$listeners\` (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-dollar-listeners-api.html
+   */
   'vue/no-deprecated-dollar-listeners-api'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`$scopedSlots\` (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-dollar-scopedslots-api.html
+   */
   'vue/no-deprecated-dollar-scopedslots-api'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated events api (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-events-api.html
+   */
   'vue/no-deprecated-events-api'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated filters syntax (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-filter.html
+   */
   'vue/no-deprecated-filter'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated the \`functional\` template (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-functional-template.html
+   */
   'vue/no-deprecated-functional-template'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated the \`is\` attribute on HTML elements (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-html-element-is.html
+   */
   'vue/no-deprecated-html-element-is'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`inline-template\` attribute (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-inline-template.html
+   */
   'vue/no-deprecated-inline-template'?: Linter.RuleEntry<[]>
   /**
    * disallow deprecated \`model\` definition (in Vue.js 3.0.0+)
    * @see https://eslint.vuejs.org/rules/no-deprecated-model-definition.html
    */
   'vue/no-deprecated-model-definition'?: Linter.RuleEntry<VueNoDeprecatedModelDefinition>
+  /**
+   * disallow deprecated \`this\` access in props default function (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-props-default-this.html
+   */
   'vue/no-deprecated-props-default-this'?: Linter.RuleEntry<[]>
   /**
    * disallow using deprecated \`tag\` property on \`RouterLink\` (in Vue.js 3.0.0+)
    * @see https://eslint.vuejs.org/rules/no-deprecated-router-link-tag-prop.html
    */
   'vue/no-deprecated-router-link-tag-prop'?: Linter.RuleEntry<VueNoDeprecatedRouterLinkTagProp>
+  /**
+   * disallow deprecated \`scope\` attribute (in Vue.js 2.5.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-scope-attribute.html
+   */
   'vue/no-deprecated-scope-attribute'?: Linter.RuleEntry<[]>
   /**
    * disallow deprecated \`slot\` attribute (in Vue.js 2.6.0+)
    * @see https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
    */
   'vue/no-deprecated-slot-attribute'?: Linter.RuleEntry<VueNoDeprecatedSlotAttribute>
+  /**
+   * disallow deprecated \`slot-scope\` attribute (in Vue.js 2.6.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-slot-scope-attribute.html
+   */
   'vue/no-deprecated-slot-scope-attribute'?: Linter.RuleEntry<[]>
+  /**
+   * disallow use of deprecated \`.sync\` modifier on \`v-bind\` directive (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-v-bind-sync.html
+   */
   'vue/no-deprecated-v-bind-sync'?: Linter.RuleEntry<[]>
+  /**
+   * disallow deprecated \`v-is\` directive (in Vue.js 3.1.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-v-is.html
+   */
   'vue/no-deprecated-v-is'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`.native\` modifiers (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-v-on-native-modifier.html
+   */
   'vue/no-deprecated-v-on-native-modifier'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated number (keycode) modifiers (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-v-on-number-modifiers.html
+   */
   'vue/no-deprecated-v-on-number-modifiers'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using deprecated \`Vue.config.keyCodes\` (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-vue-config-keycodes.html
+   */
   'vue/no-deprecated-vue-config-keycodes'?: Linter.RuleEntry<[]>
   /**
    * disallow duplication of field names
    * @see https://eslint.vuejs.org/rules/no-dupe-keys.html
    */
   'vue/no-dupe-keys'?: Linter.RuleEntry<VueNoDupeKeys>
+  /**
+   * disallow duplicate conditions in \`v-if\` / \`v-else-if\` chains
+   * @see https://eslint.vuejs.org/rules/no-dupe-v-else-if.html
+   */
   'vue/no-dupe-v-else-if'?: Linter.RuleEntry<[]>
+  /**
+   * enforce \`inheritAttrs\` to be set to \`false\` when using \`v-bind="$attrs"\`
+   * @see https://eslint.vuejs.org/rules/no-duplicate-attr-inheritance.html
+   */
   'vue/no-duplicate-attr-inheritance'?: Linter.RuleEntry<[]>
   /**
    * disallow duplication of attributes
    * @see https://eslint.vuejs.org/rules/no-duplicate-attributes.html
    */
   'vue/no-duplicate-attributes'?: Linter.RuleEntry<VueNoDuplicateAttributes>
+  /**
+   * disallow the \`<template>\` \`<script>\` \`<style>\` block to be empty
+   * @see https://eslint.vuejs.org/rules/no-empty-component-block.html
+   */
   'vue/no-empty-component-block'?: Linter.RuleEntry<[]>
   /**
    * Disallow empty destructuring patterns in \`<template>\`
    * @see https://eslint.vuejs.org/rules/no-empty-pattern.html
    */
   'vue/no-empty-pattern'?: Linter.RuleEntry<VueNoEmptyPattern>
+  /**
+   * disallow \`export\` in \`<script setup>\`
+   * @see https://eslint.vuejs.org/rules/no-export-in-script-setup.html
+   */
   'vue/no-export-in-script-setup'?: Linter.RuleEntry<[]>
+  /**
+   * disallow asynchronously registered \`expose\`
+   * @see https://eslint.vuejs.org/rules/no-expose-after-await.html
+   */
   'vue/no-expose-after-await'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary parentheses in \`<template>\`
    * @see https://eslint.vuejs.org/rules/no-extra-parens.html
    */
   'vue/no-extra-parens'?: Linter.RuleEntry<VueNoExtraParens>
+  /**
+   * require valid keys in model option
+   * @see https://eslint.vuejs.org/rules/no-invalid-model-keys.html
+   * @deprecated
+   */
   'vue/no-invalid-model-keys'?: Linter.RuleEntry<[]>
   /**
    * disallow irregular whitespace in \`.vue\` files
    * @see https://eslint.vuejs.org/rules/no-irregular-whitespace.html
    */
   'vue/no-irregular-whitespace'?: Linter.RuleEntry<VueNoIrregularWhitespace>
+  /**
+   * disallow asynchronously registered lifecycle hooks
+   * @see https://eslint.vuejs.org/rules/no-lifecycle-after-await.html
+   */
   'vue/no-lifecycle-after-await'?: Linter.RuleEntry<[]>
   /**
    * disallow unnecessary \`<template>\`
    * @see https://eslint.vuejs.org/rules/no-lone-template.html
    */
   'vue/no-lone-template'?: Linter.RuleEntry<VueNoLoneTemplate>
+  /**
+   * Disallow literal numbers that lose precision in \`<template>\`
+   * @see https://eslint.vuejs.org/rules/no-loss-of-precision.html
+   */
   'vue/no-loss-of-precision'?: Linter.RuleEntry<[]>
   /**
    * disallow multiple spaces
    * @see https://eslint.vuejs.org/rules/no-multi-spaces.html
    */
   'vue/no-multi-spaces'?: Linter.RuleEntry<VueNoMultiSpaces>
+  /**
+   * disallow to pass multiple objects into array to class
+   * @see https://eslint.vuejs.org/rules/no-multiple-objects-in-class.html
+   */
   'vue/no-multiple-objects-in-class'?: Linter.RuleEntry<[]>
+  /**
+   * disallow to pass multiple arguments to scoped slots
+   * @see https://eslint.vuejs.org/rules/no-multiple-slot-args.html
+   */
   'vue/no-multiple-slot-args'?: Linter.RuleEntry<[]>
+  /**
+   * disallow adding multiple root nodes to the template
+   * @see https://eslint.vuejs.org/rules/no-multiple-template-root.html
+   */
   'vue/no-multiple-template-root'?: Linter.RuleEntry<[]>
   /**
    * disallow mutation of component props
@@ -397,8 +538,21 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-potential-component-option-typo.html
    */
   'vue/no-potential-component-option-typo'?: Linter.RuleEntry<VueNoPotentialComponentOptionTypo>
+  /**
+   * disallow use of value wrapped by \`ref()\` (Composition API) as an operand
+   * @see https://eslint.vuejs.org/rules/no-ref-as-operand.html
+   */
   'vue/no-ref-as-operand'?: Linter.RuleEntry<[]>
+  /**
+   * disallow usages of ref objects that can lead to loss of reactivity
+   * @see https://eslint.vuejs.org/rules/no-ref-object-destructure.html
+   * @deprecated
+   */
   'vue/no-ref-object-destructure'?: Linter.RuleEntry<[]>
+  /**
+   * disallow usages of ref objects that can lead to loss of reactivity
+   * @see https://eslint.vuejs.org/rules/no-ref-object-reactivity-loss.html
+   */
   'vue/no-ref-object-reactivity-loss'?: Linter.RuleEntry<[]>
   /**
    * enforce props with default values to be optional
@@ -480,18 +634,51 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-restricted-v-on.html
    */
   'vue/no-restricted-v-on'?: Linter.RuleEntry<VueNoRestrictedVOn>
+  /**
+   * disallow \`v-if\` directives on root element
+   * @see https://eslint.vuejs.org/rules/no-root-v-if.html
+   */
   'vue/no-root-v-if'?: Linter.RuleEntry<[]>
+  /**
+   * disallow usages that lose the reactivity of \`props\` passed to \`setup\`
+   * @see https://eslint.vuejs.org/rules/no-setup-props-destructure.html
+   * @deprecated
+   */
   'vue/no-setup-props-destructure'?: Linter.RuleEntry<[]>
+  /**
+   * disallow usages that lose the reactivity of \`props\` passed to \`setup\`
+   * @see https://eslint.vuejs.org/rules/no-setup-props-reactivity-loss.html
+   */
   'vue/no-setup-props-reactivity-loss'?: Linter.RuleEntry<[]>
+  /**
+   * enforce component's data property to be a function
+   * @see https://eslint.vuejs.org/rules/no-shared-component-data.html
+   */
   'vue/no-shared-component-data'?: Linter.RuleEntry<[]>
+  /**
+   * disallow side effects in computed properties
+   * @see https://eslint.vuejs.org/rules/no-side-effects-in-computed-properties.html
+   */
   'vue/no-side-effects-in-computed-properties'?: Linter.RuleEntry<[]>
+  /**
+   * disallow spaces around equal signs in attribute
+   * @see https://eslint.vuejs.org/rules/no-spaces-around-equal-signs-in-attribute.html
+   */
   'vue/no-spaces-around-equal-signs-in-attribute'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow sparse arrays in \`<template>\`
+   * @see https://eslint.vuejs.org/rules/no-sparse-arrays.html
+   */
   'vue/no-sparse-arrays'?: Linter.RuleEntry<[]>
   /**
    * disallow static inline \`style\` attributes
    * @see https://eslint.vuejs.org/rules/no-static-inline-styles.html
    */
   'vue/no-static-inline-styles'?: Linter.RuleEntry<VueNoStaticInlineStyles>
+  /**
+   * disallow \`key\` attribute on \`<template>\`
+   * @see https://eslint.vuejs.org/rules/no-template-key.html
+   */
   'vue/no-template-key'?: Linter.RuleEntry<[]>
   /**
    * disallow variable declarations from shadowing variables declared in the outer scope
@@ -503,7 +690,15 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-template-target-blank.html
    */
   'vue/no-template-target-blank'?: Linter.RuleEntry<VueNoTemplateTargetBlank>
+  /**
+   * disallow mustaches in \`<textarea>\`
+   * @see https://eslint.vuejs.org/rules/no-textarea-mustache.html
+   */
   'vue/no-textarea-mustache'?: Linter.RuleEntry<[]>
+  /**
+   * disallow \`this\` usage in a \`beforeRouteEnter\` method
+   * @see https://eslint.vuejs.org/rules/no-this-in-before-route-enter.html
+   */
   'vue/no-this-in-before-route-enter'?: Linter.RuleEntry<[]>
   /**
    * disallow use of undefined components in \`<template>\`
@@ -525,47 +720,95 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-unused-components.html
    */
   'vue/no-unused-components'?: Linter.RuleEntry<VueNoUnusedComponents>
+  /**
+   * disallow unused emit declarations
+   * @see https://eslint.vuejs.org/rules/no-unused-emit-declarations.html
+   */
   'vue/no-unused-emit-declarations'?: Linter.RuleEntry<[]>
   /**
    * disallow unused properties
    * @see https://eslint.vuejs.org/rules/no-unused-properties.html
    */
   'vue/no-unused-properties'?: Linter.RuleEntry<VueNoUnusedProperties>
+  /**
+   * disallow unused refs
+   * @see https://eslint.vuejs.org/rules/no-unused-refs.html
+   */
   'vue/no-unused-refs'?: Linter.RuleEntry<[]>
   /**
    * disallow unused variable definitions of v-for directives or scope attributes
    * @see https://eslint.vuejs.org/rules/no-unused-vars.html
    */
   'vue/no-unused-vars'?: Linter.RuleEntry<VueNoUnusedVars>
+  /**
+   * disallow use computed property like method
+   * @see https://eslint.vuejs.org/rules/no-use-computed-property-like-method.html
+   */
   'vue/no-use-computed-property-like-method'?: Linter.RuleEntry<[]>
+  /**
+   * disallow using \`v-else-if\`/\`v-else\` on the same element as \`v-for\`
+   * @see https://eslint.vuejs.org/rules/no-use-v-else-with-v-for.html
+   */
   'vue/no-use-v-else-with-v-for'?: Linter.RuleEntry<[]>
   /**
    * disallow using \`v-if\` on the same element as \`v-for\`
    * @see https://eslint.vuejs.org/rules/no-use-v-if-with-v-for.html
    */
   'vue/no-use-v-if-with-v-for'?: Linter.RuleEntry<VueNoUseVIfWithVFor>
+  /**
+   * Disallow unnecessary concatenation of literals or template literals in \`<template>\`
+   * @see https://eslint.vuejs.org/rules/no-useless-concat.html
+   */
   'vue/no-useless-concat'?: Linter.RuleEntry<[]>
   /**
    * disallow unnecessary mustache interpolations
    * @see https://eslint.vuejs.org/rules/no-useless-mustaches.html
    */
   'vue/no-useless-mustaches'?: Linter.RuleEntry<VueNoUselessMustaches>
+  /**
+   * disallow useless attribute on \`<template>\`
+   * @see https://eslint.vuejs.org/rules/no-useless-template-attributes.html
+   */
   'vue/no-useless-template-attributes'?: Linter.RuleEntry<[]>
   /**
    * disallow unnecessary \`v-bind\` directives
    * @see https://eslint.vuejs.org/rules/no-useless-v-bind.html
    */
   'vue/no-useless-v-bind'?: Linter.RuleEntry<VueNoUselessVBind>
+  /**
+   * disallow \`key\` attribute on \`<template v-for>\`
+   * @see https://eslint.vuejs.org/rules/no-v-for-template-key.html
+   */
   'vue/no-v-for-template-key'?: Linter.RuleEntry<[]>
+  /**
+   * disallow key of \`<template v-for>\` placed on child elements
+   * @see https://eslint.vuejs.org/rules/no-v-for-template-key-on-child.html
+   */
   'vue/no-v-for-template-key-on-child'?: Linter.RuleEntry<[]>
+  /**
+   * disallow use of v-html to prevent XSS attack
+   * @see https://eslint.vuejs.org/rules/no-v-html.html
+   */
   'vue/no-v-html'?: Linter.RuleEntry<[]>
+  /**
+   * disallow adding an argument to \`v-model\` used in custom component
+   * @see https://eslint.vuejs.org/rules/no-v-model-argument.html
+   */
   'vue/no-v-model-argument'?: Linter.RuleEntry<[]>
+  /**
+   * disallow use of v-text
+   * @see https://eslint.vuejs.org/rules/no-v-text.html
+   */
   'vue/no-v-text'?: Linter.RuleEntry<[]>
   /**
    * disallow v-text / v-html on component
    * @see https://eslint.vuejs.org/rules/no-v-text-v-html-on-component.html
    */
   'vue/no-v-text-v-html-on-component'?: Linter.RuleEntry<VueNoVTextVHtmlOnComponent>
+  /**
+   * disallow asynchronously registered \`watch\`
+   * @see https://eslint.vuejs.org/rules/no-watch-after-await.html
+   */
   'vue/no-watch-after-await'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent line breaks after opening and before closing braces in \`<template>\`
@@ -587,6 +830,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/object-shorthand.html
    */
   'vue/object-shorthand'?: Linter.RuleEntry<VueObjectShorthand>
+  /**
+   * enforce that each component should be in its own file
+   * @see https://eslint.vuejs.org/rules/one-component-per-file.html
+   */
   'vue/one-component-per-file'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent linebreak style for operators in \`<template>\`
@@ -613,10 +860,30 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/padding-lines-in-component-definition.html
    */
   'vue/padding-lines-in-component-definition'?: Linter.RuleEntry<VuePaddingLinesInComponentDefinition>
+  /**
+   * enforce use of \`defineOptions\` instead of default export.
+   * @see https://eslint.vuejs.org/rules/prefer-define-options.html
+   */
   'vue/prefer-define-options'?: Linter.RuleEntry<[]>
+  /**
+   * enforce import from 'vue' instead of import from '@vue/*'
+   * @see https://eslint.vuejs.org/rules/prefer-import-from-vue.html
+   */
   'vue/prefer-import-from-vue'?: Linter.RuleEntry<[]>
+  /**
+   * enforce \`Boolean\` comes first in component prop types
+   * @see https://eslint.vuejs.org/rules/prefer-prop-type-boolean-first.html
+   */
   'vue/prefer-prop-type-boolean-first'?: Linter.RuleEntry<[]>
+  /**
+   * require static class names in template to be in a separate \`class\` attribute
+   * @see https://eslint.vuejs.org/rules/prefer-separate-static-class.html
+   */
   'vue/prefer-separate-static-class'?: Linter.RuleEntry<[]>
+  /**
+   * Require template literals instead of string concatenation in \`<template>\`
+   * @see https://eslint.vuejs.org/rules/prefer-template.html
+   */
   'vue/prefer-template'?: Linter.RuleEntry<[]>
   /**
    * require shorthand form attribute when \`v-bind\` value is \`true\`
@@ -633,52 +900,121 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/quote-props.html
    */
   'vue/quote-props'?: Linter.RuleEntry<VueQuoteProps>
+  /**
+   * require \`v-bind:is\` of \`<component>\` elements
+   * @see https://eslint.vuejs.org/rules/require-component-is.html
+   */
   'vue/require-component-is'?: Linter.RuleEntry<[]>
+  /**
+   * require default value for props
+   * @see https://eslint.vuejs.org/rules/require-default-prop.html
+   */
   'vue/require-default-prop'?: Linter.RuleEntry<[]>
   /**
    * require the component to be directly exported
    * @see https://eslint.vuejs.org/rules/require-direct-export.html
    */
   'vue/require-direct-export'?: Linter.RuleEntry<VueRequireDirectExport>
+  /**
+   * require type definitions in emits
+   * @see https://eslint.vuejs.org/rules/require-emit-validator.html
+   */
   'vue/require-emit-validator'?: Linter.RuleEntry<[]>
   /**
    * require \`emits\` option with name triggered by \`$emit()\`
    * @see https://eslint.vuejs.org/rules/require-explicit-emits.html
    */
   'vue/require-explicit-emits'?: Linter.RuleEntry<VueRequireExplicitEmits>
+  /**
+   * require slots to be explicitly defined
+   * @see https://eslint.vuejs.org/rules/require-explicit-slots.html
+   */
   'vue/require-explicit-slots'?: Linter.RuleEntry<[]>
+  /**
+   * require declare public properties using \`expose\`
+   * @see https://eslint.vuejs.org/rules/require-expose.html
+   */
   'vue/require-expose'?: Linter.RuleEntry<[]>
   /**
    * require a certain macro variable name
    * @see https://eslint.vuejs.org/rules/require-macro-variable-name.html
    */
   'vue/require-macro-variable-name'?: Linter.RuleEntry<VueRequireMacroVariableName>
+  /**
+   * require a name property in Vue components
+   * @see https://eslint.vuejs.org/rules/require-name-property.html
+   */
   'vue/require-name-property'?: Linter.RuleEntry<[]>
   /**
    * require props to have a comment
    * @see https://eslint.vuejs.org/rules/require-prop-comment.html
    */
   'vue/require-prop-comment'?: Linter.RuleEntry<VueRequirePropComment>
+  /**
+   * require prop type to be a constructor
+   * @see https://eslint.vuejs.org/rules/require-prop-type-constructor.html
+   */
   'vue/require-prop-type-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * require type definitions in props
+   * @see https://eslint.vuejs.org/rules/require-prop-types.html
+   */
   'vue/require-prop-types'?: Linter.RuleEntry<[]>
+  /**
+   * enforce render function to always return value
+   * @see https://eslint.vuejs.org/rules/require-render-return.html
+   */
   'vue/require-render-return'?: Linter.RuleEntry<[]>
+  /**
+   * enforce properties of \`$slots\` to be used as a function
+   * @see https://eslint.vuejs.org/rules/require-slots-as-functions.html
+   */
   'vue/require-slots-as-functions'?: Linter.RuleEntry<[]>
+  /**
+   * require control the display of the content inside \`<transition>\`
+   * @see https://eslint.vuejs.org/rules/require-toggle-inside-transition.html
+   */
   'vue/require-toggle-inside-transition'?: Linter.RuleEntry<[]>
+  /**
+   * enforce adding type declarations to object props
+   * @see https://eslint.vuejs.org/rules/require-typed-object-prop.html
+   */
   'vue/require-typed-object-prop'?: Linter.RuleEntry<[]>
+  /**
+   * require \`ref\` and \`shallowRef\` functions to be strongly typed
+   * @see https://eslint.vuejs.org/rules/require-typed-ref.html
+   */
   'vue/require-typed-ref'?: Linter.RuleEntry<[]>
+  /**
+   * require \`v-bind:key\` with \`v-for\` directives
+   * @see https://eslint.vuejs.org/rules/require-v-for-key.html
+   */
   'vue/require-v-for-key'?: Linter.RuleEntry<[]>
+  /**
+   * enforce props default values to be valid
+   * @see https://eslint.vuejs.org/rules/require-valid-default-prop.html
+   */
   'vue/require-valid-default-prop'?: Linter.RuleEntry<[]>
   /**
    * enforce that a return statement is present in computed property
    * @see https://eslint.vuejs.org/rules/return-in-computed-property.html
    */
   'vue/return-in-computed-property'?: Linter.RuleEntry<VueReturnInComputedProperty>
+  /**
+   * enforce that a return statement is present in emits validator
+   * @see https://eslint.vuejs.org/rules/return-in-emits-validator.html
+   */
   'vue/return-in-emits-validator'?: Linter.RuleEntry<[]>
   /**
    * enforce consistent indentation in \`<script>\`
    * @see https://eslint.vuejs.org/rules/script-indent.html
    */
   'vue/script-indent'?: Linter.RuleEntry<VueScriptIndent>
+  /**
+   * prevent \`<script setup>\` variables used in \`<template>\` to be marked as unused
+   * @see https://eslint.vuejs.org/rules/script-setup-uses-vars.html
+   * @deprecated
+   */
   'vue/script-setup-uses-vars'?: Linter.RuleEntry<[]>
   /**
    * require a line break before and after the contents of a singleline element
@@ -705,6 +1041,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/space-unary-ops.html
    */
   'vue/space-unary-ops'?: Linter.RuleEntry<VueSpaceUnaryOps>
+  /**
+   * enforce static class names order
+   * @see https://eslint.vuejs.org/rules/static-class-names-order.html
+   */
   'vue/static-class-names-order'?: Linter.RuleEntry<[]>
   /**
    * Require or disallow spacing around embedded expressions of template strings in \`<template>\`
@@ -716,6 +1056,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/this-in-template.html
    */
   'vue/this-in-template'?: Linter.RuleEntry<VueThisInTemplate>
+  /**
+   * enforce usage of \`exact\` modifier on \`v-on\`
+   * @see https://eslint.vuejs.org/rules/use-v-on-exact.html
+   */
   'vue/use-v-on-exact'?: Linter.RuleEntry<[]>
   /**
    * enforce \`v-bind\` directive style
@@ -727,6 +1071,10 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/v-for-delimiter-style.html
    */
   'vue/v-for-delimiter-style'?: Linter.RuleEntry<VueVForDelimiterStyle>
+  /**
+   * require key attribute for conditionally rendered repeated components
+   * @see https://eslint.vuejs.org/rules/v-if-else-key.html
+   */
   'vue/v-if-else-key'?: Linter.RuleEntry<[]>
   /**
    * enforce v-on event naming style on custom components in template
@@ -754,37 +1102,125 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/v-slot-style.html
    */
   'vue/v-slot-style'?: Linter.RuleEntry<VueVSlotStyle>
+  /**
+   * require valid attribute names
+   * @see https://eslint.vuejs.org/rules/valid-attribute-name.html
+   */
   'vue/valid-attribute-name'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`defineEmits\` compiler macro
+   * @see https://eslint.vuejs.org/rules/valid-define-emits.html
+   */
   'vue/valid-define-emits'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`defineOptions\` compiler macro
+   * @see https://eslint.vuejs.org/rules/valid-define-options.html
+   */
   'vue/valid-define-options'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`defineProps\` compiler macro
+   * @see https://eslint.vuejs.org/rules/valid-define-props.html
+   */
   'vue/valid-define-props'?: Linter.RuleEntry<[]>
+  /**
+   * require valid keys in model option
+   * @see https://eslint.vuejs.org/rules/valid-model-definition.html
+   */
   'vue/valid-model-definition'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`nextTick\` function calls
+   * @see https://eslint.vuejs.org/rules/valid-next-tick.html
+   */
   'vue/valid-next-tick'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid template root
+   * @see https://eslint.vuejs.org/rules/valid-template-root.html
+   */
   'vue/valid-template-root'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-bind\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-bind.html
+   */
   'vue/valid-v-bind'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`.sync\` modifier on \`v-bind\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-bind-sync.html
+   */
   'vue/valid-v-bind-sync'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-cloak\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-cloak.html
+   */
   'vue/valid-v-cloak'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-else\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-else.html
+   */
   'vue/valid-v-else'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-else-if\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-else-if.html
+   */
   'vue/valid-v-else-if'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-for\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-for.html
+   */
   'vue/valid-v-for'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-html\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-html.html
+   */
   'vue/valid-v-html'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-if\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-if.html
+   */
   'vue/valid-v-if'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-is\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-is.html
+   */
   'vue/valid-v-is'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-memo\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-memo.html
+   */
   'vue/valid-v-memo'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-model\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-model.html
+   */
   'vue/valid-v-model'?: Linter.RuleEntry<[]>
   /**
    * enforce valid \`v-on\` directives
    * @see https://eslint.vuejs.org/rules/valid-v-on.html
    */
   'vue/valid-v-on'?: Linter.RuleEntry<VueValidVOn>
+  /**
+   * enforce valid \`v-once\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-once.html
+   */
   'vue/valid-v-once'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-pre\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-pre.html
+   */
   'vue/valid-v-pre'?: Linter.RuleEntry<[]>
+  /**
+   * enforce valid \`v-show\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-show.html
+   */
   'vue/valid-v-show'?: Linter.RuleEntry<[]>
   /**
    * enforce valid \`v-slot\` directives
    * @see https://eslint.vuejs.org/rules/valid-v-slot.html
    */
   'vue/valid-v-slot'?: Linter.RuleEntry<VueValidVSlot>
+  /**
+   * enforce valid \`v-text\` directives
+   * @see https://eslint.vuejs.org/rules/valid-v-text.html
+   */
   'vue/valid-v-text'?: Linter.RuleEntry<[]>
 }
 
@@ -1958,24 +2394,60 @@ export interface RuleOptions {
    * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/consistent-list-newline.md
    */
   'antfu/consistent-list-newline'?: Linter.RuleEntry<AntfuConsistentListNewline>
+  /**
+   * Newline after if
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/if-newline.md
+   */
   'antfu/if-newline'?: Linter.RuleEntry<[]>
+  /**
+   * Fix duplication in imports
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/import-dedupe.md
+   */
   'antfu/import-dedupe'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent importing modules in \`dist\` folder
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-dist.test.ts
+   */
   'antfu/no-import-dist'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent importing modules in \`node_modules\` folder by relative or absolute path
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-node-modules-by-path.test.ts
+   */
   'antfu/no-import-node-modules-by-path'?: Linter.RuleEntry<[]>
+  /**
+   * Do not use \`exports =\`
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-ts-export-equal.test.ts
+   */
   'antfu/no-ts-export-equal'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce top-level functions to be declared with function keyword
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/top-level-function.md
+   */
   'antfu/top-level-function'?: Linter.RuleEntry<[]>
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/consistent-type-specifier-style.md
    */
   'import/consistent-type-specifier-style'?: Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>
+  /**
+   * Ensure a default export is present, given a default import.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/default.md
+   */
   'import/default'?: Linter.RuleEntry<[]>
   /**
    * Enforce a leading comment with the webpackChunkName for dynamic imports.
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/dynamic-import-chunkname.md
    */
   'import/dynamic-import-chunkname'?: Linter.RuleEntry<ImportDynamicImportChunkname>
+  /**
+   * Forbid any invalid exports, i.e. re-export of the same name.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/export.md
+   */
   'import/export'?: Linter.RuleEntry<[]>
+  /**
+   * Ensure all exports appear after other statements.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/exports-last.md
+   */
   'import/exports-last'?: Linter.RuleEntry<[]>
   /**
    * Ensure consistent use of file extension within the import path.
@@ -2023,6 +2495,10 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-absolute-path.md
    */
   'import/no-absolute-path'?: Linter.RuleEntry<ImportNoAbsolutePath>
+  /**
+   * Forbid AMD \`require\` and \`define\` calls.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-amd.md
+   */
   'import/no-amd'?: Linter.RuleEntry<[]>
   /**
    * Forbid anonymous values as default exports.
@@ -2039,7 +2515,15 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-cycle.md
    */
   'import/no-cycle'?: Linter.RuleEntry<ImportNoCycle>
+  /**
+   * Forbid default exports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-default-export.md
+   */
   'import/no-default-export'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid imported names marked with \`@deprecated\` documentation tag.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-deprecated.md
+   */
   'import/no-deprecated'?: Linter.RuleEntry<[]>
   /**
    * Forbid repeated import of the same module in multiple places.
@@ -2051,6 +2535,10 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-dynamic-require.md
    */
   'import/no-dynamic-require'?: Linter.RuleEntry<ImportNoDynamicRequire>
+  /**
+   * Forbid empty named import blocks.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-empty-named-blocks.md
+   */
   'import/no-empty-named-blocks'?: Linter.RuleEntry<[]>
   /**
    * Forbid the use of extraneous packages.
@@ -2067,10 +2555,30 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-internal-modules.md
    */
   'import/no-internal-modules'?: Linter.RuleEntry<ImportNoInternalModules>
+  /**
+   * Forbid the use of mutable exports with \`var\` or \`let\`.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-mutable-exports.md
+   */
   'import/no-mutable-exports'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid use of exported name as identifier of default export.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-named-as-default.md
+   */
   'import/no-named-as-default'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid use of exported name as property of default export.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-named-as-default-member.md
+   */
   'import/no-named-as-default-member'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid named default exports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-named-default.md
+   */
   'import/no-named-default'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid named exports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-named-export.md
+   */
   'import/no-named-export'?: Linter.RuleEntry<[]>
   /**
    * Forbid namespace (a.k.a. "wildcard" \`*\`) imports.
@@ -2097,6 +2605,10 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-restricted-paths.md
    */
   'import/no-restricted-paths'?: Linter.RuleEntry<ImportNoRestrictedPaths>
+  /**
+   * Forbid a module from importing itself.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-self-import.md
+   */
   'import/no-self-import'?: Linter.RuleEntry<[]>
   /**
    * Forbid unassigned imports.
@@ -2118,6 +2630,10 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-useless-path-segments.md
    */
   'import/no-useless-path-segments'?: Linter.RuleEntry<ImportNoUselessPathSegments>
+  /**
+   * Forbid webpack loader syntax in imports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-webpack-loader-syntax.md
+   */
   'import/no-webpack-loader-syntax'?: Linter.RuleEntry<[]>
   /**
    * Enforce a convention in module import order.
@@ -2129,6 +2645,10 @@ export interface RuleOptions {
    * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/prefer-default-export.md
    */
   'import/prefer-default-export'?: Linter.RuleEntry<ImportPreferDefaultExport>
+  /**
+   * Forbid potentially ambiguous parse goal (\`script\` vs. \`module\`).
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/unambiguous.md
+   */
   'import/unambiguous'?: Linter.RuleEntry<[]>
 }
 

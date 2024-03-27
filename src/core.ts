@@ -162,9 +162,17 @@ export async function compileRule(
 
   const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z])/g, (_, c) => c.toUpperCase())
 
+  const jsdoc: string[] = []
+  if (meta.docs?.description)
+    jsdoc.push(meta.docs.description)
+  if (meta.docs?.url)
+    jsdoc.push(`@see ${meta.docs.url}`)
+  if (meta.deprecated)
+    jsdoc.push('@deprecated')
+
   if (!meta.schema || !schemas.length) {
     return {
-      jsdoc: [],
+      jsdoc,
       name,
       typeName: '[]',
       typeDeclarations: [],
@@ -203,15 +211,6 @@ export async function compileRule(
     .split('\n')
     .map(line => line.replace(/^(export )/, ''))
     .filter(Boolean)
-
-  const jsdoc: string[] = []
-
-  if (meta.docs?.description)
-    jsdoc.push(meta.docs.description)
-  if (meta.docs?.url)
-    jsdoc.push(`@see ${meta.docs.url}`)
-  if (meta.deprecated)
-    jsdoc.push('@deprecated')
 
   lines.unshift(`// ----- ${name} -----`)
 
