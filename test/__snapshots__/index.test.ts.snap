@@ -4,6 +4,11 @@ exports[`flatConfigsToRuleOptions 1`] = `
 "/* eslint-disable */
 /* prettier-ignore */
 import type { Linter } from 'eslint'
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions {}
+  }
+}
 
 export interface RuleOptions {
   /**
@@ -2050,6 +2055,11 @@ exports[`pluginsToRuleOptions 1`] = `
 "/* eslint-disable */
 /* prettier-ignore */
 import type { Linter } from 'eslint'
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions {}
+  }
+}
 
 export interface RuleOptions {
   /**

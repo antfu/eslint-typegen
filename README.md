@@ -6,7 +6,7 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-Generate types from ESLint rules schema
+Generate types from ESLint rules schema, for better auto-completion and type-checking.
 
 ## Usage
 
@@ -14,18 +14,38 @@ Generate types from ESLint rules schema
 npm i eslint-typegen
 ```
 
+In your `eslint.config.mjs`, wrap the export with `typegen` function:
+
+```ts
+// @ts-check
+/// <reference path="./eslint-typegen.d.ts" />
+import typegen from 'eslint-typegen'
+
+export default typegen(
+  [
+    // ...your normal eslint flat config
+  ]
+)
+```
+
+Run ESLint once, an `eslint-typegen.d.ts` file will be generated to augment ESLint types, and provide you with auto-completion and type-checking for your ESLint rules configuration based on the ESLint plugins you are using.
+
+## Low-level API
+
+You can find low-level APIs in the `eslint-typegen/core` modules.
+
 ```ts
 import fs from 'node:fs/promises'
-import { pluginsToRulesOptions } from 'eslint-typegen'
+import { pluginsToRulesDTS } from 'eslint-typegen/core'
 import pluginTs from '@typescript-eslint/eslint-plugin'
 import pluginN from 'eslint-plugin-n'
 
-const dts = await pluginsToRulesOptions({
+const dts = await pluginsToRulesDTS({
   '@typescript-eslint': pluginTs,
   'n': pluginN,
 })
 
-await fs.writeFile('eslint-rules.d.ts', dts)
+await fs.writeFile('eslint-typegen.d.ts', dts)
 ```
 
 ## Sponsors

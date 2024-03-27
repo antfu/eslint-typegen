@@ -20,6 +20,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.mjs",
+      "require": "./dist/core.cjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -27,6 +32,9 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
+      "./core": [
+        "./dist/core.d.ts"
+      ],
       "*": [
         "./dist/*",
         "./dist/index.d.ts"
@@ -49,11 +57,11 @@
   },
   "dependencies": {
     "@types/eslint": "^8.56.6",
-    "json-schema": "^0.4.0",
-    "json-schema-to-typescript": "^13.1.2"
+    "json-schema-to-typescript": "^13.1.2",
+    "ohash": "^1.1.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.10.1",
+    "@antfu/eslint-config": "^2.11.0",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
     "@types/json-schema": "^7.0.15",
@@ -67,7 +75,7 @@
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.4.3",
     "unbuild": "^2.0.0",
-    "vite": "^5.1.7",
+    "vite": "^5.2.6",
     "vitest": "^1.4.0"
   },
   "simple-git-hooks": {

@@ -1,9 +1,9 @@
 import { expect, it } from 'vitest'
 import { vue } from '@antfu/eslint-config'
-import { flatConfigsToRuleOptions, pluginsToRuleOptions } from '../src'
+import { flatConfigsToRulesDTS, pluginsToRulesDTS } from '../src/core'
 
 it('pluginsToRuleOptions', async () => {
-  expect(await pluginsToRuleOptions({
+  expect(await pluginsToRulesDTS({
     // @ts-expect-error missing types
     node: await import('eslint-plugin-n').then(m => m.default),
     // @ts-expect-error missing types
@@ -13,6 +13,6 @@ it('pluginsToRuleOptions', async () => {
 })
 
 it('flatConfigsToRuleOptions', async () => {
-  expect(await flatConfigsToRuleOptions(await vue() as any))
+  expect(await flatConfigsToRulesDTS(await vue() as any))
     .toMatchSnapshot()
 })
