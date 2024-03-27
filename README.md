@@ -6,7 +6,9 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-Generate types from ESLint rules schema, for better auto-completion and type-checking.
+Generate types from ESLint rule schemas automatically, with auto-completion and type-checking for rule options.
+
+![](https://github.com/antfu/eslint-typegen/assets/11247099/642ffdc0-c662-4f3b-9237-16d776be1c3e)
 
 ## Usage
 
@@ -28,7 +30,9 @@ export default typegen(
 )
 ```
 
-Run ESLint once, an `eslint-typegen.d.ts` file will be generated to augment ESLint types, and provide you with auto-completion and type-checking for your ESLint rules configuration based on the ESLint plugins you are using.
+Run ESLint once, an `eslint-typegen.d.ts` file will be generated to augment ESLint's `Linter.RulesRecord` types, to provide you with auto-completion and type-checking for your ESLint rules configuration based on the ESLint plugins you are using.
+
+> It will caluclate the hash from the plugins in your flat config, and only regenerate the types when the hash changes. If you want to force regenerate the types, you can delete the `eslint-typegen.d.ts` file and run ESLint again.
 
 ## Low-level API
 
