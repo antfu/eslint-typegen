@@ -10,6 +10,8 @@ Generate types from ESLint rule schemas automatically, with auto-completion and 
 
 ![](https://github.com/antfu/eslint-typegen/assets/11247099/642ffdc0-c662-4f3b-9237-16d776be1c3e)
 
+> Btw, if you are using [`@antfu/eslint-config`](https://github.com/antfu/eslint-config), you may NOT need to setup this, as the types for rules [are already shipped with the package](https://github.com/antfu/eslint-config/blob/95963ac345d27cd06a4eeb5ebc16e1848cb2fd81/scripts/typegen.ts#L29-L33).
+
 ## Usage
 
 ```bash
@@ -32,7 +34,7 @@ export default typegen(
 
 Run ESLint once, an `eslint-typegen.d.ts` file will be generated to augment ESLint's `Linter.RulesRecord` types, to provide you with auto-completion and type-checking for your ESLint rules configuration based on the ESLint plugins you are using.
 
-> It will caluclate the hash from the plugins in your flat config, and only regenerate the types when the hash changes. If you want to force regenerate the types, you can delete the `eslint-typegen.d.ts` file and run ESLint again.
+> It will caluclate the hash of the plugins meta from your flat config, and only regenerate the types when they changes. If you want to force regenerate the types, you can delete the `eslint-typegen.d.ts` file and run ESLint again.
 
 ## Low-level API
 
@@ -51,6 +53,8 @@ const dts = await pluginsToRulesDTS({
 
 await fs.writeFile('eslint-typegen.d.ts', dts)
 ```
+
+This can be useful if you want to have more control over the generation process, or even bundle the types with your config package. For example, [here](https://github.com/antfu/eslint-config/blob/95963ac345d27cd06a4eeb5ebc16e1848cb2fd81/scripts/typegen.ts#L29-L33) is how [`@antfu/eslint-config`](https://github.com/antfu/eslint-config) does.
 
 ## Sponsors
 
