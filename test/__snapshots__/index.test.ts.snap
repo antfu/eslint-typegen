@@ -1237,11 +1237,11 @@ objectsInArrays?: boolean
 arraysInArrays?: boolean
 }]
 // ----- vue/array-element-newline -----
-type VueArrayElementNewline = []|[(BasicConfig | {
-ArrayExpression?: BasicConfig
-ArrayPattern?: BasicConfig
+type VueArrayElementNewline = []|[(_VueArrayElementNewlineBasicConfig | {
+ArrayExpression?: _VueArrayElementNewlineBasicConfig
+ArrayPattern?: _VueArrayElementNewlineBasicConfig
 })]
-type BasicConfig = (("always" | "never" | "consistent") | {
+type _VueArrayElementNewlineBasicConfig = (("always" | "never" | "consistent") | {
 multiline?: boolean
 minItems?: (number | null)
 })
@@ -1302,18 +1302,18 @@ properties?: ("always" | "never")
 allow?: []|[string]
 }]
 // ----- vue/comma-dangle -----
-type VueCommaDangle = []|[(Value | {
-arrays?: ValueWithIgnore
-objects?: ValueWithIgnore
-imports?: ValueWithIgnore
-exports?: ValueWithIgnore
-functions?: ValueWithIgnore
-enums?: ValueWithIgnore
-generics?: ValueWithIgnore
-tuples?: ValueWithIgnore
+type VueCommaDangle = []|[(_VueCommaDangleValue | {
+arrays?: _VueCommaDangleValueWithIgnore
+objects?: _VueCommaDangleValueWithIgnore
+imports?: _VueCommaDangleValueWithIgnore
+exports?: _VueCommaDangleValueWithIgnore
+functions?: _VueCommaDangleValueWithIgnore
+enums?: _VueCommaDangleValueWithIgnore
+generics?: _VueCommaDangleValueWithIgnore
+tuples?: _VueCommaDangleValueWithIgnore
 })]
-type Value = ("always-multiline" | "always" | "never" | "only-multiline")
-type ValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore")
+type _VueCommaDangleValue = ("always-multiline" | "always" | "never" | "only-multiline")
+type _VueCommaDangleValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore")
 // ----- vue/comma-spacing -----
 type VueCommaSpacing = []|[{
 before?: boolean
@@ -1445,14 +1445,14 @@ avoidEscape?: boolean
 // ----- vue/html-self-closing -----
 type VueHtmlSelfClosing = []|[{
 html?: {
-normal?: OptionValue
-void?: OptionValue
-component?: OptionValue
+normal?: _VueHtmlSelfClosingOptionValue
+void?: _VueHtmlSelfClosingOptionValue
+component?: _VueHtmlSelfClosingOptionValue
 }
-svg?: OptionValue
-math?: OptionValue
+svg?: _VueHtmlSelfClosingOptionValue
+math?: _VueHtmlSelfClosingOptionValue
 }]
-type OptionValue = ("always" | "never" | "any")
+type _VueHtmlSelfClosingOptionValue = ("always" | "never" | "any")
 // ----- vue/key-spacing -----
 type VueKeySpacing = []|[({
 align?: (("colon" | "value") | {

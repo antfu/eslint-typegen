@@ -58,12 +58,13 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@bcherny/json-schema-ref-parser": "10.0.5-fork",
     "@types/eslint": "^8.56.6",
-    "json-schema-to-typescript": "^13.1.2",
+    "js-yaml": "^4.1.0",
     "ohash": "^1.1.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.0",
+    "@antfu/eslint-config": "^2.11.1",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
     "@types/json-schema": "^7.0.15",
@@ -71,6 +72,7 @@
     "bumpp": "^9.4.0",
     "eslint": "^8.57.0",
     "esno": "^4.7.0",
+    "json-schema-to-typescript": "^13.1.2",
     "lint-staged": "^15.2.2",
     "pnpm": "^8.15.5",
     "rimraf": "^5.0.5",
@@ -79,6 +81,11 @@
     "unbuild": "^2.0.0",
     "vite": "^5.2.6",
     "vitest": "^1.4.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "json-schema-to-typescript@13.1.2": "patches/json-schema-to-typescript@13.1.2.patch"
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

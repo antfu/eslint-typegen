@@ -1,0 +1,3371 @@
+diff --git a/dist/bundle.js b/dist/bundle.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/dist/cli.d.ts b/dist/cli.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..b7988016daa5bf0b3d4fcdccaba52780a9983d9d
+--- /dev/null
++++ b/dist/cli.d.ts
+@@ -0,0 +1,2 @@
++#!/usr/bin/env node
++export {};
+diff --git a/dist/cli.js b/dist/cli.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..7a5e52fc87c29afb89593dcc1e017af3cbb57e5a
+--- /dev/null
++++ b/dist/cli.js
+@@ -0,0 +1,278 @@
++#!/usr/bin/env node
++"use strict";
++var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
++    if (k2 === undefined) k2 = k;
++    var desc = Object.getOwnPropertyDescriptor(m, k);
++    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
++      desc = { enumerable: true, get: function() { return m[k]; } };
++    }
++    Object.defineProperty(o, k2, desc);
++}) : (function(o, m, k, k2) {
++    if (k2 === undefined) k2 = k;
++    o[k2] = m[k];
++}));
++var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
++    Object.defineProperty(o, "default", { enumerable: true, value: v });
++}) : function(o, v) {
++    o["default"] = v;
++});
++var __importStar = (this && this.__importStar) || function (mod) {
++    if (mod && mod.__esModule) return mod;
++    var result = {};
++    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
++    __setModuleDefault(result, mod);
++    return result;
++};
++var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
++    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
++    return new (P || (P = Promise))(function (resolve, reject) {
++        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
++        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
++        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
++        step((generator = generator.apply(thisArg, _arguments || [])).next());
++    });
++};
++var __generator = (this && this.__generator) || function (thisArg, body) {
++    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
++    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
++    function verb(n) { return function (v) { return step([n, v]); }; }
++    function step(op) {
++        if (f) throw new TypeError("Generator is already executing.");
++        while (g && (g = 0, op[0] && (_ = 0)), _) try {
++            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
++            if (y = 0, t) op = [op[0] & 2, t.value];
++            switch (op[0]) {
++                case 0: case 1: t = op; break;
++                case 4: _.label++; return { value: op[1], done: false };
++                case 5: _.label++; y = op[1]; op = [0]; continue;
++                case 7: op = _.ops.pop(); _.trys.pop(); continue;
++                default:
++                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
++                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
++                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
++                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
++                    if (t[2]) _.ops.pop();
++                    _.trys.pop(); continue;
++            }
++            op = body.call(thisArg, _);
++        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
++        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
++    }
++};
++var __importDefault = (this && this.__importDefault) || function (mod) {
++    return (mod && mod.__esModule) ? mod : { "default": mod };
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++var minimist = require("minimist");
++var get_stdin_1 = __importDefault(require("get-stdin"));
++var fs_1 = require("mz/fs");
++var mkdirp = __importStar(require("mkdirp"));
++var glob_promise_1 = __importDefault(require("glob-promise"));
++var isGlob = require("is-glob");
++var path_1 = require("path");
++var index_1 = require("./index");
++var utils_1 = require("./utils");
++main(minimist(process.argv.slice(2), {
++    alias: {
++        help: ['h'],
++        input: ['i'],
++        output: ['o'],
++    },
++    boolean: [
++        'additionalProperties',
++        'declareExternallyReferenced',
++        'enableConstEnums',
++        'format',
++        'ignoreMinAndMaxItems',
++        'strictIndexSignatures',
++        'unknownAny',
++        'unreachableDefinitions',
++    ],
++    default: index_1.DEFAULT_OPTIONS,
++    string: ['bannerComment', 'cwd'],
++}));
++function main(argv) {
++    return __awaiter(this, void 0, void 0, function () {
++        var argIn, argOut, ISGLOB, ISDIR, result, e_1;
++        return __generator(this, function (_a) {
++            switch (_a.label) {
++                case 0:
++                    if (argv.help) {
++                        printHelp();
++                        process.exit(0);
++                    }
++                    argIn = argv._[0] || argv.input;
++                    argOut = argv._[1] || argv.output // the output can be omitted so this can be undefined
++                    ;
++                    ISGLOB = isGlob(argIn);
++                    ISDIR = isDir(argIn);
++                    if ((ISGLOB || ISDIR) && argOut && argOut.includes('.d.ts')) {
++                        throw new ReferenceError("You have specified a single file ".concat(argOut, " output for a multi file input ").concat(argIn, ". This feature is not yet supported, refer to issue #272 (https://github.com/bcherny/json-schema-to-typescript/issues/272)"));
++                    }
++                    _a.label = 1;
++                case 1:
++                    _a.trys.push([1, 8, , 9]);
++                    if (!ISGLOB) return [3 /*break*/, 3];
++                    return [4 /*yield*/, processGlob(argIn, argOut, argv)];
++                case 2:
++                    _a.sent();
++                    return [3 /*break*/, 7];
++                case 3:
++                    if (!ISDIR) return [3 /*break*/, 5];
++                    return [4 /*yield*/, processDir(argIn, argOut, argv)];
++                case 4:
++                    _a.sent();
++                    return [3 /*break*/, 7];
++                case 5: return [4 /*yield*/, processFile(argIn, argv)];
++                case 6:
++                    result = _a.sent();
++                    outputResult(result, argOut);
++                    _a.label = 7;
++                case 7: return [3 /*break*/, 9];
++                case 8:
++                    e_1 = _a.sent();
++                    (0, utils_1.error)(e_1);
++                    process.exit(1);
++                    return [3 /*break*/, 9];
++                case 9: return [2 /*return*/];
++            }
++        });
++    });
++}
++// check if path is an existing directory
++function isDir(path) {
++    return (0, fs_1.existsSync)(path) && (0, fs_1.lstatSync)(path).isDirectory();
++}
++function processGlob(argIn, argOut, argv) {
++    return __awaiter(this, void 0, void 0, function () {
++        var files, results;
++        var _this = this;
++        return __generator(this, function (_a) {
++            switch (_a.label) {
++                case 0: return [4 /*yield*/, (0, glob_promise_1.default)(argIn)]; // execute glob pattern match
++                case 1:
++                    files = _a.sent() // execute glob pattern match
++                    ;
++                    if (files.length === 0) {
++                        throw ReferenceError("You passed a glob pattern \"".concat(argIn, "\", but there are no files that match that pattern in ").concat(process.cwd()));
++                    }
++                    return [4 /*yield*/, Promise.all(files.map(function (file) { return __awaiter(_this, void 0, void 0, function () {
++                            var _a;
++                            return __generator(this, function (_b) {
++                                switch (_b.label) {
++                                    case 0:
++                                        _a = [file];
++                                        return [4 /*yield*/, processFile(file, argv)];
++                                    case 1: return [2 /*return*/, _a.concat([_b.sent()])];
++                                }
++                            });
++                        }); }))
++                        // careful to do this serially
++                    ];
++                case 2:
++                    results = _a.sent();
++                    // careful to do this serially
++                    results.forEach(function (_a) {
++                        var file = _a[0], result = _a[1];
++                        var outputPath = argOut && "".concat(argOut, "/").concat((0, path_1.basename)(file, '.json'), ".d.ts");
++                        outputResult(result, outputPath);
++                    });
++                    return [2 /*return*/];
++            }
++        });
++    });
++}
++function processDir(argIn, argOut, argv) {
++    return __awaiter(this, void 0, void 0, function () {
++        var files, results;
++        var _this = this;
++        return __generator(this, function (_a) {
++            switch (_a.label) {
++                case 0:
++                    files = getPaths(argIn);
++                    return [4 /*yield*/, Promise.all(files.map(function (file) { return __awaiter(_this, void 0, void 0, function () {
++                            var _a, outputPath, _b;
++                            return __generator(this, function (_c) {
++                                switch (_c.label) {
++                                    case 0:
++                                        if (!!argOut) return [3 /*break*/, 2];
++                                        _a = [file];
++                                        return [4 /*yield*/, processFile(file, argv)];
++                                    case 1: return [2 /*return*/, _a.concat([_c.sent()])];
++                                    case 2:
++                                        outputPath = (0, utils_1.pathTransform)(argOut, argIn, file);
++                                        _b = [file];
++                                        return [4 /*yield*/, processFile(file, argv)];
++                                    case 3: return [2 /*return*/, _b.concat([_c.sent(), outputPath])];
++                                }
++                            });
++                        }); }))
++                        // careful to do this serially
++                    ];
++                case 1:
++                    results = _a.sent();
++                    // careful to do this serially
++                    results.forEach(function (_a) {
++                        var file = _a[0], result = _a[1], outputPath = _a[2];
++                        return outputResult(result, outputPath ? "".concat(outputPath, "/").concat((0, path_1.basename)(file, '.json'), ".d.ts") : undefined);
++                    });
++                    return [2 /*return*/];
++            }
++        });
++    });
++}
++function outputResult(result, outputPath) {
++    return __awaiter(this, void 0, void 0, function () {
++        return __generator(this, function (_a) {
++            switch (_a.label) {
++                case 0:
++                    if (!!outputPath) return [3 /*break*/, 1];
++                    process.stdout.write(result);
++                    return [3 /*break*/, 3];
++                case 1:
++                    if (!isDir((0, path_1.dirname)(outputPath))) {
++                        mkdirp.sync((0, path_1.dirname)(outputPath));
++                    }
++                    return [4 /*yield*/, (0, fs_1.writeFile)(outputPath, result)];
++                case 2: return [2 /*return*/, _a.sent()];
++                case 3: return [2 /*return*/];
++            }
++        });
++    });
++}
++function processFile(argIn, argv) {
++    return __awaiter(this, void 0, void 0, function () {
++        var schema, _a, _b;
++        return __generator(this, function (_c) {
++            switch (_c.label) {
++                case 0:
++                    _b = (_a = JSON).parse;
++                    return [4 /*yield*/, readInput(argIn)];
++                case 1:
++                    schema = _b.apply(_a, [_c.sent()]);
++                    return [2 /*return*/, (0, index_1.compile)(schema, argIn, argv)];
++            }
++        });
++    });
++}
++function getPaths(path, paths) {
++    if (paths === void 0) { paths = []; }
++    if ((0, fs_1.existsSync)(path) && (0, fs_1.lstatSync)(path).isDirectory()) {
++        (0, fs_1.readdirSync)((0, path_1.resolve)(path)).forEach(function (item) { return getPaths((0, path_1.join)(path, item), paths); });
++    }
++    else {
++        paths.push(path);
++    }
++    return paths;
++}
++function readInput(argIn) {
++    if (!argIn) {
++        return (0, get_stdin_1.default)();
++    }
++    return (0, fs_1.readFile)((0, path_1.resolve)(process.cwd(), argIn), 'utf-8');
++}
++function printHelp() {
++    var pkg = require('../../package.json');
++    process.stdout.write("\n".concat(pkg.name, " ").concat(pkg.version, "\nUsage: json2ts [--input, -i] [IN_FILE] [--output, -o] [OUT_FILE] [OPTIONS]\n\nWith no IN_FILE, or when IN_FILE is -, read standard input.\nWith no OUT_FILE and when IN_FILE is specified, create .d.ts file in the same directory.\nWith no OUT_FILE nor IN_FILE, write to standard output.\n\nYou can use any of the following options by adding them at the end.\nBoolean values can be set to false using the 'no-' prefix.\n\n  --additionalProperties\n      Default value for additionalProperties, when it is not explicitly set\n  --cwd=XXX\n      Root directory for resolving $ref\n  --declareExternallyReferenced\n      Declare external schemas referenced via '$ref'?\n  --enableConstEnums\n      Prepend enums with 'const'?\n  --format\n      Format code? Set this to false to improve performance.\n  --maxItems\n      Maximum number of unioned tuples to emit when representing bounded-size\n      array types, before falling back to emitting unbounded arrays. Increase\n      this to improve precision of emitted types, decrease it to improve\n      performance, or set it to -1 to ignore minItems and maxItems.\n  --style.XXX=YYY\n      Prettier configuration\n  --unknownAny\n      Output unknown type instead of any type\n  --unreachableDefinitions\n      Generates code for definitions that aren't referenced by the schema\n"));
++}
++//# sourceMappingURL=cli.js.map
+\ No newline at end of file
+diff --git a/dist/formatter.d.ts b/dist/formatter.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..72c8bf70e02f2a59b3525dad46987a1c6d45b30f
+--- /dev/null
++++ b/dist/formatter.d.ts
+@@ -0,0 +1,2 @@
++import { Options } from './';
++export declare function format(code: string, options: Options): string;
+diff --git a/dist/formatter.js b/dist/formatter.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..4f33bd7e979624b2f884a8ad6f27051a9e9480f3
+--- /dev/null
++++ b/dist/formatter.js
+@@ -0,0 +1,23 @@
++"use strict";
++var __assign = (this && this.__assign) || function () {
++    __assign = Object.assign || function(t) {
++        for (var s, i = 1, n = arguments.length; i < n; i++) {
++            s = arguments[i];
++            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
++                t[p] = s[p];
++        }
++        return t;
++    };
++    return __assign.apply(this, arguments);
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.format = void 0;
++var prettier_1 = require("prettier");
++function format(code, options) {
++    if (!options.format) {
++        return code;
++    }
++    return (0, prettier_1.format)(code, __assign({ parser: 'typescript' }, options.style));
++}
++exports.format = format;
++//# sourceMappingURL=formatter.js.map
+\ No newline at end of file
+diff --git a/dist/generator.d.ts b/dist/generator.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..1ccd0d9d4c0cdccc04dbfafc08efd79633a4a930
+--- /dev/null
++++ b/dist/generator.d.ts
+@@ -0,0 +1,7 @@
++/// <reference types="lodash" />
++import { Options } from './index';
++import { AST } from './types/AST';
++export declare function generate(ast: AST, options?: Options): string;
++declare function generateTypeUnmemoized(ast: AST, options: Options): string;
++export declare const generateType: typeof generateTypeUnmemoized & import("lodash").MemoizedFunction;
++export {};
+diff --git a/dist/generator.js b/dist/generator.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..735aca8b7e0a9b825cff45663264b6108014f0ac
+--- /dev/null
++++ b/dist/generator.js
+@@ -0,0 +1,335 @@
++"use strict";
++var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
++    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
++        if (ar || !(i in from)) {
++            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
++            ar[i] = from[i];
++        }
++    }
++    return to.concat(ar || Array.prototype.slice.call(from));
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.generateType = exports.generate = void 0;
++var lodash_1 = require("lodash");
++var index_1 = require("./index");
++var AST_1 = require("./types/AST");
++var utils_1 = require("./utils");
++function generate(ast, options) {
++    if (options === void 0) { options = index_1.DEFAULT_OPTIONS; }
++    return ([
++        options.bannerComment,
++        declareNamedTypes(ast, options, ast.standaloneName),
++        declareNamedInterfaces(ast, options, ast.standaloneName),
++        declareEnums(ast, options),
++    ]
++        .filter(Boolean)
++        .join('\n\n') + '\n'); // trailing newline
++}
++exports.generate = generate;
++function declareEnums(ast, options, processed) {
++    if (processed === void 0) { processed = new Set(); }
++    if (processed.has(ast)) {
++        return '';
++    }
++    processed.add(ast);
++    var type = '';
++    switch (ast.type) {
++        case 'ENUM':
++            return generateStandaloneEnum(ast, options) + '\n';
++        case 'ARRAY':
++            return declareEnums(ast.params, options, processed);
++        case 'UNION':
++        case 'INTERSECTION':
++            return ast.params.reduce(function (prev, ast) { return prev + declareEnums(ast, options, processed); }, '');
++        case 'TUPLE':
++            type = ast.params.reduce(function (prev, ast) { return prev + declareEnums(ast, options, processed); }, '');
++            if (ast.spreadParam) {
++                type += declareEnums(ast.spreadParam, options, processed);
++            }
++            return type;
++        case 'INTERFACE':
++            return getSuperTypesAndParams(ast).reduce(function (prev, ast) { return prev + declareEnums(ast, options, processed); }, '');
++        default:
++            return '';
++    }
++}
++function declareNamedInterfaces(ast, options, rootASTName, processed) {
++    if (processed === void 0) { processed = new Set(); }
++    if (processed.has(ast)) {
++        return '';
++    }
++    processed.add(ast);
++    var type = '';
++    switch (ast.type) {
++        case 'ARRAY':
++            type = declareNamedInterfaces(ast.params, options, rootASTName, processed);
++            break;
++        case 'INTERFACE':
++            type = [
++                (0, AST_1.hasStandaloneName)(ast) &&
++                    (ast.standaloneName === rootASTName || options.declareExternallyReferenced) &&
++                    generateStandaloneInterface(ast, options),
++                getSuperTypesAndParams(ast)
++                    .map(function (ast) { return declareNamedInterfaces(ast, options, rootASTName, processed); })
++                    .filter(Boolean)
++                    .join('\n'),
++            ]
++                .filter(Boolean)
++                .join('\n');
++            break;
++        case 'INTERSECTION':
++        case 'TUPLE':
++        case 'UNION':
++            type = ast.params
++                .map(function (_) { return declareNamedInterfaces(_, options, rootASTName, processed); })
++                .filter(Boolean)
++                .join('\n');
++            if (ast.type === 'TUPLE' && ast.spreadParam) {
++                type += declareNamedInterfaces(ast.spreadParam, options, rootASTName, processed);
++            }
++            break;
++        default:
++            type = '';
++    }
++    return type;
++}
++function declareNamedTypes(ast, options, rootASTName, processed) {
++    if (processed === void 0) { processed = new Set(); }
++    if (processed.has(ast)) {
++        return '';
++    }
++    processed.add(ast);
++    switch (ast.type) {
++        case 'ARRAY':
++            return [
++                declareNamedTypes(ast.params, options, rootASTName, processed),
++                (0, AST_1.hasStandaloneName)(ast) ? generateStandaloneType(ast, options) : undefined,
++            ]
++                .filter(Boolean)
++                .join('\n');
++        case 'ENUM':
++            return '';
++        case 'INTERFACE':
++            return getSuperTypesAndParams(ast)
++                .map(function (ast) {
++                return (ast.standaloneName === rootASTName || options.declareExternallyReferenced) &&
++                    declareNamedTypes(ast, options, rootASTName, processed);
++            })
++                .filter(Boolean)
++                .join('\n');
++        case 'INTERSECTION':
++        case 'TUPLE':
++        case 'UNION':
++            return [
++                (0, AST_1.hasStandaloneName)(ast) ? generateStandaloneType(ast, options) : undefined,
++                ast.params
++                    .map(function (ast) { return declareNamedTypes(ast, options, rootASTName, processed); })
++                    .filter(Boolean)
++                    .join('\n'),
++                'spreadParam' in ast && ast.spreadParam
++                    ? declareNamedTypes(ast.spreadParam, options, rootASTName, processed)
++                    : undefined,
++            ]
++                .filter(Boolean)
++                .join('\n');
++        default:
++            if ((0, AST_1.hasStandaloneName)(ast)) {
++                return generateStandaloneType(ast, options);
++            }
++            return '';
++    }
++}
++function generateTypeUnmemoized(ast, options) {
++    var type = generateRawType(ast, options);
++    if (options.strictIndexSignatures && ast.keyName === '[k: string]') {
++        return "".concat(type, " | undefined");
++    }
++    return type;
++}
++exports.generateType = (0, lodash_1.memoize)(generateTypeUnmemoized);
++function generateRawType(ast, options) {
++    (0, utils_1.log)('magenta', 'generator', ast);
++    if ((0, AST_1.hasStandaloneName)(ast)) {
++        return (0, utils_1.toSafeString)(ast.standaloneName);
++    }
++    switch (ast.type) {
++        case 'ANY':
++            return 'any';
++        case 'ARRAY':
++            return (function () {
++                var type = (0, exports.generateType)(ast.params, options);
++                return type.endsWith('"') ? '(' + type + ')[]' : type + '[]';
++            })();
++        case 'BOOLEAN':
++            return 'boolean';
++        case 'INTERFACE':
++            return generateInterface(ast, options);
++        case 'INTERSECTION':
++            return generateSetOperation(ast, options);
++        case 'LITERAL':
++            return JSON.stringify(ast.params);
++        case 'NEVER':
++            return 'never';
++        case 'NUMBER':
++            return 'number';
++        case 'NULL':
++            return 'null';
++        case 'OBJECT':
++            return 'object';
++        case 'REFERENCE':
++            return ast.params;
++        case 'STRING':
++            return 'string';
++        case 'TUPLE':
++            return (function () {
++                var minItems = ast.minItems;
++                var maxItems = ast.maxItems || -1;
++                var spreadParam = ast.spreadParam;
++                var astParams = __spreadArray([], ast.params, true);
++                if (minItems > 0 && minItems > astParams.length && ast.spreadParam === undefined) {
++                    // this is a valid state, and JSONSchema doesn't care about the item type
++                    if (maxItems < 0) {
++                        // no max items and no spread param, so just spread any
++                        spreadParam = options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY;
++                    }
++                }
++                if (maxItems > astParams.length && ast.spreadParam === undefined) {
++                    // this is a valid state, and JSONSchema doesn't care about the item type
++                    // fill the tuple with any elements
++                    for (var i = astParams.length; i < maxItems; i += 1) {
++                        astParams.push(options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY);
++                    }
++                }
++                function addSpreadParam(params) {
++                    if (spreadParam) {
++                        var spread = '...(' + (0, exports.generateType)(spreadParam, options) + ')[]';
++                        params.push(spread);
++                    }
++                    return params;
++                }
++                function paramsToString(params) {
++                    return '[' + params.join(', ') + ']';
++                }
++                var paramsList = astParams.map(function (param) { return (0, exports.generateType)(param, options); });
++                if (paramsList.length > minItems) {
++                    /*
++                  if there are more items than the min, we return a union of tuples instead of
++                  using the optional element operator. This is done because it is more typesafe.
++          
++                  // optional element operator
++                  type A = [string, string?, string?]
++                  const a: A = ['a', undefined, 'c'] // no error
++          
++                  // union of tuples
++                  type B = [string] | [string, string] | [string, string, string]
++                  const b: B = ['a', undefined, 'c'] // TS error
++                  */
++                    var cumulativeParamsList = paramsList.slice(0, minItems);
++                    var typesToUnion = [];
++                    if (cumulativeParamsList.length > 0) {
++                        // actually has minItems, so add the initial state
++                        typesToUnion.push(paramsToString(cumulativeParamsList));
++                    }
++                    else {
++                        // no minItems means it's acceptable to have an empty tuple type
++                        typesToUnion.push(paramsToString([]));
++                    }
++                    for (var i = minItems; i < paramsList.length; i += 1) {
++                        cumulativeParamsList.push(paramsList[i]);
++                        if (i === paramsList.length - 1) {
++                            // only the last item in the union should have the spread parameter
++                            addSpreadParam(cumulativeParamsList);
++                        }
++                        typesToUnion.push(paramsToString(cumulativeParamsList));
++                    }
++                    return typesToUnion.join('|');
++                }
++                // no max items so only need to return one type
++                return paramsToString(addSpreadParam(paramsList));
++            })();
++        case 'UNION':
++            return generateSetOperation(ast, options);
++        case 'UNKNOWN':
++            return 'unknown';
++        case 'CUSTOM_TYPE':
++            return ast.params;
++    }
++}
++/**
++ * Generate a Union or Intersection
++ */
++function generateSetOperation(ast, options) {
++    var members = ast.params.map(function (_) { return (0, exports.generateType)(_, options); });
++    var separator = ast.type === 'UNION' ? '|' : '&';
++    return members.length === 1 ? members[0] : '(' + members.join(' ' + separator + ' ') + ')';
++}
++function generateInterface(ast, options) {
++    return ("{" +
++        '\n' +
++        ast.params
++            .filter(function (_) { return !_.isPatternProperty && !_.isUnreachableDefinition; })
++            .map(function (_a) {
++            var isRequired = _a.isRequired, keyName = _a.keyName, ast = _a.ast;
++            return [isRequired, keyName, ast, (0, exports.generateType)(ast, options)];
++        })
++            .map(function (_a) {
++            var isRequired = _a[0], keyName = _a[1], ast = _a[2], type = _a[3];
++            return ((0, AST_1.hasComment)(ast) && !ast.standaloneName ? generateComment(ast.comment, ast.deprecated) + '\n' : '') +
++                escapeKeyName(keyName) +
++                (isRequired ? '' : '?') +
++                ': ' +
++                type;
++        })
++            .join('\n') +
++        '\n' +
++        '}');
++}
++function generateComment(comment, deprecated) {
++    var commentLines = ['/**'];
++    if (deprecated) {
++        commentLines.push(' * @deprecated');
++    }
++    if (typeof comment !== 'undefined') {
++        commentLines.push.apply(commentLines, comment.split('\n').map(function (_) { return ' * ' + _; }));
++    }
++    commentLines.push(' */');
++    return commentLines.join('\n');
++}
++function generateStandaloneEnum(ast, options) {
++    return (((0, AST_1.hasComment)(ast) ? generateComment(ast.comment, ast.deprecated) + '\n' : '') +
++        'export ' +
++        (options.enableConstEnums ? 'const ' : '') +
++        "enum ".concat((0, utils_1.toSafeString)(ast.standaloneName), " {") +
++        '\n' +
++        ast.params.map(function (_a) {
++            var ast = _a.ast, keyName = _a.keyName;
++            return keyName + ' = ' + (0, exports.generateType)(ast, options);
++        }).join(',\n') +
++        '\n' +
++        '}');
++}
++function generateStandaloneInterface(ast, options) {
++    return (((0, AST_1.hasComment)(ast) ? generateComment(ast.comment, ast.deprecated) + '\n' : '') +
++        "export interface ".concat((0, utils_1.toSafeString)(ast.standaloneName), " ") +
++        (ast.superTypes.length > 0
++            ? "extends ".concat(ast.superTypes.map(function (superType) { return (0, utils_1.toSafeString)(superType.standaloneName); }).join(', '), " ")
++            : '') +
++        generateInterface(ast, options));
++}
++function generateStandaloneType(ast, options) {
++    return (((0, AST_1.hasComment)(ast) ? generateComment(ast.comment) + '\n' : '') +
++        "export type ".concat((0, utils_1.toSafeString)(ast.standaloneName), " = ").concat((0, exports.generateType)((0, lodash_1.omit)(ast, 'standaloneName') /* TODO */, options)));
++}
++function escapeKeyName(keyName) {
++    if (keyName.length && /[A-Za-z_$]/.test(keyName.charAt(0)) && /^[\w$]+$/.test(keyName)) {
++        return keyName;
++    }
++    if (keyName === '[k: string]') {
++        return keyName;
++    }
++    return JSON.stringify(keyName);
++}
++function getSuperTypesAndParams(ast) {
++    return ast.params.map(function (param) { return param.ast; }).concat(ast.superTypes);
++}
++//# sourceMappingURL=generator.js.map
+\ No newline at end of file
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..3647341a18ba93b153bd7831a78e4ef48a5b21d1
+--- /dev/null
++++ b/dist/index.d.ts
+@@ -0,0 +1,68 @@
++import { JSONSchema4 } from 'json-schema';
++import { Options as $RefOptions } from '@bcherny/json-schema-ref-parser';
++import { JSONSchema as LinkedJSONSchema } from './types/JSONSchema';
++export { EnumJSONSchema, JSONSchema, NamedEnumJSONSchema, CustomTypeJSONSchema } from './types/JSONSchema';
++export interface Options {
++    /**
++     * [$RefParser](https://github.com/BigstickCarpet/json-schema-ref-parser) Options, used when resolving `$ref`s
++     */
++    $refOptions: $RefOptions;
++    /**
++     * Default value for additionalProperties, when it is not explicitly set.
++     */
++    additionalProperties: boolean;
++    /**
++     * Disclaimer comment prepended to the top of each generated file.
++     */
++    bannerComment: string;
++    /**
++     * Root directory for resolving [`$ref`](https://tools.ietf.org/id/draft-pbryan-zyp-json-ref-03.html)s.
++     */
++    cwd: string;
++    /**
++     * Declare external schemas referenced via `$ref`?
++     */
++    declareExternallyReferenced: boolean;
++    /**
++     * Prepend enums with [`const`](https://www.typescriptlang.org/docs/handbook/enums.html#computed-and-constant-members)?
++     */
++    enableConstEnums: boolean;
++    /**
++     * Format code? Set this to `false` to improve performance.
++     */
++    format: boolean;
++    /**
++     * Ignore maxItems and minItems for `array` types, preventing tuples being generated.
++     */
++    ignoreMinAndMaxItems: boolean;
++    /**
++     * Maximum number of unioned tuples to emit when representing bounded-size array types,
++     * before falling back to emitting unbounded arrays. Increase this to improve precision
++     * of emitted types, decrease it to improve performance, or set it to `-1` to ignore
++     * `minItems` and `maxItems`.
++     */
++    maxItems: number;
++    /**
++     * Append all index signatures with `| undefined` so that they are strictly typed.
++     *
++     * This is required to be compatible with `strictNullChecks`.
++     */
++    strictIndexSignatures: boolean;
++    /**
++     * Generate code for `definitions` that aren't referenced by the schema?
++     */
++    unreachableDefinitions: boolean;
++    /**
++     * Generate unknown type instead of any
++     */
++    unknownAny: boolean;
++    /**
++     * Custom function to provide a type name for a given schema
++     */
++    customName?: (schema: LinkedJSONSchema, keyNameFromDefinition: string | undefined) => string;
++}
++export declare const DEFAULT_OPTIONS: Options;
++export declare function compileFromFile(filename: string, options?: Partial<Options>): Promise<string>;
++export declare function compile(schema: JSONSchema4, name: string, options?: Partial<Options>): Promise<string>;
++export declare class ValidationError extends Error {
++}
+diff --git a/dist/index.js b/dist/index.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..3b0837346f9a2f303486d7dbd2766a16866686ec
+--- /dev/null
++++ b/dist/index.js
+@@ -0,0 +1,171 @@
++"use strict";
++var __extends = (this && this.__extends) || (function () {
++    var extendStatics = function (d, b) {
++        extendStatics = Object.setPrototypeOf ||
++            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
++            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
++        return extendStatics(d, b);
++    };
++    return function (d, b) {
++        if (typeof b !== "function" && b !== null)
++            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
++        extendStatics(d, b);
++        function __() { this.constructor = d; }
++        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
++    };
++})();
++var __assign = (this && this.__assign) || function () {
++    __assign = Object.assign || function(t) {
++        for (var s, i = 1, n = arguments.length; i < n; i++) {
++            s = arguments[i];
++            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
++                t[p] = s[p];
++        }
++        return t;
++    };
++    return __assign.apply(this, arguments);
++};
++var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
++    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
++    return new (P || (P = Promise))(function (resolve, reject) {
++        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
++        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
++        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
++        step((generator = generator.apply(thisArg, _arguments || [])).next());
++    });
++};
++var __generator = (this && this.__generator) || function (thisArg, body) {
++    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
++    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
++    function verb(n) { return function (v) { return step([n, v]); }; }
++    function step(op) {
++        if (f) throw new TypeError("Generator is already executing.");
++        while (g && (g = 0, op[0] && (_ = 0)), _) try {
++            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
++            if (y = 0, t) op = [op[0] & 2, t.value];
++            switch (op[0]) {
++                case 0: case 1: t = op; break;
++                case 4: _.label++; return { value: op[1], done: false };
++                case 5: _.label++; y = op[1]; op = [0]; continue;
++                case 7: op = _.ops.pop(); _.trys.pop(); continue;
++                default:
++                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
++                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
++                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
++                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
++                    if (t[2]) _.ops.pop();
++                    _.trys.pop(); continue;
++            }
++            op = body.call(thisArg, _);
++        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
++        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
++    }
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.ValidationError = exports.compile = exports.compileFromFile = exports.DEFAULT_OPTIONS = void 0;
++var fs_1 = require("fs");
++var lodash_1 = require("lodash");
++var path_1 = require("path");
++// import {Options as PrettierOptions} from 'prettier'
++// import {format} from './formatter'
++var generator_1 = require("./generator");
++var normalizer_1 = require("./normalizer");
++var optimizer_1 = require("./optimizer");
++var parser_1 = require("./parser");
++var resolver_1 = require("./resolver");
++var utils_1 = require("./utils");
++var validator_1 = require("./validator");
++var util_1 = require("util");
++var linker_1 = require("./linker");
++var optionValidator_1 = require("./optionValidator");
++exports.DEFAULT_OPTIONS = {
++    $refOptions: {},
++    additionalProperties: true,
++    bannerComment: '',
++    cwd: process.cwd(),
++    declareExternallyReferenced: true,
++    enableConstEnums: true,
++    format: true,
++    ignoreMinAndMaxItems: false,
++    maxItems: 20,
++    strictIndexSignatures: false,
++    unreachableDefinitions: false,
++    unknownAny: true,
++};
++function compileFromFile(filename, options) {
++    if (options === void 0) { options = exports.DEFAULT_OPTIONS; }
++    var contents = (0, utils_1.Try)(function () { return (0, fs_1.readFileSync)(filename); }, function () {
++        throw new ReferenceError("Unable to read file \"".concat(filename, "\""));
++    });
++    var schema = (0, utils_1.Try)(function () { return JSON.parse(contents.toString()); }, function () {
++        throw new TypeError("Error parsing JSON in file \"".concat(filename, "\""));
++    });
++    return compile(schema, (0, utils_1.stripExtension)(filename), __assign({ cwd: (0, path_1.dirname)(filename) }, options));
++}
++exports.compileFromFile = compileFromFile;
++function compile(schema, name, options) {
++    if (options === void 0) { options = {}; }
++    return __awaiter(this, void 0, void 0, function () {
++        function time() {
++            return "(".concat(Date.now() - start, "ms)");
++        }
++        var _options, start, _schema, _a, dereferencedPaths, dereferencedSchema, linked, errors, normalized, parsed, optimized, generated;
++        return __generator(this, function (_b) {
++            switch (_b.label) {
++                case 0:
++                    (0, optionValidator_1.validateOptions)(options);
++                    _options = (0, lodash_1.merge)({}, exports.DEFAULT_OPTIONS, options);
++                    start = Date.now();
++                    // normalize options
++                    if (!(0, lodash_1.endsWith)(_options.cwd, '/')) {
++                        _options.cwd += '/';
++                    }
++                    _schema = (0, lodash_1.cloneDeep)(schema);
++                    return [4 /*yield*/, (0, resolver_1.dereference)(_schema, _options)];
++                case 1:
++                    _a = _b.sent(), dereferencedPaths = _a.dereferencedPaths, dereferencedSchema = _a.dereferencedSchema;
++                    if (process.env.VERBOSE) {
++                        if ((0, util_1.isDeepStrictEqual)(_schema, dereferencedSchema)) {
++                            (0, utils_1.log)('green', 'dereferencer', time(), '✅ No change');
++                        }
++                        else {
++                            (0, utils_1.log)('green', 'dereferencer', time(), '✅ Result:', dereferencedSchema);
++                        }
++                    }
++                    linked = (0, linker_1.link)(dereferencedSchema);
++                    if (process.env.VERBOSE) {
++                        (0, utils_1.log)('green', 'linker', time(), '✅ No change');
++                    }
++                    errors = (0, validator_1.validate)(linked, name);
++                    if (errors.length) {
++                        errors.forEach(function (_) { return (0, utils_1.error)(_); });
++                        throw new ValidationError();
++                    }
++                    if (process.env.VERBOSE) {
++                        (0, utils_1.log)('green', 'validator', time(), '✅ No change');
++                    }
++                    normalized = (0, normalizer_1.normalize)(linked, dereferencedPaths, name, _options);
++                    (0, utils_1.log)('yellow', 'normalizer', time(), '✅ Result:', normalized);
++                    parsed = (0, parser_1.parse)(normalized, _options);
++                    (0, utils_1.log)('blue', 'parser', time(), '✅ Result:', parsed);
++                    optimized = (0, optimizer_1.optimize)(parsed, _options);
++                    (0, utils_1.log)('cyan', 'optimizer', time(), '✅ Result:', optimized);
++                    generated = (0, generator_1.generate)(optimized, _options);
++                    (0, utils_1.log)('magenta', 'generator', time(), '✅ Result:', generated);
++                    // const formatted = format(generated, _options)
++                    // log('white', 'formatter', time(), '✅ Result:', formatted)
++                    return [2 /*return*/, generated];
++            }
++        });
++    });
++}
++exports.compile = compile;
++var ValidationError = /** @class */ (function (_super) {
++    __extends(ValidationError, _super);
++    function ValidationError() {
++        return _super !== null && _super.apply(this, arguments) || this;
++    }
++    return ValidationError;
++}(Error));
++exports.ValidationError = ValidationError;
++//# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/dist/linker.d.ts b/dist/linker.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..359906b93d27b884f645f00d5930fab421852e38
+--- /dev/null
++++ b/dist/linker.d.ts
+@@ -0,0 +1,7 @@
++import { JSONSchema, LinkedJSONSchema } from './types/JSONSchema';
++import { JSONSchema4Type } from 'json-schema';
++/**
++ * Traverses over the schema, giving each node a reference to its
++ * parent node. We need this for downstream operations.
++ */
++export declare function link(schema: JSONSchema4Type | JSONSchema, parent?: JSONSchema4Type | null): LinkedJSONSchema;
+diff --git a/dist/linker.js b/dist/linker.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..2135ef9b73604791eb6c5087ff596fe3d151f543
+--- /dev/null
++++ b/dist/linker.js
+@@ -0,0 +1,36 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.link = void 0;
++var JSONSchema_1 = require("./types/JSONSchema");
++var lodash_1 = require("lodash");
++/**
++ * Traverses over the schema, giving each node a reference to its
++ * parent node. We need this for downstream operations.
++ */
++function link(schema, parent) {
++    if (parent === void 0) { parent = null; }
++    if (!Array.isArray(schema) && !(0, lodash_1.isPlainObject)(schema)) {
++        return schema;
++    }
++    // Handle cycles
++    if (schema.hasOwnProperty(JSONSchema_1.Parent)) {
++        return schema;
++    }
++    // Add a reference to this schema's parent
++    Object.defineProperty(schema, JSONSchema_1.Parent, {
++        enumerable: false,
++        value: parent,
++        writable: false,
++    });
++    // Arrays
++    if (Array.isArray(schema)) {
++        schema.forEach(function (child) { return link(child, schema); });
++    }
++    // Objects
++    for (var key in schema) {
++        link(schema[key], schema);
++    }
++    return schema;
++}
++exports.link = link;
++//# sourceMappingURL=linker.js.map
+\ No newline at end of file
+diff --git a/dist/normalizer.d.ts b/dist/normalizer.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6412d17a44dad2b5220ac2e24ac6fe62d8987bf
+--- /dev/null
++++ b/dist/normalizer.d.ts
+@@ -0,0 +1,4 @@
++import { LinkedJSONSchema, NormalizedJSONSchema } from './types/JSONSchema';
++import { Options } from './';
++import { DereferencedPaths } from './resolver';
++export declare function normalize(rootSchema: LinkedJSONSchema, dereferencedPaths: DereferencedPaths, filename: string, options: Options): NormalizedJSONSchema;
+diff --git a/dist/normalizer.js b/dist/normalizer.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..db96351c86a93ab5000ee3c2382499b5b9e0b719
+--- /dev/null
++++ b/dist/normalizer.js
+@@ -0,0 +1,200 @@
++"use strict";
++var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
++    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
++        if (ar || !(i in from)) {
++            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
++            ar[i] = from[i];
++        }
++    }
++    return to.concat(ar || Array.prototype.slice.call(from));
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.normalize = void 0;
++var JSONSchema_1 = require("./types/JSONSchema");
++var utils_1 = require("./utils");
++var util_1 = require("util");
++var rules = new Map();
++function hasType(schema, type) {
++    return schema.type === type || (Array.isArray(schema.type) && schema.type.includes(type));
++}
++function isObjectType(schema) {
++    return schema.properties !== undefined || hasType(schema, 'object') || hasType(schema, 'any');
++}
++function isArrayType(schema) {
++    return schema.items !== undefined || hasType(schema, 'array') || hasType(schema, 'any');
++}
++rules.set('Remove `type=["null"]` if `enum=[null]`', function (schema) {
++    if (Array.isArray(schema.enum) &&
++        schema.enum.some(function (e) { return e === null; }) &&
++        Array.isArray(schema.type) &&
++        schema.type.includes('null')) {
++        schema.type = schema.type.filter(function (type) { return type !== 'null'; });
++    }
++});
++rules.set('Destructure unary types', function (schema) {
++    if (schema.type && Array.isArray(schema.type) && schema.type.length === 1) {
++        schema.type = schema.type[0];
++    }
++});
++rules.set('Add empty `required` property if none is defined', function (schema) {
++    if (isObjectType(schema) && !('required' in schema)) {
++        schema.required = [];
++    }
++});
++rules.set('Transform `required`=false to `required`=[]', function (schema) {
++    if (schema.required === false) {
++        schema.required = [];
++    }
++});
++rules.set('Default additionalProperties', function (schema, _, options) {
++    if (isObjectType(schema) && !('additionalProperties' in schema) && schema.patternProperties === undefined) {
++        schema.additionalProperties = options.additionalProperties;
++    }
++});
++rules.set('Transform id to $id', function (schema, fileName) {
++    if (!(0, utils_1.isSchemaLike)(schema)) {
++        return;
++    }
++    if (schema.id && schema.$id && schema.id !== schema.$id) {
++        throw ReferenceError("Schema must define either id or $id, not both. Given id=".concat(schema.id, ", $id=").concat(schema.$id, " in ").concat(fileName));
++    }
++    if (schema.id) {
++        schema.$id = schema.id;
++        delete schema.id;
++    }
++});
++rules.set('Add an $id to anything that needs it', function (schema, fileName, _options, _key, dereferencedPaths) {
++    if (!(0, utils_1.isSchemaLike)(schema)) {
++        return;
++    }
++    // Top-level schema
++    if (!schema.$id && !schema[JSONSchema_1.Parent]) {
++        schema.$id = (0, utils_1.toSafeString)((0, utils_1.justName)(fileName));
++        return;
++    }
++    // Sub-schemas with references
++    if (!isArrayType(schema) && !isObjectType(schema)) {
++        return;
++    }
++    // We'll infer from $id and title downstream
++    // TODO: Normalize upstream
++    var dereferencedName = dereferencedPaths.get(schema);
++    if (!schema.$id && !schema.title && dereferencedName) {
++        schema.$id = (0, utils_1.toSafeString)((0, utils_1.justName)(dereferencedName));
++    }
++    if (dereferencedName) {
++        dereferencedPaths.delete(schema);
++    }
++});
++rules.set('Escape closing JSDoc comment', function (schema) {
++    (0, utils_1.escapeBlockComment)(schema);
++});
++rules.set('Add JSDoc comments for minItems and maxItems', function (schema) {
++    if (!isArrayType(schema)) {
++        return;
++    }
++    var commentsToAppend = [
++        'minItems' in schema ? "@minItems ".concat(schema.minItems) : '',
++        'maxItems' in schema ? "@maxItems ".concat(schema.maxItems) : '',
++    ].filter(Boolean);
++    if (commentsToAppend.length) {
++        schema.description = utils_1.appendToDescription.apply(void 0, __spreadArray([schema.description], commentsToAppend, false));
++    }
++});
++rules.set('Optionally remove maxItems and minItems', function (schema, _fileName, options) {
++    if (!isArrayType(schema)) {
++        return;
++    }
++    if ('minItems' in schema && options.ignoreMinAndMaxItems) {
++        delete schema.minItems;
++    }
++    if ('maxItems' in schema && (options.ignoreMinAndMaxItems || options.maxItems === -1)) {
++        delete schema.maxItems;
++    }
++});
++rules.set('Normalize schema.minItems', function (schema, _fileName, options) {
++    if (options.ignoreMinAndMaxItems) {
++        return;
++    }
++    // make sure we only add the props onto array types
++    if (!isArrayType(schema)) {
++        return;
++    }
++    var minItems = schema.minItems;
++    schema.minItems = typeof minItems === 'number' ? minItems : 0;
++    // cannot normalize maxItems because maxItems = 0 has an actual meaning
++});
++rules.set('Remove maxItems if it is big enough to likely cause OOMs', function (schema, _fileName, options) {
++    if (options.ignoreMinAndMaxItems || options.maxItems === -1) {
++        return;
++    }
++    if (!isArrayType(schema)) {
++        return;
++    }
++    var maxItems = schema.maxItems, minItems = schema.minItems;
++    // minItems is guaranteed to be a number after the previous rule runs
++    if (maxItems !== undefined && maxItems - minItems > options.maxItems) {
++        delete schema.maxItems;
++    }
++});
++rules.set('Normalize schema.items', function (schema, _fileName, options) {
++    if (options.ignoreMinAndMaxItems) {
++        return;
++    }
++    var maxItems = schema.maxItems, minItems = schema.minItems;
++    var hasMaxItems = typeof maxItems === 'number' && maxItems >= 0;
++    var hasMinItems = typeof minItems === 'number' && minItems > 0;
++    if (schema.items && !Array.isArray(schema.items) && (hasMaxItems || hasMinItems)) {
++        var items = schema.items;
++        // create a tuple of length N
++        var newItems = Array(maxItems || minItems || 0).fill(items);
++        if (!hasMaxItems) {
++            // if there is no maximum, then add a spread item to collect the rest
++            schema.additionalItems = items;
++        }
++        schema.items = newItems;
++    }
++    if (Array.isArray(schema.items) && hasMaxItems && maxItems < schema.items.length) {
++        // it's perfectly valid to provide 5 item defs but require maxItems 1
++        // obviously we shouldn't emit a type for items that aren't expected
++        schema.items = schema.items.slice(0, maxItems);
++    }
++    return schema;
++});
++rules.set('Remove extends, if it is empty', function (schema) {
++    if (!schema.hasOwnProperty('extends')) {
++        return;
++    }
++    if (schema.extends == null || (Array.isArray(schema.extends) && schema.extends.length === 0)) {
++        delete schema.extends;
++    }
++});
++rules.set('Make extends always an array, if it is defined', function (schema) {
++    if (schema.extends == null) {
++        return;
++    }
++    if (!Array.isArray(schema.extends)) {
++        schema.extends = [schema.extends];
++    }
++});
++rules.set('Transform definitions to $defs', function (schema, fileName) {
++    if (schema.definitions && schema.$defs && !(0, util_1.isDeepStrictEqual)(schema.definitions, schema.$defs)) {
++        throw ReferenceError("Schema must define either definitions or $defs, not both. Given id=".concat(schema.id, " in ").concat(fileName));
++    }
++    if (schema.definitions) {
++        schema.$defs = schema.definitions;
++        delete schema.definitions;
++    }
++});
++rules.set('Transform const to singleton enum', function (schema) {
++    if (schema.const !== undefined) {
++        schema.enum = [schema.const];
++        delete schema.const;
++    }
++});
++function normalize(rootSchema, dereferencedPaths, filename, options) {
++    rules.forEach(function (rule) { return (0, utils_1.traverse)(rootSchema, function (schema, key) { return rule(schema, filename, options, key, dereferencedPaths); }); });
++    return rootSchema;
++}
++exports.normalize = normalize;
++//# sourceMappingURL=normalizer.js.map
+\ No newline at end of file
+diff --git a/dist/optimizer.d.ts b/dist/optimizer.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..170c9895ae6f7ddfdb24f03d9830ea8f5a66ec54
+--- /dev/null
++++ b/dist/optimizer.d.ts
+@@ -0,0 +1,3 @@
++import { Options } from '.';
++import { AST } from './types/AST';
++export declare function optimize(ast: AST, options: Options, processed?: Set<AST>): AST;
+diff --git a/dist/optimizer.js b/dist/optimizer.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..133849140193e7832dd9031da63c0d895484612c
+--- /dev/null
++++ b/dist/optimizer.js
+@@ -0,0 +1,79 @@
++"use strict";
++var __assign = (this && this.__assign) || function () {
++    __assign = Object.assign || function(t) {
++        for (var s, i = 1, n = arguments.length; i < n; i++) {
++            s = arguments[i];
++            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
++                t[p] = s[p];
++        }
++        return t;
++    };
++    return __assign.apply(this, arguments);
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.optimize = void 0;
++var lodash_1 = require("lodash");
++var generator_1 = require("./generator");
++var AST_1 = require("./types/AST");
++var utils_1 = require("./utils");
++function optimize(ast, options, processed) {
++    if (processed === void 0) { processed = new Set(); }
++    if (processed.has(ast)) {
++        return ast;
++    }
++    processed.add(ast);
++    switch (ast.type) {
++        case 'INTERFACE':
++            return Object.assign(ast, {
++                params: ast.params.map(function (_) { return Object.assign(_, { ast: optimize(_.ast, options, processed) }); }),
++            });
++        case 'INTERSECTION':
++        case 'UNION':
++            // Start with the leaves...
++            var optimizedAST_1 = Object.assign(ast, {
++                params: ast.params.map(function (_) { return optimize(_, options, processed); }),
++            });
++            // [A, B, C, Any] -> Any
++            if (optimizedAST_1.params.some(function (_) { return _.type === 'ANY'; })) {
++                (0, utils_1.log)('cyan', 'optimizer', '[A, B, C, Any] -> Any', optimizedAST_1);
++                return AST_1.T_ANY;
++            }
++            // [A, B, C, Unknown] -> Unknown
++            if (optimizedAST_1.params.some(function (_) { return _.type === 'UNKNOWN'; })) {
++                (0, utils_1.log)('cyan', 'optimizer', '[A, B, C, Unknown] -> Unknown', optimizedAST_1);
++                return AST_1.T_UNKNOWN;
++            }
++            // [A (named), A] -> [A (named)]
++            if (optimizedAST_1.params.every(function (_) {
++                var a = (0, generator_1.generateType)(omitStandaloneName(_), options);
++                var b = (0, generator_1.generateType)(omitStandaloneName(optimizedAST_1.params[0]), options);
++                return a === b;
++            }) &&
++                optimizedAST_1.params.some(function (_) { return _.standaloneName !== undefined; })) {
++                (0, utils_1.log)('cyan', 'optimizer', '[A (named), A] -> [A (named)]', optimizedAST_1);
++                optimizedAST_1.params = optimizedAST_1.params.filter(function (_) { return _.standaloneName !== undefined; });
++            }
++            // [A, B, B] -> [A, B]
++            var params = (0, lodash_1.uniqBy)(optimizedAST_1.params, function (_) { return (0, generator_1.generateType)(_, options); });
++            if (params.length !== optimizedAST_1.params.length) {
++                (0, utils_1.log)('cyan', 'optimizer', '[A, B, B] -> [A, B]', optimizedAST_1);
++                optimizedAST_1.params = params;
++            }
++            return Object.assign(optimizedAST_1, {
++                params: optimizedAST_1.params.map(function (_) { return optimize(_, options, processed); }),
++            });
++        default:
++            return ast;
++    }
++}
++exports.optimize = optimize;
++// TODO: More clearly disambiguate standalone names vs. aliased names instead.
++function omitStandaloneName(ast) {
++    switch (ast.type) {
++        case 'ENUM':
++            return ast;
++        default:
++            return __assign(__assign({}, ast), { standaloneName: undefined });
++    }
++}
++//# sourceMappingURL=optimizer.js.map
+\ No newline at end of file
+diff --git a/dist/optionValidator.d.ts b/dist/optionValidator.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..0fbce8bc7ff0594a9befb429ceabcea09586d2ac
+--- /dev/null
++++ b/dist/optionValidator.d.ts
+@@ -0,0 +1,2 @@
++import { Options } from '.';
++export declare function validateOptions({ maxItems }: Partial<Options>): void;
+diff --git a/dist/optionValidator.js b/dist/optionValidator.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..3c4cf4acf428a17152bb283762c8fd3e5ff9d20b
+--- /dev/null
++++ b/dist/optionValidator.js
+@@ -0,0 +1,11 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.validateOptions = void 0;
++function validateOptions(_a) {
++    var maxItems = _a.maxItems;
++    if (maxItems !== undefined && maxItems < -1) {
++        throw RangeError("Expected options.maxItems to be >= -1, but was given ".concat(maxItems, "."));
++    }
++}
++exports.validateOptions = validateOptions;
++//# sourceMappingURL=optionValidator.js.map
+\ No newline at end of file
+diff --git a/dist/parser.d.ts b/dist/parser.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..d4c7ae56e06e8f6b94e8c4c9408047c98c86671a
+--- /dev/null
++++ b/dist/parser.d.ts
+@@ -0,0 +1,7 @@
++import { JSONSchema4Type } from 'json-schema';
++import { Options } from './';
++import { AST } from './types/AST';
++import { JSONSchema as LinkedJSONSchema, SchemaType } from './types/JSONSchema';
++export type Processed = Map<LinkedJSONSchema, Map<SchemaType, AST>>;
++export type UsedNames = Set<string>;
++export declare function parse(schema: LinkedJSONSchema | JSONSchema4Type, options: Options, keyName?: string, processed?: Processed, usedNames?: Set<string>): AST;
+diff --git a/dist/parser.js b/dist/parser.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..8e14bd8d7aca5447baeb15598137d8ccdcfc1edb
+--- /dev/null
++++ b/dist/parser.js
+@@ -0,0 +1,413 @@
++"use strict";
++var __assign = (this && this.__assign) || function () {
++    __assign = Object.assign || function(t) {
++        for (var s, i = 1, n = arguments.length; i < n; i++) {
++            s = arguments[i];
++            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
++                t[p] = s[p];
++        }
++        return t;
++    };
++    return __assign.apply(this, arguments);
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.parse = void 0;
++var lodash_1 = require("lodash");
++var util_1 = require("util");
++var typesOfSchema_1 = require("./typesOfSchema");
++var AST_1 = require("./types/AST");
++var JSONSchema_1 = require("./types/JSONSchema");
++var utils_1 = require("./utils");
++function parse(schema, options, keyName, processed, usedNames) {
++    if (processed === void 0) { processed = new Map(); }
++    if (usedNames === void 0) { usedNames = new Set(); }
++    if ((0, JSONSchema_1.isPrimitive)(schema)) {
++        if ((0, JSONSchema_1.isBoolean)(schema)) {
++            return parseBooleanSchema(schema, keyName, options);
++        }
++        return parseLiteral(schema, keyName);
++    }
++    var types = (0, typesOfSchema_1.typesOfSchema)(schema);
++    if (types.length === 1) {
++        var ast_1 = parseAsTypeWithCache(schema, types[0], options, keyName, processed, usedNames);
++        (0, utils_1.log)('blue', 'parser', 'Types:', types, 'Input:', schema, 'Output:', ast_1);
++        return ast_1;
++    }
++    // Be careful to first process the intersection before processing its params,
++    // so that it gets first pick for standalone name.
++    var ast = parseAsTypeWithCache({
++        $id: schema.$id,
++        allOf: [],
++        description: schema.description,
++        title: schema.title,
++    }, 'ALL_OF', options, keyName, processed, usedNames);
++    ast.params = types.map(function (type) {
++        // We hoist description (for comment) and id/title (for standaloneName)
++        // to the parent intersection type, so we remove it from the children.
++        return parseAsTypeWithCache((0, utils_1.maybeStripNameHints)(schema), type, options, keyName, processed, usedNames);
++    });
++    (0, utils_1.log)('blue', 'parser', 'Types:', types, 'Input:', schema, 'Output:', ast);
++    return ast;
++}
++exports.parse = parse;
++function parseAsTypeWithCache(schema, type, options, keyName, processed, usedNames) {
++    if (processed === void 0) { processed = new Map(); }
++    if (usedNames === void 0) { usedNames = new Set(); }
++    // If we've seen this node before, return it.
++    var cachedTypeMap = processed.get(schema);
++    if (!cachedTypeMap) {
++        cachedTypeMap = new Map();
++        processed.set(schema, cachedTypeMap);
++    }
++    var cachedAST = cachedTypeMap.get(type);
++    if (cachedAST) {
++        return cachedAST;
++    }
++    // Cache processed ASTs before they are actually computed, then update
++    // them in place using set(). This is to avoid cycles.
++    // TODO: Investigate alternative approaches (lazy-computing nodes, etc.)
++    var ast = {};
++    cachedTypeMap.set(type, ast);
++    // Update the AST in place. This updates the `processed` cache, as well
++    // as any nodes that directly reference the node.
++    return Object.assign(ast, parseNonLiteral(schema, type, options, keyName, processed, usedNames));
++}
++function parseBooleanSchema(schema, keyName, options) {
++    if (schema) {
++        return {
++            keyName: keyName,
++            type: options.unknownAny ? 'UNKNOWN' : 'ANY',
++        };
++    }
++    return {
++        keyName: keyName,
++        type: 'NEVER',
++    };
++}
++function parseLiteral(schema, keyName) {
++    return {
++        keyName: keyName,
++        params: schema,
++        type: 'LITERAL',
++    };
++}
++function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
++    var definitions = getDefinitionsMemoized((0, JSONSchema_1.getRootSchema)(schema)); // TODO
++    var keyNameFromDefinition = (0, lodash_1.findKey)(definitions, function (_) { return _ === schema; });
++    switch (type) {
++        case 'ALL_OF':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                params: schema.allOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
++                type: 'INTERSECTION',
++            };
++        case 'ANY':
++            return __assign(__assign({}, (options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY)), { comment: schema.description, deprecated: schema.deprecated, keyName: keyName, standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options) });
++        case 'ANY_OF':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                params: schema.anyOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
++                type: 'UNION',
++            };
++        case 'BOOLEAN':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'BOOLEAN',
++            };
++        case 'CUSTOM_TYPE':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                params: schema.tsType,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'CUSTOM_TYPE',
++            };
++        case 'NAMED_ENUM':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition !== null && keyNameFromDefinition !== void 0 ? keyNameFromDefinition : keyName, usedNames, options),
++                params: schema.enum.map(function (_, n) { return ({
++                    ast: parseLiteral(_, undefined),
++                    keyName: schema.tsEnumNames[n],
++                }); }),
++                type: 'ENUM',
++            };
++        case 'NAMED_SCHEMA':
++            return newInterface(schema, options, processed, usedNames, keyName);
++        case 'NEVER':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'NEVER',
++            };
++        case 'NULL':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'NULL',
++            };
++        case 'NUMBER':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'NUMBER',
++            };
++        case 'OBJECT':
++            return {
++                comment: schema.description,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'OBJECT',
++                deprecated: schema.deprecated,
++            };
++        case 'ONE_OF':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                params: schema.oneOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
++                type: 'UNION',
++            };
++        case 'REFERENCE':
++            throw Error((0, util_1.format)('Refs should have been resolved by the resolver!', schema));
++        case 'STRING':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'STRING',
++            };
++        case 'TYPED_ARRAY':
++            if (Array.isArray(schema.items)) {
++                // normalised to not be undefined
++                var minItems_1 = schema.minItems;
++                var maxItems_1 = schema.maxItems;
++                var arrayType = {
++                    comment: schema.description,
++                    deprecated: schema.deprecated,
++                    keyName: keyName,
++                    maxItems: maxItems_1,
++                    minItems: minItems_1,
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                    params: schema.items.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
++                    type: 'TUPLE',
++                };
++                if (schema.additionalItems === true) {
++                    arrayType.spreadParam = options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY;
++                }
++                else if (schema.additionalItems) {
++                    arrayType.spreadParam = parse(schema.additionalItems, options, undefined, processed, usedNames);
++                }
++                return arrayType;
++            }
++            else {
++                return {
++                    comment: schema.description,
++                    deprecated: schema.deprecated,
++                    keyName: keyName,
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                    params: parse(schema.items, options, "{keyNameFromDefinition}Items", processed, usedNames),
++                    type: 'ARRAY',
++                };
++            }
++        case 'UNION':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                params: schema.type.map(function (type) {
++                    var member = __assign(__assign({}, (0, lodash_1.omit)(schema, '$id', 'description', 'title')), { type: type });
++                    return parse((0, utils_1.maybeStripDefault)(member), options, undefined, processed, usedNames);
++                }),
++                type: 'UNION',
++            };
++        case 'UNNAMED_ENUM':
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                params: schema.enum.map(function (_) { return parseLiteral(_, undefined); }),
++                type: 'UNION',
++            };
++        case 'UNNAMED_SCHEMA':
++            return newInterface(schema, options, processed, usedNames, keyName, keyNameFromDefinition);
++        case 'UNTYPED_ARRAY':
++            // normalised to not be undefined
++            var minItems = schema.minItems;
++            var maxItems = typeof schema.maxItems === 'number' ? schema.maxItems : -1;
++            var params = options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY;
++            if (minItems > 0 || maxItems >= 0) {
++                return {
++                    comment: schema.description,
++                    deprecated: schema.deprecated,
++                    keyName: keyName,
++                    maxItems: schema.maxItems,
++                    minItems: minItems,
++                    // create a tuple of length N
++                    params: Array(Math.max(maxItems, minItems) || 0).fill(params),
++                    // if there is no maximum, then add a spread item to collect the rest
++                    spreadParam: maxItems >= 0 ? undefined : params,
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                    type: 'TUPLE',
++                };
++            }
++            return {
++                comment: schema.description,
++                deprecated: schema.deprecated,
++                keyName: keyName,
++                params: params,
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
++                type: 'ARRAY',
++            };
++    }
++}
++/**
++ * Compute a schema name using a series of fallbacks
++ */
++function standaloneName(schema, keyNameFromDefinition, usedNames, options) {
++    if (options.customName) {
++        return options.customName(schema, keyNameFromDefinition);
++    }
++    var name = schema.title || schema.$id || keyNameFromDefinition;
++    if (name) {
++        return (0, utils_1.generateName)(name, usedNames);
++    }
++}
++function newInterface(schema, options, processed, usedNames, keyName, keyNameFromDefinition) {
++    var name = standaloneName(schema, keyNameFromDefinition, usedNames, options);
++    return {
++        comment: schema.description,
++        deprecated: schema.deprecated,
++        keyName: keyName,
++        params: parseSchema(schema, options, processed, usedNames, name),
++        standaloneName: name,
++        superTypes: parseSuperTypes(schema, options, processed, usedNames),
++        type: 'INTERFACE',
++    };
++}
++function parseSuperTypes(schema, options, processed, usedNames) {
++    // Type assertion needed because of dereferencing step
++    // TODO: Type it upstream
++    var superTypes = schema.extends;
++    if (!superTypes) {
++        return [];
++    }
++    return superTypes.map(function (_) { return parse(_, options, undefined, processed, usedNames); });
++}
++/**
++ * Helper to parse schema properties into params on the parent schema's type
++ */
++function parseSchema(schema, options, processed, usedNames, parentSchemaName) {
++    var asts = (0, lodash_1.map)(schema.properties, function (value, key) { return ({
++        ast: parse(value, options, key, processed, usedNames),
++        isPatternProperty: false,
++        isRequired: (0, lodash_1.includes)(schema.required || [], key),
++        isUnreachableDefinition: false,
++        keyName: key,
++    }); });
++    var singlePatternProperty = false;
++    if (schema.patternProperties) {
++        // partially support patternProperties. in the case that
++        // additionalProperties is not set, and there is only a single
++        // value definition, we can validate against that.
++        singlePatternProperty = !schema.additionalProperties && Object.keys(schema.patternProperties).length === 1;
++        asts = asts.concat((0, lodash_1.map)(schema.patternProperties, function (value, key) {
++            var ast = parse(value, options, key, processed, usedNames);
++            var comment = "This interface was referenced by `".concat(parentSchemaName, "`'s JSON-Schema definition\nvia the `patternProperty` \"").concat(key.replace('*/', '*\\/'), "\".");
++            ast.comment = ast.comment ? "".concat(ast.comment, "\n\n").concat(comment) : comment;
++            return {
++                ast: ast,
++                isPatternProperty: !singlePatternProperty,
++                isRequired: singlePatternProperty || (0, lodash_1.includes)(schema.required || [], key),
++                isUnreachableDefinition: false,
++                keyName: singlePatternProperty ? '[k: string]' : key,
++            };
++        }));
++    }
++    if (options.unreachableDefinitions) {
++        asts = asts.concat((0, lodash_1.map)(schema.$defs, function (value, key) {
++            var ast = parse(value, options, key, processed, usedNames);
++            var comment = "This interface was referenced by `".concat(parentSchemaName, "`'s JSON-Schema\nvia the `definition` \"").concat(key, "\".");
++            ast.comment = ast.comment ? "".concat(ast.comment, "\n\n").concat(comment) : comment;
++            return {
++                ast: ast,
++                isPatternProperty: false,
++                isRequired: (0, lodash_1.includes)(schema.required || [], key),
++                isUnreachableDefinition: true,
++                keyName: key,
++            };
++        }));
++    }
++    // handle additionalProperties
++    switch (schema.additionalProperties) {
++        case undefined:
++        case true:
++            if (singlePatternProperty) {
++                return asts;
++            }
++            return asts.concat({
++                ast: options.unknownAny ? AST_1.T_UNKNOWN_ADDITIONAL_PROPERTIES : AST_1.T_ANY_ADDITIONAL_PROPERTIES,
++                isPatternProperty: false,
++                isRequired: true,
++                isUnreachableDefinition: false,
++                keyName: '[k: string]',
++            });
++        case false:
++            return asts;
++        // pass "true" as the last param because in TS, properties
++        // defined via index signatures are already optional
++        default:
++            return asts.concat({
++                ast: parse(schema.additionalProperties, options, '[k: string]', processed, usedNames),
++                isPatternProperty: false,
++                isRequired: true,
++                isUnreachableDefinition: false,
++                keyName: '[k: string]',
++            });
++    }
++}
++function getDefinitions(schema, isSchema, processed) {
++    if (isSchema === void 0) { isSchema = true; }
++    if (processed === void 0) { processed = new Set(); }
++    if (processed.has(schema)) {
++        return {};
++    }
++    processed.add(schema);
++    if (Array.isArray(schema)) {
++        return schema.reduce(function (prev, cur) { return (__assign(__assign({}, prev), getDefinitions(cur, false, processed))); }, {});
++    }
++    if ((0, lodash_1.isPlainObject)(schema)) {
++        return __assign(__assign({}, (isSchema && hasDefinitions(schema) ? schema.$defs : {})), Object.keys(schema).reduce(function (prev, cur) { return (__assign(__assign({}, prev), getDefinitions(schema[cur], false, processed))); }, {}));
++    }
++    return {};
++}
++var getDefinitionsMemoized = (0, lodash_1.memoize)(getDefinitions);
++/**
++ * TODO: Reduce rate of false positives
++ */
++function hasDefinitions(schema) {
++    return '$defs' in schema;
++}
++//# sourceMappingURL=parser.js.map
+\ No newline at end of file
+diff --git a/dist/resolver.d.ts b/dist/resolver.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..7e07065c3c8fa531fbc8424e6bfa982ca8618b5d
+--- /dev/null
++++ b/dist/resolver.d.ts
+@@ -0,0 +1,10 @@
++import $RefParser = require('@bcherny/json-schema-ref-parser');
++import { JSONSchema } from './types/JSONSchema';
++export type DereferencedPaths = WeakMap<$RefParser.JSONSchemaObject, string>;
++export declare function dereference(schema: JSONSchema, { cwd, $refOptions }: {
++    cwd: string;
++    $refOptions: $RefParser.Options;
++}): Promise<{
++    dereferencedPaths: DereferencedPaths;
++    dereferencedSchema: JSONSchema;
++}>;
+diff --git a/dist/resolver.js b/dist/resolver.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..2e5c98f36a7e4b7bfe76c09415fbe0a9ffe6818f
+--- /dev/null
++++ b/dist/resolver.js
+@@ -0,0 +1,75 @@
++"use strict";
++var __assign = (this && this.__assign) || function () {
++    __assign = Object.assign || function(t) {
++        for (var s, i = 1, n = arguments.length; i < n; i++) {
++            s = arguments[i];
++            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
++                t[p] = s[p];
++        }
++        return t;
++    };
++    return __assign.apply(this, arguments);
++};
++var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
++    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
++    return new (P || (P = Promise))(function (resolve, reject) {
++        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
++        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
++        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
++        step((generator = generator.apply(thisArg, _arguments || [])).next());
++    });
++};
++var __generator = (this && this.__generator) || function (thisArg, body) {
++    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
++    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
++    function verb(n) { return function (v) { return step([n, v]); }; }
++    function step(op) {
++        if (f) throw new TypeError("Generator is already executing.");
++        while (g && (g = 0, op[0] && (_ = 0)), _) try {
++            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
++            if (y = 0, t) op = [op[0] & 2, t.value];
++            switch (op[0]) {
++                case 0: case 1: t = op; break;
++                case 4: _.label++; return { value: op[1], done: false };
++                case 5: _.label++; y = op[1]; op = [0]; continue;
++                case 7: op = _.ops.pop(); _.trys.pop(); continue;
++                default:
++                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
++                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
++                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
++                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
++                    if (t[2]) _.ops.pop();
++                    _.trys.pop(); continue;
++            }
++            op = body.call(thisArg, _);
++        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
++        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
++    }
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.dereference = void 0;
++var $RefParser = require("@bcherny/json-schema-ref-parser");
++var utils_1 = require("./utils");
++function dereference(schema, _a) {
++    var cwd = _a.cwd, $refOptions = _a.$refOptions;
++    return __awaiter(this, void 0, void 0, function () {
++        var parser, dereferencedPaths, dereferencedSchema;
++        return __generator(this, function (_b) {
++            switch (_b.label) {
++                case 0:
++                    (0, utils_1.log)('green', 'dereferencer', 'Dereferencing input schema:', cwd, schema);
++                    parser = new $RefParser();
++                    dereferencedPaths = new WeakMap();
++                    return [4 /*yield*/, parser.dereference(cwd, schema, __assign(__assign({}, $refOptions), { dereference: __assign(__assign({}, $refOptions.dereference), { onDereference: function ($ref, schema) {
++                                    dereferencedPaths.set(schema, $ref);
++                                } }) }))];
++                case 1:
++                    dereferencedSchema = (_b.sent()) // TODO: fix types
++                    ;
++                    return [2 /*return*/, { dereferencedPaths: dereferencedPaths, dereferencedSchema: dereferencedSchema }];
++            }
++        });
++    });
++}
++exports.dereference = dereference;
++//# sourceMappingURL=resolver.js.map
+\ No newline at end of file
+diff --git a/dist/src/cli.js b/dist/src/cli.js
+old mode 100755
+new mode 100644
+diff --git a/dist/src/index.d.ts b/dist/src/index.d.ts
+index 409b9e4888cca0cb2f912da409bea35ba87c70ce..3647341a18ba93b153bd7831a78e4ef48a5b21d1 100644
+--- a/dist/src/index.d.ts
++++ b/dist/src/index.d.ts
+@@ -1,6 +1,6 @@
+ import { JSONSchema4 } from 'json-schema';
+ import { Options as $RefOptions } from '@bcherny/json-schema-ref-parser';
+-import { Options as PrettierOptions } from 'prettier';
++import { JSONSchema as LinkedJSONSchema } from './types/JSONSchema';
+ export { EnumJSONSchema, JSONSchema, NamedEnumJSONSchema, CustomTypeJSONSchema } from './types/JSONSchema';
+ export interface Options {
+     /**
+@@ -48,10 +48,6 @@ export interface Options {
+      * This is required to be compatible with `strictNullChecks`.
+      */
+     strictIndexSignatures: boolean;
+-    /**
+-     * A [Prettier](https://prettier.io/docs/en/options.html) configuration.
+-     */
+-    style: PrettierOptions;
+     /**
+      * Generate code for `definitions` that aren't referenced by the schema?
+      */
+@@ -60,6 +56,10 @@ export interface Options {
+      * Generate unknown type instead of any
+      */
+     unknownAny: boolean;
++    /**
++     * Custom function to provide a type name for a given schema
++     */
++    customName?: (schema: LinkedJSONSchema, keyNameFromDefinition: string | undefined) => string;
+ }
+ export declare const DEFAULT_OPTIONS: Options;
+ export declare function compileFromFile(filename: string, options?: Partial<Options>): Promise<string>;
+diff --git a/dist/src/index.js b/dist/src/index.js
+index a5122affb14fd3cea27e760fc14091e08dc84430..b83fcc173b9850aeebb7dd96223c78ff679493ba 100644
+--- a/dist/src/index.js
++++ b/dist/src/index.js
+@@ -66,7 +66,8 @@ exports.ValidationError = exports.compile = exports.compileFromFile = exports.DE
+ var fs_1 = require("fs");
+ var lodash_1 = require("lodash");
+ var path_1 = require("path");
+-var formatter_1 = require("./formatter");
++// import {Options as PrettierOptions} from 'prettier'
++// import {format} from './formatter'
+ var generator_1 = require("./generator");
+ var normalizer_1 = require("./normalizer");
+ var optimizer_1 = require("./optimizer");
+@@ -117,7 +118,7 @@ function compile(schema, name, options) {
+         function time() {
+             return "(".concat(Date.now() - start, "ms)");
+         }
+-        var _options, start, _schema, _a, dereferencedPaths, dereferencedSchema, linked, errors, normalized, parsed, optimized, generated, formatted;
++        var _options, start, _schema, _a, dereferencedPaths, dereferencedSchema, linked, errors, normalized, parsed, optimized, generated;
+         return __generator(this, function (_b) {
+             switch (_b.label) {
+                 case 0:
+@@ -160,9 +161,9 @@ function compile(schema, name, options) {
+                     (0, utils_1.log)('cyan', 'optimizer', time(), '✅ Result:', optimized);
+                     generated = (0, generator_1.generate)(optimized, _options);
+                     (0, utils_1.log)('magenta', 'generator', time(), '✅ Result:', generated);
+-                    formatted = (0, formatter_1.format)(generated, _options);
+-                    (0, utils_1.log)('white', 'formatter', time(), '✅ Result:', formatted);
+-                    return [2 /*return*/, formatted];
++                    // const formatted = format(generated, _options)
++                    // log('white', 'formatter', time(), '✅ Result:', formatted)
++                    return [2 /*return*/, generated];
+             }
+         });
+     });
+diff --git a/dist/src/parser.js b/dist/src/parser.js
+index d8e570fe9db5a266bbde2d0d7754e394d1256dd9..8e14bd8d7aca5447baeb15598137d8ccdcfc1edb 100644
+--- a/dist/src/parser.js
++++ b/dist/src/parser.js
+@@ -100,18 +100,18 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 params: schema.allOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
+                 type: 'INTERSECTION',
+             };
+         case 'ANY':
+-            return __assign(__assign({}, (options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY)), { comment: schema.description, deprecated: schema.deprecated, keyName: keyName, standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames) });
++            return __assign(__assign({}, (options.unknownAny ? AST_1.T_UNKNOWN : AST_1.T_ANY)), { comment: schema.description, deprecated: schema.deprecated, keyName: keyName, standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options) });
+         case 'ANY_OF':
+             return {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 params: schema.anyOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
+                 type: 'UNION',
+             };
+@@ -120,7 +120,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'BOOLEAN',
+             };
+         case 'CUSTOM_TYPE':
+@@ -129,7 +129,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+                 params: schema.tsType,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'CUSTOM_TYPE',
+             };
+         case 'NAMED_ENUM':
+@@ -137,7 +137,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition !== null && keyNameFromDefinition !== void 0 ? keyNameFromDefinition : keyName, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition !== null && keyNameFromDefinition !== void 0 ? keyNameFromDefinition : keyName, usedNames, options),
+                 params: schema.enum.map(function (_, n) { return ({
+                     ast: parseLiteral(_, undefined),
+                     keyName: schema.tsEnumNames[n],
+@@ -151,7 +151,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'NEVER',
+             };
+         case 'NULL':
+@@ -159,7 +159,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'NULL',
+             };
+         case 'NUMBER':
+@@ -167,14 +167,14 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'NUMBER',
+             };
+         case 'OBJECT':
+             return {
+                 comment: schema.description,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'OBJECT',
+                 deprecated: schema.deprecated,
+             };
+@@ -183,7 +183,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 params: schema.oneOf.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
+                 type: 'UNION',
+             };
+@@ -194,7 +194,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'STRING',
+             };
+         case 'TYPED_ARRAY':
+@@ -208,7 +208,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                     keyName: keyName,
+                     maxItems: maxItems_1,
+                     minItems: minItems_1,
+-                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                     params: schema.items.map(function (_) { return parse(_, options, undefined, processed, usedNames); }),
+                     type: 'TUPLE',
+                 };
+@@ -225,7 +225,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                     comment: schema.description,
+                     deprecated: schema.deprecated,
+                     keyName: keyName,
+-                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                     params: parse(schema.items, options, "{keyNameFromDefinition}Items", processed, usedNames),
+                     type: 'ARRAY',
+                 };
+@@ -235,7 +235,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 params: schema.type.map(function (type) {
+                     var member = __assign(__assign({}, (0, lodash_1.omit)(schema, '$id', 'description', 'title')), { type: type });
+                     return parse((0, utils_1.maybeStripDefault)(member), options, undefined, processed, usedNames);
+@@ -247,7 +247,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 comment: schema.description,
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 params: schema.enum.map(function (_) { return parseLiteral(_, undefined); }),
+                 type: 'UNION',
+             };
+@@ -269,7 +269,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                     params: Array(Math.max(maxItems, minItems) || 0).fill(params),
+                     // if there is no maximum, then add a spread item to collect the rest
+                     spreadParam: maxItems >= 0 ? undefined : params,
+-                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                    standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                     type: 'TUPLE',
+                 };
+             }
+@@ -278,7 +278,7 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+                 deprecated: schema.deprecated,
+                 keyName: keyName,
+                 params: params,
+-                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++                standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+                 type: 'ARRAY',
+             };
+     }
+@@ -286,14 +286,17 @@ function parseNonLiteral(schema, type, options, keyName, processed, usedNames) {
+ /**
+  * Compute a schema name using a series of fallbacks
+  */
+-function standaloneName(schema, keyNameFromDefinition, usedNames) {
++function standaloneName(schema, keyNameFromDefinition, usedNames, options) {
++    if (options.customName) {
++        return options.customName(schema, keyNameFromDefinition);
++    }
+     var name = schema.title || schema.$id || keyNameFromDefinition;
+     if (name) {
+         return (0, utils_1.generateName)(name, usedNames);
+     }
+ }
+ function newInterface(schema, options, processed, usedNames, keyName, keyNameFromDefinition) {
+-    var name = standaloneName(schema, keyNameFromDefinition, usedNames);
++    var name = standaloneName(schema, keyNameFromDefinition, usedNames, options);
+     return {
+         comment: schema.description,
+         deprecated: schema.deprecated,
+diff --git a/dist/types/AST.d.ts b/dist/types/AST.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..fd71375cf7c38257ecddba322e4c363b0244f2d3
+--- /dev/null
++++ b/dist/types/AST.d.ts
+@@ -0,0 +1,107 @@
++import { JSONSchema4Type } from 'json-schema';
++export type AST_TYPE = AST['type'];
++export type AST = TAny | TArray | TBoolean | TEnum | TInterface | TNamedInterface | TIntersection | TLiteral | TNever | TNumber | TNull | TObject | TReference | TString | TTuple | TUnion | TUnknown | TCustomType;
++export interface AbstractAST {
++    comment?: string;
++    keyName?: string;
++    standaloneName?: string;
++    type: AST_TYPE;
++    deprecated?: boolean;
++}
++export type ASTWithComment = AST & {
++    comment: string;
++};
++export type ASTWithName = AST & {
++    keyName: string;
++};
++export type ASTWithStandaloneName = AST & {
++    standaloneName: string;
++};
++export declare function hasComment(ast: AST): ast is ASTWithComment;
++export declare function hasStandaloneName(ast: AST): ast is ASTWithStandaloneName;
++export interface TAny extends AbstractAST {
++    type: 'ANY';
++}
++export interface TArray extends AbstractAST {
++    type: 'ARRAY';
++    params: AST;
++}
++export interface TBoolean extends AbstractAST {
++    type: 'BOOLEAN';
++}
++export interface TEnum extends AbstractAST {
++    standaloneName: string;
++    type: 'ENUM';
++    params: TEnumParam[];
++}
++export interface TEnumParam {
++    ast: AST;
++    keyName: string;
++}
++export interface TInterface extends AbstractAST {
++    type: 'INTERFACE';
++    params: TInterfaceParam[];
++    superTypes: TNamedInterface[];
++}
++export interface TNamedInterface extends AbstractAST {
++    standaloneName: string;
++    type: 'INTERFACE';
++    params: TInterfaceParam[];
++    superTypes: TNamedInterface[];
++}
++export interface TNever extends AbstractAST {
++    type: 'NEVER';
++}
++export interface TInterfaceParam {
++    ast: AST;
++    keyName: string;
++    isRequired: boolean;
++    isPatternProperty: boolean;
++    isUnreachableDefinition: boolean;
++}
++export interface TIntersection extends AbstractAST {
++    type: 'INTERSECTION';
++    params: AST[];
++}
++export interface TLiteral extends AbstractAST {
++    params: JSONSchema4Type;
++    type: 'LITERAL';
++}
++export interface TNumber extends AbstractAST {
++    type: 'NUMBER';
++}
++export interface TNull extends AbstractAST {
++    type: 'NULL';
++}
++export interface TObject extends AbstractAST {
++    type: 'OBJECT';
++}
++export interface TReference extends AbstractAST {
++    type: 'REFERENCE';
++    params: string;
++}
++export interface TString extends AbstractAST {
++    type: 'STRING';
++}
++export interface TTuple extends AbstractAST {
++    type: 'TUPLE';
++    params: AST[];
++    spreadParam?: AST;
++    minItems: number;
++    maxItems?: number;
++}
++export interface TUnion extends AbstractAST {
++    type: 'UNION';
++    params: AST[];
++}
++export interface TUnknown extends AbstractAST {
++    type: 'UNKNOWN';
++}
++export interface TCustomType extends AbstractAST {
++    type: 'CUSTOM_TYPE';
++    params: string;
++}
++export declare const T_ANY: TAny;
++export declare const T_ANY_ADDITIONAL_PROPERTIES: TAny & ASTWithName;
++export declare const T_UNKNOWN: TUnknown;
++export declare const T_UNKNOWN_ADDITIONAL_PROPERTIES: TUnknown & ASTWithName;
+diff --git a/dist/types/AST.js b/dist/types/AST.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..fd7c734a92f4b5672f6f0d76e0d13282b4902fdd
+--- /dev/null
++++ b/dist/types/AST.js
+@@ -0,0 +1,29 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.T_UNKNOWN_ADDITIONAL_PROPERTIES = exports.T_UNKNOWN = exports.T_ANY_ADDITIONAL_PROPERTIES = exports.T_ANY = exports.hasStandaloneName = exports.hasComment = void 0;
++function hasComment(ast) {
++    return (('comment' in ast && ast.comment != null && ast.comment !== '') ||
++        // Compare to true because ast.deprecated might be undefined
++        ('deprecated' in ast && ast.deprecated === true));
++}
++exports.hasComment = hasComment;
++function hasStandaloneName(ast) {
++    return 'standaloneName' in ast && ast.standaloneName != null && ast.standaloneName !== '';
++}
++exports.hasStandaloneName = hasStandaloneName;
++////////////////////////////////////////////     literals
++exports.T_ANY = {
++    type: 'ANY',
++};
++exports.T_ANY_ADDITIONAL_PROPERTIES = {
++    keyName: '[k: string]',
++    type: 'ANY',
++};
++exports.T_UNKNOWN = {
++    type: 'UNKNOWN',
++};
++exports.T_UNKNOWN_ADDITIONAL_PROPERTIES = {
++    keyName: '[k: string]',
++    type: 'UNKNOWN',
++};
++//# sourceMappingURL=AST.js.map
+\ No newline at end of file
+diff --git a/dist/types/JSONSchema.d.ts b/dist/types/JSONSchema.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..913c3a60b87fbd46e4e7bf13d52f5efad498f916
+--- /dev/null
++++ b/dist/types/JSONSchema.d.ts
+@@ -0,0 +1,95 @@
++/// <reference types="lodash" />
++import { JSONSchema4, JSONSchema4Type, JSONSchema4TypeName } from 'json-schema';
++export type SchemaType = 'ALL_OF' | 'UNNAMED_SCHEMA' | 'ANY' | 'ANY_OF' | 'BOOLEAN' | 'NAMED_ENUM' | 'NAMED_SCHEMA' | 'NEVER' | 'NULL' | 'NUMBER' | 'STRING' | 'OBJECT' | 'ONE_OF' | 'TYPED_ARRAY' | 'REFERENCE' | 'UNION' | 'UNNAMED_ENUM' | 'UNTYPED_ARRAY' | 'CUSTOM_TYPE';
++export type JSONSchemaTypeName = JSONSchema4TypeName;
++export type JSONSchemaType = JSONSchema4Type;
++export interface JSONSchema extends JSONSchema4 {
++    /**
++     * schema extension to support numeric enums
++     */
++    tsEnumNames?: string[];
++    /**
++     * schema extension to support custom types
++     */
++    tsType?: string;
++    /**
++     * property exists at least in https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.3
++     */
++    deprecated?: boolean;
++}
++export declare const Parent: unique symbol;
++export interface LinkedJSONSchema extends JSONSchema {
++    /**
++     * A reference to this schema's parent node, for convenience.
++     * `null` when this is the root schema.
++     */
++    [Parent]: LinkedJSONSchema | null;
++    additionalItems?: boolean | LinkedJSONSchema;
++    additionalProperties?: boolean | LinkedJSONSchema;
++    items?: LinkedJSONSchema | LinkedJSONSchema[];
++    definitions?: {
++        [k: string]: LinkedJSONSchema;
++    };
++    properties?: {
++        [k: string]: LinkedJSONSchema;
++    };
++    patternProperties?: {
++        [k: string]: LinkedJSONSchema;
++    };
++    dependencies?: {
++        [k: string]: LinkedJSONSchema | string[];
++    };
++    allOf?: LinkedJSONSchema[];
++    anyOf?: LinkedJSONSchema[];
++    oneOf?: LinkedJSONSchema[];
++    not?: LinkedJSONSchema;
++}
++export interface NormalizedJSONSchema extends LinkedJSONSchema {
++    additionalItems?: boolean | NormalizedJSONSchema;
++    additionalProperties: boolean | NormalizedJSONSchema;
++    extends?: string[];
++    items?: NormalizedJSONSchema | NormalizedJSONSchema[];
++    $defs?: {
++        [k: string]: NormalizedJSONSchema;
++    };
++    properties?: {
++        [k: string]: NormalizedJSONSchema;
++    };
++    patternProperties?: {
++        [k: string]: NormalizedJSONSchema;
++    };
++    dependencies?: {
++        [k: string]: NormalizedJSONSchema | string[];
++    };
++    allOf?: NormalizedJSONSchema[];
++    anyOf?: NormalizedJSONSchema[];
++    oneOf?: NormalizedJSONSchema[];
++    not?: NormalizedJSONSchema;
++    required: string[];
++    definitions: never;
++    id: never;
++}
++export interface EnumJSONSchema extends NormalizedJSONSchema {
++    enum: any[];
++}
++export interface NamedEnumJSONSchema extends NormalizedJSONSchema {
++    tsEnumNames: string[];
++}
++export interface SchemaSchema extends NormalizedJSONSchema {
++    properties: {
++        [k: string]: NormalizedJSONSchema;
++    };
++    required: string[];
++}
++export interface JSONSchemaWithDefinitions extends NormalizedJSONSchema {
++    $defs: {
++        [k: string]: NormalizedJSONSchema;
++    };
++}
++export interface CustomTypeJSONSchema extends NormalizedJSONSchema {
++    tsType: string;
++}
++export declare const getRootSchema: ((schema: LinkedJSONSchema) => LinkedJSONSchema) & import("lodash").MemoizedFunction;
++export declare function isBoolean(schema: LinkedJSONSchema | JSONSchemaType): schema is boolean;
++export declare function isPrimitive(schema: LinkedJSONSchema | JSONSchemaType): schema is JSONSchemaType;
++export declare function isCompound(schema: JSONSchema): boolean;
+diff --git a/dist/types/JSONSchema.js b/dist/types/JSONSchema.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..533836a98b81a4ab4564d7fc64b4b400df142e6f
+--- /dev/null
++++ b/dist/types/JSONSchema.js
+@@ -0,0 +1,25 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.isCompound = exports.isPrimitive = exports.isBoolean = exports.getRootSchema = exports.Parent = void 0;
++var lodash_1 = require("lodash");
++exports.Parent = Symbol('Parent');
++exports.getRootSchema = (0, lodash_1.memoize)(function (schema) {
++    var parent = schema[exports.Parent];
++    if (!parent) {
++        return schema;
++    }
++    return (0, exports.getRootSchema)(parent);
++});
++function isBoolean(schema) {
++    return schema === true || schema === false;
++}
++exports.isBoolean = isBoolean;
++function isPrimitive(schema) {
++    return !(0, lodash_1.isPlainObject)(schema);
++}
++exports.isPrimitive = isPrimitive;
++function isCompound(schema) {
++    return Array.isArray(schema.type) || 'anyOf' in schema || 'oneOf' in schema;
++}
++exports.isCompound = isCompound;
++//# sourceMappingURL=JSONSchema.js.map
+\ No newline at end of file
+diff --git a/dist/typesOfSchema.d.ts b/dist/typesOfSchema.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..c4ef6043e2b5f3b70c888f7bdb3b92d090c5ee54
+--- /dev/null
++++ b/dist/typesOfSchema.d.ts
+@@ -0,0 +1,10 @@
++import { JSONSchema, SchemaType } from './types/JSONSchema';
++/**
++ * Duck types a JSONSchema schema or property to determine which kind of AST node to parse it into.
++ *
++ * Due to what some might say is an oversight in the JSON-Schema spec, a given schema may
++ * implicitly be an *intersection* of multiple JSON-Schema directives (ie. multiple TypeScript
++ * types). The spec leaves it up to implementations to decide what to do with this
++ * loosely-defined behavior.
++ */
++export declare function typesOfSchema(schema: JSONSchema): readonly [SchemaType, ...SchemaType[]];
+diff --git a/dist/typesOfSchema.js b/dist/typesOfSchema.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc6bcdfe3c81fa415d92509d75fcbb28e27bed3a
+--- /dev/null
++++ b/dist/typesOfSchema.js
+@@ -0,0 +1,146 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.typesOfSchema = void 0;
++var lodash_1 = require("lodash");
++var JSONSchema_1 = require("./types/JSONSchema");
++/**
++ * Duck types a JSONSchema schema or property to determine which kind of AST node to parse it into.
++ *
++ * Due to what some might say is an oversight in the JSON-Schema spec, a given schema may
++ * implicitly be an *intersection* of multiple JSON-Schema directives (ie. multiple TypeScript
++ * types). The spec leaves it up to implementations to decide what to do with this
++ * loosely-defined behavior.
++ */
++function typesOfSchema(schema) {
++    // tsType is an escape hatch that supercedes all other directives
++    if (schema.tsType) {
++        return ['CUSTOM_TYPE'];
++    }
++    // Collect matched types
++    var matchedTypes = [];
++    for (var _i = 0, _a = Object.entries(matchers); _i < _a.length; _i++) {
++        var _b = _a[_i], schemaType = _b[0], f = _b[1];
++        if (f(schema)) {
++            matchedTypes.push(schemaType);
++        }
++    }
++    // Default to an unnamed schema
++    if (!matchedTypes.length) {
++        return ['UNNAMED_SCHEMA'];
++    }
++    return matchedTypes;
++}
++exports.typesOfSchema = typesOfSchema;
++var matchers = {
++    ALL_OF: function (schema) {
++        return 'allOf' in schema;
++    },
++    ANY: function (schema) {
++        if (Object.keys(schema).length === 0) {
++            // The empty schema {} validates any value
++            // @see https://json-schema.org/draft-07/json-schema-core.html#rfc.section.4.3.1
++            return true;
++        }
++        return schema.type === 'any';
++    },
++    ANY_OF: function (schema) {
++        return 'anyOf' in schema;
++    },
++    BOOLEAN: function (schema) {
++        if ('enum' in schema) {
++            return false;
++        }
++        if (schema.type === 'boolean') {
++            return true;
++        }
++        if (!(0, JSONSchema_1.isCompound)(schema) && typeof schema.default === 'boolean') {
++            return true;
++        }
++        return false;
++    },
++    CUSTOM_TYPE: function () {
++        return false; // Explicitly handled before we try to match
++    },
++    NAMED_ENUM: function (schema) {
++        return 'enum' in schema && 'tsEnumNames' in schema;
++    },
++    NAMED_SCHEMA: function (schema) {
++        // 8.2.1. The presence of "$id" in a subschema indicates that the subschema constitutes a distinct schema resource within a single schema document.
++        return '$id' in schema && ('patternProperties' in schema || 'properties' in schema);
++    },
++    NEVER: function (schema) {
++        return schema === false;
++    },
++    NULL: function (schema) {
++        return schema.type === 'null';
++    },
++    NUMBER: function (schema) {
++        if ('enum' in schema) {
++            return false;
++        }
++        if (schema.type === 'integer' || schema.type === 'number') {
++            return true;
++        }
++        if (!(0, JSONSchema_1.isCompound)(schema) && typeof schema.default === 'number') {
++            return true;
++        }
++        return false;
++    },
++    OBJECT: function (schema) {
++        return (schema.type === 'object' &&
++            !(0, lodash_1.isPlainObject)(schema.additionalProperties) &&
++            !schema.allOf &&
++            !schema.anyOf &&
++            !schema.oneOf &&
++            !schema.patternProperties &&
++            !schema.properties &&
++            !schema.required);
++    },
++    ONE_OF: function (schema) {
++        return 'oneOf' in schema;
++    },
++    REFERENCE: function (schema) {
++        return '$ref' in schema;
++    },
++    STRING: function (schema) {
++        if ('enum' in schema) {
++            return false;
++        }
++        if (schema.type === 'string') {
++            return true;
++        }
++        if (!(0, JSONSchema_1.isCompound)(schema) && typeof schema.default === 'string') {
++            return true;
++        }
++        return false;
++    },
++    TYPED_ARRAY: function (schema) {
++        if (schema.type && schema.type !== 'array') {
++            return false;
++        }
++        return 'items' in schema;
++    },
++    UNION: function (schema) {
++        return Array.isArray(schema.type);
++    },
++    UNNAMED_ENUM: function (schema) {
++        if ('tsEnumNames' in schema) {
++            return false;
++        }
++        if (schema.type &&
++            schema.type !== 'boolean' &&
++            schema.type !== 'integer' &&
++            schema.type !== 'number' &&
++            schema.type !== 'string') {
++            return false;
++        }
++        return 'enum' in schema;
++    },
++    UNNAMED_SCHEMA: function () {
++        return false; // Explicitly handled as the default case
++    },
++    UNTYPED_ARRAY: function (schema) {
++        return schema.type === 'array' && !('items' in schema);
++    },
++};
++//# sourceMappingURL=typesOfSchema.js.map
+\ No newline at end of file
+diff --git a/dist/utils.d.ts b/dist/utils.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..0c8331ce57d1a81a27284c1127e62d134d8d51c6
+--- /dev/null
++++ b/dist/utils.d.ts
+@@ -0,0 +1,43 @@
++import { JSONSchema, LinkedJSONSchema } from './types/JSONSchema';
++export declare function Try<T>(fn: () => T, err: (e: Error) => any): T;
++export declare function traverse(schema: LinkedJSONSchema, callback: (schema: LinkedJSONSchema, key: string | null) => void, processed?: Set<LinkedJSONSchema>, key?: string): void;
++/**
++ * Eg. `foo/bar/baz.json` => `baz`
++ */
++export declare function justName(filename?: string): string;
++/**
++ * Avoid appending "js" to top-level unnamed schemas
++ */
++export declare function stripExtension(filename: string): string;
++/**
++ * Convert a string that might contain spaces or special characters to one that
++ * can safely be used as a TypeScript interface or enum name.
++ */
++export declare function toSafeString(string: string): string;
++export declare function generateName(from: string, usedNames: Set<string>): string;
++export declare function error(...messages: any[]): void;
++type LogStyle = 'blue' | 'cyan' | 'green' | 'magenta' | 'red' | 'white' | 'yellow';
++export declare function log(style: LogStyle, title: string, ...messages: unknown[]): void;
++/**
++ * escape block comments in schema descriptions so that they don't unexpectedly close JSDoc comments in generated typescript interfaces
++ */
++export declare function escapeBlockComment(schema: JSONSchema): void;
++export declare function pathTransform(outputPath: string, inputPath: string, filePath: string): string;
++/**
++ * Removes the schema's `default` property if it doesn't match the schema's `type` property.
++ * Useful when parsing unions.
++ *
++ * Mutates `schema`.
++ */
++export declare function maybeStripDefault(schema: LinkedJSONSchema): LinkedJSONSchema;
++/**
++ * Removes the schema's `$id`, `name`, and `description` properties
++ * if they exist.
++ * Useful when parsing intersections.
++ *
++ * Mutates `schema`.
++ */
++export declare function maybeStripNameHints(schema: JSONSchema): JSONSchema;
++export declare function appendToDescription(existingDescription: string | undefined, ...values: string[]): string;
++export declare function isSchemaLike(schema: LinkedJSONSchema): boolean;
++export {};
+diff --git a/dist/utils.js b/dist/utils.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..5f0db437cb9db07dbf847bcff3672e25f90d221f
+--- /dev/null
++++ b/dist/utils.js
+@@ -0,0 +1,389 @@
++"use strict";
++var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
++    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
++        if (ar || !(i in from)) {
++            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
++            ar[i] = from[i];
++        }
++    }
++    return to.concat(ar || Array.prototype.slice.call(from));
++};
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.isSchemaLike = exports.appendToDescription = exports.maybeStripNameHints = exports.maybeStripDefault = exports.pathTransform = exports.escapeBlockComment = exports.log = exports.error = exports.generateName = exports.toSafeString = exports.stripExtension = exports.justName = exports.traverse = exports.Try = void 0;
++var lodash_1 = require("lodash");
++var path_1 = require("path");
++var JSONSchema_1 = require("./types/JSONSchema");
++// TODO: pull out into a separate package
++function Try(fn, err) {
++    try {
++        return fn();
++    }
++    catch (e) {
++        return err(e);
++    }
++}
++exports.Try = Try;
++// keys that shouldn't be traversed by the catchall step
++var BLACKLISTED_KEYS = new Set([
++    'id',
++    '$defs',
++    '$id',
++    '$schema',
++    'title',
++    'description',
++    'default',
++    'multipleOf',
++    'maximum',
++    'exclusiveMaximum',
++    'minimum',
++    'exclusiveMinimum',
++    'maxLength',
++    'minLength',
++    'pattern',
++    'additionalItems',
++    'items',
++    'maxItems',
++    'minItems',
++    'uniqueItems',
++    'maxProperties',
++    'minProperties',
++    'required',
++    'additionalProperties',
++    'definitions',
++    'properties',
++    'patternProperties',
++    'dependencies',
++    'enum',
++    'type',
++    'allOf',
++    'anyOf',
++    'oneOf',
++    'not',
++]);
++function traverseObjectKeys(obj, callback, processed) {
++    Object.keys(obj).forEach(function (k) {
++        if (obj[k] && typeof obj[k] === 'object' && !Array.isArray(obj[k])) {
++            traverse(obj[k], callback, processed, k);
++        }
++    });
++}
++function traverseArray(arr, callback, processed) {
++    arr.forEach(function (s, k) { return traverse(s, callback, processed, k.toString()); });
++}
++function traverse(schema, callback, processed, key) {
++    if (processed === void 0) { processed = new Set(); }
++    // Handle recursive schemas
++    if (processed.has(schema)) {
++        return;
++    }
++    processed.add(schema);
++    callback(schema, key !== null && key !== void 0 ? key : null);
++    if (schema.anyOf) {
++        traverseArray(schema.anyOf, callback, processed);
++    }
++    if (schema.allOf) {
++        traverseArray(schema.allOf, callback, processed);
++    }
++    if (schema.oneOf) {
++        traverseArray(schema.oneOf, callback, processed);
++    }
++    if (schema.properties) {
++        traverseObjectKeys(schema.properties, callback, processed);
++    }
++    if (schema.patternProperties) {
++        traverseObjectKeys(schema.patternProperties, callback, processed);
++    }
++    if (schema.additionalProperties && typeof schema.additionalProperties === 'object') {
++        traverse(schema.additionalProperties, callback, processed);
++    }
++    if (schema.items) {
++        var items = schema.items;
++        if (Array.isArray(items)) {
++            traverseArray(items, callback, processed);
++        }
++        else {
++            traverse(items, callback, processed);
++        }
++    }
++    if (schema.additionalItems && typeof schema.additionalItems === 'object') {
++        traverse(schema.additionalItems, callback, processed);
++    }
++    if (schema.dependencies) {
++        if (Array.isArray(schema.dependencies)) {
++            traverseArray(schema.dependencies, callback, processed);
++        }
++        else {
++            traverseObjectKeys(schema.dependencies, callback, processed);
++        }
++    }
++    if (schema.definitions) {
++        traverseObjectKeys(schema.definitions, callback, processed);
++    }
++    if (schema.$defs) {
++        traverseObjectKeys(schema.$defs, callback, processed);
++    }
++    if (schema.not) {
++        traverse(schema.not, callback, processed);
++    }
++    // technically you can put definitions on any key
++    Object.keys(schema)
++        .filter(function (key) { return !BLACKLISTED_KEYS.has(key); })
++        .forEach(function (key) {
++        var child = schema[key];
++        if (child && typeof child === 'object') {
++            traverseObjectKeys(child, callback, processed);
++        }
++    });
++}
++exports.traverse = traverse;
++/**
++ * Eg. `foo/bar/baz.json` => `baz`
++ */
++function justName(filename) {
++    if (filename === void 0) { filename = ''; }
++    return stripExtension((0, path_1.basename)(filename));
++}
++exports.justName = justName;
++/**
++ * Avoid appending "js" to top-level unnamed schemas
++ */
++function stripExtension(filename) {
++    return filename.replace((0, path_1.extname)(filename), '');
++}
++exports.stripExtension = stripExtension;
++/**
++ * Convert a string that might contain spaces or special characters to one that
++ * can safely be used as a TypeScript interface or enum name.
++ */
++function toSafeString(string) {
++    // identifiers in javaScript/ts:
++    // First character: a-zA-Z | _ | $
++    // Rest: a-zA-Z | _ | $ | 0-9
++    return (0, lodash_1.upperFirst)(
++    // remove accents, umlauts, ... by their basic latin letters
++    (0, lodash_1.deburr)(string)
++        // replace chars which are not valid for typescript identifiers with whitespace
++        .replace(/(^\s*[^a-zA-Z_$])|([^a-zA-Z_$\d])/g, ' ')
++        // uppercase leading underscores followed by lowercase
++        .replace(/^_[a-z]/g, function (match) { return match.toUpperCase(); })
++        // remove non-leading underscores followed by lowercase (convert snake_case)
++        .replace(/_[a-z]/g, function (match) { return match.substr(1, match.length).toUpperCase(); })
++        // uppercase letters after digits, dollars
++        .replace(/([\d$]+[a-zA-Z])/g, function (match) { return match.toUpperCase(); })
++        // uppercase first letter after whitespace
++        .replace(/\s+([a-zA-Z])/g, function (match) { return (0, lodash_1.trim)(match.toUpperCase()); })
++        // remove remaining whitespace
++        .replace(/\s/g, ''));
++}
++exports.toSafeString = toSafeString;
++function generateName(from, usedNames) {
++    var name = toSafeString(from);
++    if (!name) {
++        name = 'NoName';
++    }
++    // increment counter until we find a free name
++    if (usedNames.has(name)) {
++        var counter = 1;
++        var nameWithCounter = "".concat(name).concat(counter);
++        while (usedNames.has(nameWithCounter)) {
++            nameWithCounter = "".concat(name).concat(counter);
++            counter++;
++        }
++        name = nameWithCounter;
++    }
++    usedNames.add(name);
++    return name;
++}
++exports.generateName = generateName;
++function error() {
++    var _a;
++    var messages = [];
++    for (var _i = 0; _i < arguments.length; _i++) {
++        messages[_i] = arguments[_i];
++    }
++    if (!process.env.VERBOSE) {
++        return console.error(messages);
++    }
++    console.error.apply(console, __spreadArray([(_a = getStyledTextForLogging('red')) === null || _a === void 0 ? void 0 : _a('error')], messages, false));
++}
++exports.error = error;
++function log(style, title) {
++    var _a;
++    var messages = [];
++    for (var _i = 2; _i < arguments.length; _i++) {
++        messages[_i - 2] = arguments[_i];
++    }
++    if (!process.env.VERBOSE) {
++        return;
++    }
++    var lastMessage = null;
++    if (messages.length > 1 && typeof messages[messages.length - 1] !== 'string') {
++        lastMessage = messages.splice(messages.length - 1, 1);
++    }
++    console.info.apply(console, __spreadArray([require('cli-color').whiteBright.bgCyan('debug'), (_a = getStyledTextForLogging(style)) === null || _a === void 0 ? void 0 : _a(title)], messages, false));
++    if (lastMessage) {
++        console.dir(lastMessage, { depth: 6, maxArrayLength: 6 });
++    }
++}
++exports.log = log;
++function getStyledTextForLogging(style) {
++    if (!process.env.VERBOSE) {
++        return;
++    }
++    switch (style) {
++        case 'blue':
++            return require('cli-color').whiteBright.bgBlue;
++        case 'cyan':
++            return require('cli-color').whiteBright.bgCyan;
++        case 'green':
++            return require('cli-color').whiteBright.bgGreen;
++        case 'magenta':
++            return require('cli-color').whiteBright.bgMagenta;
++        case 'red':
++            return require('cli-color').whiteBright.bgRedBright;
++        case 'white':
++            return require('cli-color').black.bgWhite;
++        case 'yellow':
++            return require('cli-color').whiteBright.bgYellow;
++    }
++}
++/**
++ * escape block comments in schema descriptions so that they don't unexpectedly close JSDoc comments in generated typescript interfaces
++ */
++function escapeBlockComment(schema) {
++    var replacer = '* /';
++    if (schema === null || typeof schema !== 'object') {
++        return;
++    }
++    for (var _i = 0, _a = Object.keys(schema); _i < _a.length; _i++) {
++        var key = _a[_i];
++        if (key === 'description' && typeof schema[key] === 'string') {
++            schema[key] = schema[key].replace(/\*\//g, replacer);
++        }
++    }
++}
++exports.escapeBlockComment = escapeBlockComment;
++/*
++the following logic determines the out path by comparing the in path to the users specified out path.
++For example, if input directory MultiSchema looks like:
++  MultiSchema/foo/a.json
++  MultiSchema/bar/fuzz/c.json
++  MultiSchema/bar/d.json
++And the user wants the outputs to be in MultiSchema/Out, then this code will be able to map the inner directories foo, bar, and fuzz into the intended Out directory like so:
++  MultiSchema/Out/foo/a.json
++  MultiSchema/Out/bar/fuzz/c.json
++  MultiSchema/Out/bar/d.json
++*/
++function pathTransform(outputPath, inputPath, filePath) {
++    var inPathList = (0, path_1.normalize)(inputPath).split(path_1.sep);
++    var filePathList = (0, path_1.dirname)((0, path_1.normalize)(filePath)).split(path_1.sep);
++    var filePathRel = filePathList.filter(function (f, i) { return f !== inPathList[i]; });
++    return path_1.posix.join.apply(path_1.posix, __spreadArray([path_1.posix.normalize(outputPath)], filePathRel, false));
++}
++exports.pathTransform = pathTransform;
++/**
++ * Removes the schema's `default` property if it doesn't match the schema's `type` property.
++ * Useful when parsing unions.
++ *
++ * Mutates `schema`.
++ */
++function maybeStripDefault(schema) {
++    if (!('default' in schema)) {
++        return schema;
++    }
++    switch (schema.type) {
++        case 'array':
++            if (Array.isArray(schema.default)) {
++                return schema;
++            }
++            break;
++        case 'boolean':
++            if (typeof schema.default === 'boolean') {
++                return schema;
++            }
++            break;
++        case 'integer':
++        case 'number':
++            if (typeof schema.default === 'number') {
++                return schema;
++            }
++            break;
++        case 'string':
++            if (typeof schema.default === 'string') {
++                return schema;
++            }
++            break;
++        case 'null':
++            if (schema.default === null) {
++                return schema;
++            }
++            break;
++        case 'object':
++            if ((0, lodash_1.isPlainObject)(schema.default)) {
++                return schema;
++            }
++            break;
++    }
++    delete schema.default;
++    return schema;
++}
++exports.maybeStripDefault = maybeStripDefault;
++/**
++ * Removes the schema's `$id`, `name`, and `description` properties
++ * if they exist.
++ * Useful when parsing intersections.
++ *
++ * Mutates `schema`.
++ */
++function maybeStripNameHints(schema) {
++    if ('$id' in schema) {
++        delete schema.$id;
++    }
++    if ('description' in schema) {
++        delete schema.description;
++    }
++    if ('name' in schema) {
++        delete schema.name;
++    }
++    return schema;
++}
++exports.maybeStripNameHints = maybeStripNameHints;
++function appendToDescription(existingDescription) {
++    var values = [];
++    for (var _i = 1; _i < arguments.length; _i++) {
++        values[_i - 1] = arguments[_i];
++    }
++    if (existingDescription) {
++        return "".concat(existingDescription, "\n\n").concat(values.join('\n'));
++    }
++    return values.join('\n');
++}
++exports.appendToDescription = appendToDescription;
++function isSchemaLike(schema) {
++    if (!(0, lodash_1.isPlainObject)(schema)) {
++        return false;
++    }
++    var parent = schema[JSONSchema_1.Parent];
++    if (parent === null) {
++        return true;
++    }
++    var JSON_SCHEMA_KEYWORDS = [
++        '$defs',
++        'allOf',
++        'anyOf',
++        'definitions',
++        'dependencies',
++        'enum',
++        'not',
++        'oneOf',
++        'patternProperties',
++        'properties',
++        'required',
++    ];
++    if (JSON_SCHEMA_KEYWORDS.some(function (_) { return parent[_] === schema; })) {
++        return false;
++    }
++    return true;
++}
++exports.isSchemaLike = isSchemaLike;
++//# sourceMappingURL=utils.js.map
+\ No newline at end of file
+diff --git a/dist/validator.d.ts b/dist/validator.d.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..4f284a44d0be0c4806c7c02bd3a4459db3562efc
+--- /dev/null
++++ b/dist/validator.d.ts
+@@ -0,0 +1,2 @@
++import { LinkedJSONSchema } from './types/JSONSchema';
++export declare function validate(schema: LinkedJSONSchema, filename: string): string[];
+diff --git a/dist/validator.js b/dist/validator.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..70063f1ce0f0a59262fea30e04358e56e71766de
+--- /dev/null
++++ b/dist/validator.js
+@@ -0,0 +1,51 @@
++"use strict";
++Object.defineProperty(exports, "__esModule", { value: true });
++exports.validate = void 0;
++var utils_1 = require("./utils");
++var rules = new Map();
++rules.set('Enum members and tsEnumNames must be of the same length', function (schema) {
++    if (schema.enum && schema.tsEnumNames && schema.enum.length !== schema.tsEnumNames.length) {
++        return false;
++    }
++});
++rules.set('tsEnumNames must be an array of strings', function (schema) {
++    if (schema.tsEnumNames && schema.tsEnumNames.some(function (_) { return typeof _ !== 'string'; })) {
++        return false;
++    }
++});
++rules.set('When both maxItems and minItems are present, maxItems >= minItems', function (schema) {
++    var maxItems = schema.maxItems, minItems = schema.minItems;
++    if (typeof maxItems === 'number' && typeof minItems === 'number') {
++        return maxItems >= minItems;
++    }
++});
++rules.set('When maxItems exists, maxItems >= 0', function (schema) {
++    var maxItems = schema.maxItems;
++    if (typeof maxItems === 'number') {
++        return maxItems >= 0;
++    }
++});
++rules.set('When minItems exists, minItems >= 0', function (schema) {
++    var minItems = schema.minItems;
++    if (typeof minItems === 'number') {
++        return minItems >= 0;
++    }
++});
++rules.set('deprecated must be a boolean', function (schema) {
++    var typeOfDeprecated = typeof schema.deprecated;
++    return typeOfDeprecated === 'boolean' || typeOfDeprecated === 'undefined';
++});
++function validate(schema, filename) {
++    var errors = [];
++    rules.forEach(function (rule, ruleName) {
++        (0, utils_1.traverse)(schema, function (schema, key) {
++            if (rule(schema) === false) {
++                errors.push("Error at key \"".concat(key, "\" in file \"").concat(filename, "\": ").concat(ruleName));
++            }
++            return schema;
++        });
++    });
++    return errors;
++}
++exports.validate = validate;
++//# sourceMappingURL=validator.js.map
+\ No newline at end of file
+diff --git a/src/index.ts b/src/index.ts
+index 20a078de4a5f2c60365b1354657350f673e5a64a..b0072d491dbe26dd5745db26095303c8adda0a69 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -3,8 +3,8 @@ import {JSONSchema4} from 'json-schema'
+ import {Options as $RefOptions} from '@bcherny/json-schema-ref-parser'
+ import {cloneDeep, endsWith, merge} from 'lodash'
+ import {dirname} from 'path'
+-import {Options as PrettierOptions} from 'prettier'
+-import {format} from './formatter'
++// import {Options as PrettierOptions} from 'prettier'
++// import {format} from './formatter'
+ import {generate} from './generator'
+ import {normalize} from './normalizer'
+ import {optimize} from './optimizer'
+@@ -15,6 +15,7 @@ import {validate} from './validator'
+ import {isDeepStrictEqual} from 'util'
+ import {link} from './linker'
+ import {validateOptions} from './optionValidator'
++import {JSONSchema as LinkedJSONSchema} from './types/JSONSchema'
+ 
+ export {EnumJSONSchema, JSONSchema, NamedEnumJSONSchema, CustomTypeJSONSchema} from './types/JSONSchema'
+ 
+@@ -64,10 +65,10 @@ export interface Options {
+    * This is required to be compatible with `strictNullChecks`.
+    */
+   strictIndexSignatures: boolean
+-  /**
+-   * A [Prettier](https://prettier.io/docs/en/options.html) configuration.
+-   */
+-  style: PrettierOptions
++  // /**
++  //  * A [Prettier](https://prettier.io/docs/en/options.html) configuration.
++  //  */
++  // style: PrettierOptions
+   /**
+    * Generate code for `definitions` that aren't referenced by the schema?
+    */
+@@ -76,17 +77,16 @@ export interface Options {
+    * Generate unknown type instead of any
+    */
+   unknownAny: boolean
++  /**
++   * Custom function to provide a type name for a given schema
++   */
++  customName?: (schema: LinkedJSONSchema, keyNameFromDefinition: string | undefined) => string
+ }
+ 
+ export const DEFAULT_OPTIONS: Options = {
+   $refOptions: {},
+   additionalProperties: true, // TODO: default to empty schema (as per spec) instead
+-  bannerComment: `/* eslint-disable */
+-/**
+-* This file was automatically generated by json-schema-to-typescript.
+-* DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
+-* and run json-schema-to-typescript to regenerate this file.
+-*/`,
++  bannerComment: '',
+   cwd: process.cwd(),
+   declareExternallyReferenced: true,
+   enableConstEnums: true,
+@@ -94,15 +94,6 @@ export const DEFAULT_OPTIONS: Options = {
+   ignoreMinAndMaxItems: false,
+   maxItems: 20,
+   strictIndexSignatures: false,
+-  style: {
+-    bracketSpacing: false,
+-    printWidth: 120,
+-    semi: true,
+-    singleQuote: false,
+-    tabWidth: 2,
+-    trailingComma: 'none',
+-    useTabs: false,
+-  },
+   unreachableDefinitions: false,
+   unknownAny: true,
+ }
+@@ -176,10 +167,10 @@ export async function compile(schema: JSONSchema4, name: string, options: Partia
+   const generated = generate(optimized, _options)
+   log('magenta', 'generator', time(), '✅ Result:', generated)
+ 
+-  const formatted = format(generated, _options)
+-  log('white', 'formatter', time(), '✅ Result:', formatted)
++  // const formatted = format(generated, _options)
++  // log('white', 'formatter', time(), '✅ Result:', formatted)
+ 
+-  return formatted
++  return generated
+ }
+ 
+ export class ValidationError extends Error {}
+diff --git a/src/parser.ts b/src/parser.ts
+index a52479fcaaece5ca38c8e8519e1f28795ed3593f..e806ff43a831e7443a59637d71fbeab321e94310 100644
+--- a/src/parser.ts
++++ b/src/parser.ts
+@@ -147,7 +147,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         params: schema.allOf!.map(_ => parse(_, options, undefined, processed, usedNames)),
+         type: 'INTERSECTION',
+       }
+@@ -157,14 +157,14 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+       }
+     case 'ANY_OF':
+       return {
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         params: schema.anyOf!.map(_ => parse(_, options, undefined, processed, usedNames)),
+         type: 'UNION',
+       }
+@@ -173,7 +173,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'BOOLEAN',
+       }
+     case 'CUSTOM_TYPE':
+@@ -182,7 +182,7 @@ function parseNonLiteral(
+         deprecated: schema.deprecated,
+         keyName,
+         params: schema.tsType!,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'CUSTOM_TYPE',
+       }
+     case 'NAMED_ENUM':
+@@ -190,7 +190,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition ?? keyName, usedNames)!,
++        standaloneName: standaloneName(schema, keyNameFromDefinition ?? keyName, usedNames, options)!,
+         params: schema.enum!.map((_, n) => ({
+           ast: parseLiteral(_, undefined),
+           keyName: schema.tsEnumNames![n],
+@@ -204,7 +204,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'NEVER',
+       }
+     case 'NULL':
+@@ -212,7 +212,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'NULL',
+       }
+     case 'NUMBER':
+@@ -220,14 +220,14 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'NUMBER',
+       }
+     case 'OBJECT':
+       return {
+         comment: schema.description,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'OBJECT',
+         deprecated: schema.deprecated,
+       }
+@@ -236,7 +236,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         params: schema.oneOf!.map(_ => parse(_, options, undefined, processed, usedNames)),
+         type: 'UNION',
+       }
+@@ -247,7 +247,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'STRING',
+       }
+     case 'TYPED_ARRAY':
+@@ -261,7 +261,7 @@ function parseNonLiteral(
+           keyName,
+           maxItems,
+           minItems,
+-          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+           params: schema.items.map(_ => parse(_, options, undefined, processed, usedNames)),
+           type: 'TUPLE',
+         }
+@@ -276,7 +276,7 @@ function parseNonLiteral(
+           comment: schema.description,
+           deprecated: schema.deprecated,
+           keyName,
+-          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+           params: parse(schema.items!, options, `{keyNameFromDefinition}Items`, processed, usedNames),
+           type: 'ARRAY',
+         }
+@@ -286,7 +286,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         params: (schema.type as JSONSchema4TypeName[]).map(type => {
+           const member: LinkedJSONSchema = {...omit(schema, '$id', 'description', 'title'), type}
+           return parse(maybeStripDefault(member as any), options, undefined, processed, usedNames)
+@@ -298,7 +298,7 @@ function parseNonLiteral(
+         comment: schema.description,
+         deprecated: schema.deprecated,
+         keyName,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         params: schema.enum!.map(_ => parseLiteral(_, undefined)),
+         type: 'UNION',
+       }
+@@ -320,7 +320,7 @@ function parseNonLiteral(
+           params: Array(Math.max(maxItems, minItems) || 0).fill(params),
+           // if there is no maximum, then add a spread item to collect the rest
+           spreadParam: maxItems >= 0 ? undefined : params,
+-          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++          standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+           type: 'TUPLE',
+         }
+       }
+@@ -330,7 +330,7 @@ function parseNonLiteral(
+         deprecated: schema.deprecated,
+         keyName,
+         params,
+-        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames),
++        standaloneName: standaloneName(schema, keyNameFromDefinition, usedNames, options),
+         type: 'ARRAY',
+       }
+   }
+@@ -343,7 +343,11 @@ function standaloneName(
+   schema: LinkedJSONSchema,
+   keyNameFromDefinition: string | undefined,
+   usedNames: UsedNames,
++  options: Options,
+ ): string | undefined {
++  if (options.customName) {
++    return options.customName(schema, keyNameFromDefinition)
++  }
+   const name = schema.title || schema.$id || keyNameFromDefinition
+   if (name) {
+     return generateName(name, usedNames)
+@@ -358,7 +362,7 @@ function newInterface(
+   keyName?: string,
+   keyNameFromDefinition?: string,
+ ): TInterface {
+-  const name = standaloneName(schema, keyNameFromDefinition, usedNames)!
++  const name = standaloneName(schema, keyNameFromDefinition, usedNames, options)!
+   return {
+     comment: schema.description,
+     deprecated: schema.deprecated,
+diff --git a/tsconfig.json b/tsconfig.json
+index 678b1f95f591cf0bf07386d204fbb5bb040bc12b..35501df7c5bb5f9fbca18018822f5662d16c6910 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -16,6 +16,9 @@
+     "strict": true,
+     "target": "es5"
+   },
++  "include": [
++    "src/**/*.ts"
++  ],
+   "exclude": [
+     "example",
+     "node_modules"
