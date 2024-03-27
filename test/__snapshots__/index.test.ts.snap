@@ -3,90 +3,329 @@
 exports[`pluginsToRulesOptions 1`] = `
 "import type { Linter } from 'eslint'
 export interface RulesOptions {
-  'node/callback-return': Linter.RuleEntry<NodeCallbackReturn>
-  'node/exports-style': Linter.RuleEntry<NodeExportsStyle>
-  'node/file-extension-in-import': Linter.RuleEntry<NodeFileExtensionInImport>
-  'node/global-require': Linter.RuleEntry
-  'node/handle-callback-err': Linter.RuleEntry<NodeHandleCallbackErr>
-  'node/no-callback-literal': Linter.RuleEntry
-  'node/no-deprecated-api': Linter.RuleEntry<NodeNoDeprecatedApi>
-  'node/no-exports-assign': Linter.RuleEntry
-  'node/no-extraneous-import': Linter.RuleEntry<NodeNoExtraneousImport>
-  'node/no-extraneous-require': Linter.RuleEntry<NodeNoExtraneousRequire>
-  'node/no-missing-import': Linter.RuleEntry<NodeNoMissingImport>
-  'node/no-missing-require': Linter.RuleEntry<NodeNoMissingRequire>
-  'node/no-mixed-requires': Linter.RuleEntry<NodeNoMixedRequires>
-  'node/no-new-require': Linter.RuleEntry
-  'node/no-path-concat': Linter.RuleEntry
-  'node/no-process-env': Linter.RuleEntry
-  'node/no-process-exit': Linter.RuleEntry
-  'node/no-restricted-import': Linter.RuleEntry<NodeNoRestrictedImport>
-  'node/no-restricted-require': Linter.RuleEntry<NodeNoRestrictedRequire>
-  'node/no-sync': Linter.RuleEntry<NodeNoSync>
-  'node/no-unpublished-bin': Linter.RuleEntry<NodeNoUnpublishedBin>
-  'node/no-unpublished-import': Linter.RuleEntry<NodeNoUnpublishedImport>
-  'node/no-unpublished-require': Linter.RuleEntry<NodeNoUnpublishedRequire>
-  'node/no-unsupported-features/es-builtins': Linter.RuleEntry<NodeNoUnsupportedFeaturesEsBuiltins>
-  'node/no-unsupported-features/es-syntax': Linter.RuleEntry<NodeNoUnsupportedFeaturesEsSyntax>
-  'node/no-unsupported-features/node-builtins': Linter.RuleEntry<NodeNoUnsupportedFeaturesNodeBuiltins>
-  'node/prefer-global/buffer': Linter.RuleEntry<NodePreferGlobalBuffer>
-  'node/prefer-global/console': Linter.RuleEntry<NodePreferGlobalConsole>
-  'node/prefer-global/process': Linter.RuleEntry<NodePreferGlobalProcess>
-  'node/prefer-global/text-decoder': Linter.RuleEntry<NodePreferGlobalTextDecoder>
-  'node/prefer-global/text-encoder': Linter.RuleEntry<NodePreferGlobalTextEncoder>
-  'node/prefer-global/url-search-params': Linter.RuleEntry<NodePreferGlobalUrlSearchParams>
-  'node/prefer-global/url': Linter.RuleEntry<NodePreferGlobalUrl>
-  'node/prefer-promises/dns': Linter.RuleEntry
-  'node/prefer-promises/fs': Linter.RuleEntry
-  'node/process-exit-as-throw': Linter.RuleEntry
-  'node/shebang': Linter.RuleEntry<NodeShebang>
-  'node/no-hide-core-modules': Linter.RuleEntry<NodeNoHideCoreModules>
-  'node/no-unsupported-features': Linter.RuleEntry<NodeNoUnsupportedFeatures>
-  'import/no-unresolved': Linter.RuleEntry<ImportNoUnresolved>
-  'import/named': Linter.RuleEntry<ImportNamed>
-  'import/default': Linter.RuleEntry
-  'import/namespace': Linter.RuleEntry<ImportNamespace>
-  'import/no-namespace': Linter.RuleEntry<ImportNoNamespace>
-  'import/export': Linter.RuleEntry
-  'import/no-mutable-exports': Linter.RuleEntry
-  'import/extensions': Linter.RuleEntry<ImportExtensions>
-  'import/no-restricted-paths': Linter.RuleEntry<ImportNoRestrictedPaths>
-  'import/no-internal-modules': Linter.RuleEntry<ImportNoInternalModules>
-  'import/group-exports': Linter.RuleEntry<ImportGroupExports>
-  'import/no-relative-packages': Linter.RuleEntry<ImportNoRelativePackages>
-  'import/no-relative-parent-imports': Linter.RuleEntry<ImportNoRelativeParentImports>
-  'import/consistent-type-specifier-style': Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>
-  'import/no-self-import': Linter.RuleEntry
-  'import/no-cycle': Linter.RuleEntry<ImportNoCycle>
-  'import/no-named-default': Linter.RuleEntry
-  'import/no-named-as-default': Linter.RuleEntry
-  'import/no-named-as-default-member': Linter.RuleEntry
-  'import/no-anonymous-default-export': Linter.RuleEntry<ImportNoAnonymousDefaultExport>
-  'import/no-unused-modules': Linter.RuleEntry<ImportNoUnusedModules>
-  'import/no-commonjs': Linter.RuleEntry<ImportNoCommonjs>
-  'import/no-amd': Linter.RuleEntry
-  'import/no-duplicates': Linter.RuleEntry<ImportNoDuplicates>
-  'import/first': Linter.RuleEntry<ImportFirst>
-  'import/max-dependencies': Linter.RuleEntry<ImportMaxDependencies>
-  'import/no-extraneous-dependencies': Linter.RuleEntry<ImportNoExtraneousDependencies>
-  'import/no-absolute-path': Linter.RuleEntry<ImportNoAbsolutePath>
-  'import/no-nodejs-modules': Linter.RuleEntry<ImportNoNodejsModules>
-  'import/no-webpack-loader-syntax': Linter.RuleEntry
-  'import/order': Linter.RuleEntry<ImportOrder>
-  'import/newline-after-import': Linter.RuleEntry<ImportNewlineAfterImport>
-  'import/prefer-default-export': Linter.RuleEntry<ImportPreferDefaultExport>
-  'import/no-default-export': Linter.RuleEntry
-  'import/no-named-export': Linter.RuleEntry
-  'import/no-dynamic-require': Linter.RuleEntry<ImportNoDynamicRequire>
-  'import/unambiguous': Linter.RuleEntry
-  'import/no-unassigned-import': Linter.RuleEntry<ImportNoUnassignedImport>
-  'import/no-useless-path-segments': Linter.RuleEntry<ImportNoUselessPathSegments>
-  'import/dynamic-import-chunkname': Linter.RuleEntry<ImportDynamicImportChunkname>
-  'import/no-import-module-exports': Linter.RuleEntry<ImportNoImportModuleExports>
-  'import/no-empty-named-blocks': Linter.RuleEntry
-  'import/exports-last': Linter.RuleEntry
-  'import/no-deprecated': Linter.RuleEntry
-  'import/imports-first': Linter.RuleEntry<ImportImportsFirst>
+  /**
+   * require \`return\` statements after callbacks
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
+   */
+  'node/callback-return'?: Linter.RuleEntry<NodeCallbackReturn>
+  /**
+   * enforce either \`module.exports\` or \`exports\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/exports-style.md
+   */
+  'node/exports-style'?: Linter.RuleEntry<NodeExportsStyle>
+  /**
+   * enforce the style of file extensions in \`import\` declarations
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/file-extension-in-import.md
+   */
+  'node/file-extension-in-import'?: Linter.RuleEntry<NodeFileExtensionInImport>
+  'node/global-require'?: Linter.RuleEntry<[]>
+  /**
+   * require error handling in callbacks
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/handle-callback-err.md
+   */
+  'node/handle-callback-err'?: Linter.RuleEntry<NodeHandleCallbackErr>
+  'node/no-callback-literal'?: Linter.RuleEntry<[]>
+  /**
+   * disallow deprecated APIs
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-deprecated-api.md
+   */
+  'node/no-deprecated-api'?: Linter.RuleEntry<NodeNoDeprecatedApi>
+  'node/no-exports-assign'?: Linter.RuleEntry<[]>
+  /**
+   * disallow \`import\` declarations which import extraneous modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-extraneous-import.md
+   */
+  'node/no-extraneous-import'?: Linter.RuleEntry<NodeNoExtraneousImport>
+  /**
+   * disallow \`require()\` expressions which import extraneous modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-extraneous-require.md
+   */
+  'node/no-extraneous-require'?: Linter.RuleEntry<NodeNoExtraneousRequire>
+  /**
+   * disallow \`import\` declarations which import non-existence modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-missing-import.md
+   */
+  'node/no-missing-import'?: Linter.RuleEntry<NodeNoMissingImport>
+  /**
+   * disallow \`require()\` expressions which import non-existence modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-missing-require.md
+   */
+  'node/no-missing-require'?: Linter.RuleEntry<NodeNoMissingRequire>
+  /**
+   * disallow \`require\` calls to be mixed with regular variable declarations
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-mixed-requires.md
+   */
+  'node/no-mixed-requires'?: Linter.RuleEntry<NodeNoMixedRequires>
+  'node/no-new-require'?: Linter.RuleEntry<[]>
+  'node/no-path-concat'?: Linter.RuleEntry<[]>
+  'node/no-process-env'?: Linter.RuleEntry<[]>
+  'node/no-process-exit'?: Linter.RuleEntry<[]>
+  /**
+   * disallow specified modules when loaded by \`import\` declarations
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-restricted-import.md
+   */
+  'node/no-restricted-import'?: Linter.RuleEntry<NodeNoRestrictedImport>
+  /**
+   * disallow specified modules when loaded by \`require\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-restricted-require.md
+   */
+  'node/no-restricted-require'?: Linter.RuleEntry<NodeNoRestrictedRequire>
+  /**
+   * disallow synchronous methods
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-sync.md
+   */
+  'node/no-sync'?: Linter.RuleEntry<NodeNoSync>
+  /**
+   * disallow \`bin\` files that npm ignores
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-bin.md
+   */
+  'node/no-unpublished-bin'?: Linter.RuleEntry<NodeNoUnpublishedBin>
+  /**
+   * disallow \`import\` declarations which import private modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-import.md
+   */
+  'node/no-unpublished-import'?: Linter.RuleEntry<NodeNoUnpublishedImport>
+  /**
+   * disallow \`require()\` expressions which import private modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-require.md
+   */
+  'node/no-unpublished-require'?: Linter.RuleEntry<NodeNoUnpublishedRequire>
+  /**
+   * disallow unsupported ECMAScript built-ins on the specified version
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/es-builtins.md
+   */
+  'node/no-unsupported-features/es-builtins'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesEsBuiltins>
+  /**
+   * disallow unsupported ECMAScript syntax on the specified version
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/es-syntax.md
+   */
+  'node/no-unsupported-features/es-syntax'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesEsSyntax>
+  /**
+   * disallow unsupported Node.js built-in APIs on the specified version
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/node-builtins.md
+   */
+  'node/no-unsupported-features/node-builtins'?: Linter.RuleEntry<NodeNoUnsupportedFeaturesNodeBuiltins>
+  /**
+   * enforce either \`Buffer\` or \`require("buffer").Buffer\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/buffer.md
+   */
+  'node/prefer-global/buffer'?: Linter.RuleEntry<NodePreferGlobalBuffer>
+  /**
+   * enforce either \`console\` or \`require("console")\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/console.md
+   */
+  'node/prefer-global/console'?: Linter.RuleEntry<NodePreferGlobalConsole>
+  /**
+   * enforce either \`process\` or \`require("process")\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/process.md
+   */
+  'node/prefer-global/process'?: Linter.RuleEntry<NodePreferGlobalProcess>
+  /**
+   * enforce either \`TextDecoder\` or \`require("util").TextDecoder\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/text-decoder.md
+   */
+  'node/prefer-global/text-decoder'?: Linter.RuleEntry<NodePreferGlobalTextDecoder>
+  /**
+   * enforce either \`TextEncoder\` or \`require("util").TextEncoder\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/text-encoder.md
+   */
+  'node/prefer-global/text-encoder'?: Linter.RuleEntry<NodePreferGlobalTextEncoder>
+  /**
+   * enforce either \`URLSearchParams\` or \`require("url").URLSearchParams\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url-search-params.md
+   */
+  'node/prefer-global/url-search-params'?: Linter.RuleEntry<NodePreferGlobalUrlSearchParams>
+  /**
+   * enforce either \`URL\` or \`require("url").URL\`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url.md
+   */
+  'node/prefer-global/url'?: Linter.RuleEntry<NodePreferGlobalUrl>
+  'node/prefer-promises/dns'?: Linter.RuleEntry<[]>
+  'node/prefer-promises/fs'?: Linter.RuleEntry<[]>
+  'node/process-exit-as-throw'?: Linter.RuleEntry<[]>
+  /**
+   * require correct usage of shebang
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/shebang.md
+   */
+  'node/shebang'?: Linter.RuleEntry<NodeShebang>
+  /**
+   * disallow third-party modules which are hiding core modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-hide-core-modules.md
+   * @deprecated
+   */
+  'node/no-hide-core-modules'?: Linter.RuleEntry<NodeNoHideCoreModules>
+  /**
+   * disallow unsupported ECMAScript features on the specified version
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features.md
+   * @deprecated
+   */
+  'node/no-unsupported-features'?: Linter.RuleEntry<NodeNoUnsupportedFeatures>
+  /**
+   * Ensure imports point to a file/module that can be resolved.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-unresolved.md
+   */
+  'import/no-unresolved'?: Linter.RuleEntry<ImportNoUnresolved>
+  /**
+   * Ensure named imports correspond to a named export in the remote file.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/named.md
+   */
+  'import/named'?: Linter.RuleEntry<ImportNamed>
+  'import/default'?: Linter.RuleEntry<[]>
+  /**
+   * Ensure imported namespaces contain dereferenced properties as they are dereferenced.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/namespace.md
+   */
+  'import/namespace'?: Linter.RuleEntry<ImportNamespace>
+  /**
+   * Forbid namespace (a.k.a. "wildcard" \`*\`) imports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-namespace.md
+   */
+  'import/no-namespace'?: Linter.RuleEntry<ImportNoNamespace>
+  'import/export'?: Linter.RuleEntry<[]>
+  'import/no-mutable-exports'?: Linter.RuleEntry<[]>
+  /**
+   * Ensure consistent use of file extension within the import path.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/extensions.md
+   */
+  'import/extensions'?: Linter.RuleEntry<ImportExtensions>
+  /**
+   * Enforce which files can be imported in a given folder.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-restricted-paths.md
+   */
+  'import/no-restricted-paths'?: Linter.RuleEntry<ImportNoRestrictedPaths>
+  /**
+   * Forbid importing the submodules of other modules.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-internal-modules.md
+   */
+  'import/no-internal-modules'?: Linter.RuleEntry<ImportNoInternalModules>
+  /**
+   * Prefer named exports to be grouped together in a single export declaration.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/group-exports.md
+   */
+  'import/group-exports'?: Linter.RuleEntry<ImportGroupExports>
+  /**
+   * Forbid importing packages through relative paths.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-relative-packages.md
+   */
+  'import/no-relative-packages'?: Linter.RuleEntry<ImportNoRelativePackages>
+  /**
+   * Forbid importing modules from parent directories.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-relative-parent-imports.md
+   */
+  'import/no-relative-parent-imports'?: Linter.RuleEntry<ImportNoRelativeParentImports>
+  /**
+   * Enforce or ban the use of inline type-only markers for named imports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/consistent-type-specifier-style.md
+   */
+  'import/consistent-type-specifier-style'?: Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>
+  'import/no-self-import'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid a module from importing a module with a dependency path back to itself.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-cycle.md
+   */
+  'import/no-cycle'?: Linter.RuleEntry<ImportNoCycle>
+  'import/no-named-default'?: Linter.RuleEntry<[]>
+  'import/no-named-as-default'?: Linter.RuleEntry<[]>
+  'import/no-named-as-default-member'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid anonymous values as default exports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-anonymous-default-export.md
+   */
+  'import/no-anonymous-default-export'?: Linter.RuleEntry<ImportNoAnonymousDefaultExport>
+  /**
+   * Forbid modules without exports, or exports without matching import in another module.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-unused-modules.md
+   */
+  'import/no-unused-modules'?: Linter.RuleEntry<ImportNoUnusedModules>
+  /**
+   * Forbid CommonJS \`require\` calls and \`module.exports\` or \`exports.*\`.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-commonjs.md
+   */
+  'import/no-commonjs'?: Linter.RuleEntry<ImportNoCommonjs>
+  'import/no-amd'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid repeated import of the same module in multiple places.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-duplicates.md
+   */
+  'import/no-duplicates'?: Linter.RuleEntry<ImportNoDuplicates>
+  /**
+   * Ensure all imports appear before other statements.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/first.md
+   */
+  'import/first'?: Linter.RuleEntry<ImportFirst>
+  /**
+   * Enforce the maximum number of dependencies a module can have.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/max-dependencies.md
+   */
+  'import/max-dependencies'?: Linter.RuleEntry<ImportMaxDependencies>
+  /**
+   * Forbid the use of extraneous packages.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-extraneous-dependencies.md
+   */
+  'import/no-extraneous-dependencies'?: Linter.RuleEntry<ImportNoExtraneousDependencies>
+  /**
+   * Forbid import of modules using absolute paths.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-absolute-path.md
+   */
+  'import/no-absolute-path'?: Linter.RuleEntry<ImportNoAbsolutePath>
+  /**
+   * Forbid Node.js builtin modules.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-nodejs-modules.md
+   */
+  'import/no-nodejs-modules'?: Linter.RuleEntry<ImportNoNodejsModules>
+  'import/no-webpack-loader-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce a convention in module import order.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/order.md
+   */
+  'import/order'?: Linter.RuleEntry<ImportOrder>
+  /**
+   * Enforce a newline after import statements.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/newline-after-import.md
+   */
+  'import/newline-after-import'?: Linter.RuleEntry<ImportNewlineAfterImport>
+  /**
+   * Prefer a default export if module exports a single name or multiple names.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/prefer-default-export.md
+   */
+  'import/prefer-default-export'?: Linter.RuleEntry<ImportPreferDefaultExport>
+  'import/no-default-export'?: Linter.RuleEntry<[]>
+  'import/no-named-export'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid \`require()\` calls with expressions.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-dynamic-require.md
+   */
+  'import/no-dynamic-require'?: Linter.RuleEntry<ImportNoDynamicRequire>
+  'import/unambiguous'?: Linter.RuleEntry<[]>
+  /**
+   * Forbid unassigned imports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-unassigned-import.md
+   */
+  'import/no-unassigned-import'?: Linter.RuleEntry<ImportNoUnassignedImport>
+  /**
+   * Forbid unnecessary path segments in import and require statements.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-useless-path-segments.md
+   */
+  'import/no-useless-path-segments'?: Linter.RuleEntry<ImportNoUselessPathSegments>
+  /**
+   * Enforce a leading comment with the webpackChunkName for dynamic imports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/dynamic-import-chunkname.md
+   */
+  'import/dynamic-import-chunkname'?: Linter.RuleEntry<ImportDynamicImportChunkname>
+  /**
+   * Forbid import statements with CommonJS module.exports.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-import-module-exports.md
+   */
+  'import/no-import-module-exports'?: Linter.RuleEntry<ImportNoImportModuleExports>
+  'import/no-empty-named-blocks'?: Linter.RuleEntry<[]>
+  'import/exports-last'?: Linter.RuleEntry<[]>
+  'import/no-deprecated'?: Linter.RuleEntry<[]>
+  /**
+   * Replaced by \`import-x/first\`.
+   * @see https://github.com/un-ts/eslint-plugin-import-x/blob/7b25c1cb95ee18acc1531002fd343e1e6031f9ed/docs/rules/imports-first.md
+   * @deprecated
+   */
+  'import/imports-first'?: Linter.RuleEntry<ImportImportsFirst>
 }
 
 /** ===== Declrations ===== **/
@@ -1115,7 +1354,7 @@ type _ImportExtensions0 =
         [k: string]: 'always' | 'ignorePackages' | 'never'
       }
     ]
-type ImportExtensions = [_ImportExtensions0]
+type ImportExtensions = _ImportExtensions0
 /** ----- import/no-restricted-paths ----- **/
 interface _ImportNoRestrictedPaths0 {
   /**
@@ -1151,7 +1390,7 @@ type ImportNoInternalModules = [_ImportNoInternalModules0]
 interface _ImportGroupExports0 {
   [k: string]: unknown
 }
-type ImportGroupExports = [_ImportGroupExports0]
+type ImportGroupExports = _ImportGroupExports0
 /** ----- import/no-relative-packages ----- **/
 interface _ImportNoRelativePackages0 {
   commonjs?: boolean
@@ -1278,7 +1517,7 @@ type _ImportNoCommonjs0 =
         allowConditionalRequire?: boolean
       }
     ]
-type ImportNoCommonjs = [_ImportNoCommonjs0]
+type ImportNoCommonjs = _ImportNoCommonjs0
 /** ----- import/no-duplicates ----- **/
 interface _ImportNoDuplicates0 {
   considerQueryString?: boolean

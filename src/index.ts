@@ -18,11 +18,12 @@ export async function pluginsToRulesOptions(plugins: Record<string, ESLint.Plugi
   const exports = [
     'import type { Linter } from \'eslint\'',
     `export interface RulesOptions {`,
-    ...resolved.map(({ typeName, name }) =>
-      typeName
-        ? `  '${name}': Linter.RuleEntry<${typeName}>`
-        : `  '${name}': Linter.RuleEntry`,
-    ),
+    ...resolved.flatMap(({ typeName, name, jsdoc }) => [
+      jsdoc?.length
+        ? `  /**\n${jsdoc.map(i => `   * ${i}`).join('\n')}\n   */`
+        : undefined,
+      `  '${name}'?: Linter.RuleEntry<${typeName}>`,
+    ]).filter(Boolean),
     `}`,
   ].join('\n')
   const typeDeclrations = resolved.flatMap(({ typeDeclrations }) => typeDeclrations).join('\n')
@@ -41,12 +42,12 @@ export async function ruleToOptions(name: string, rule: Rule.RuleModule) {
   if (!Array.isArray(schemas))
     schemas = [schemas]
 
-  const capitalizedName = name.replace(/(?:^|[^\w])([a-z])/g, (_, c) => c.toUpperCase())
+  const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z])/g, (_, c) => c.toUpperCase())
 
   if (!schemas.length) {
     return {
       name,
-      typeName: undefined,
+      typeName: '[]',
       typeDeclrations: [],
     }
   }
@@ -74,12 +75,25 @@ export async function ruleToOptions(name: string, rule: Rule.RuleModule) {
     .map(line => line.replace(/^(export )/, ''))
     .filter(Boolean)
 
-  lines.push(`type ${capitalizedName} = [${schemas.map((_, index) => `_${capitalizedName}${index}`).join(', ')}]`)
+  if (Array.isArray(meta.schema))
+    lines.push(`type ${capitalizedName} = [${schemas.map((_, index) => `_${capitalizedName}${index}`).join(', ')}]`)
+  else
+    lines.push(`type ${capitalizedName} = _${capitalizedName}0`)
+
+  const jsdoc: string[] = []
+
+  if (meta.docs?.description)
+    jsdoc.push(meta.docs.description)
+  if (meta.docs?.url)
+    jsdoc.push(`@see ${meta.docs.url}`)
+  if (meta.deprecated)
+    jsdoc.push('@deprecated')
 
   lines.unshift(`/** ----- ${name} ----- **/`)
 
   return {
     name,
+    jsdoc,
     typeName: capitalizedName,
     typeDeclrations: lines,
   }
