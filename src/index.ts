@@ -1,4 +1,4 @@
-import type { ESLint, Rule } from 'eslint'
+import type { ESLint, Linter, Rule } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
 import { compile as compileSchema } from 'json-schema-to-typescript'
 
@@ -23,6 +23,23 @@ export interface RuleOptionsTypeGenOptions {
   exportTypeName?: string
 }
 
+/**
+ * Generate types for rules from an array of ESLint configurations.
+ */
+export async function flatConfigsToRuleOptions(
+  configs: Linter.FlatConfig[],
+  options: RuleOptionsTypeGenOptions = {},
+) {
+  const plugins: Record<string, ESLint.Plugin> = {}
+  for (const config of configs)
+    Object.assign(plugins, config.plugins)
+
+  return pluginsToRuleOptions(plugins, options)
+}
+
+/**
+ * Generate types for rule from an object of ESLint plugins.
+ */
 export async function pluginsToRuleOptions(
   plugins: Record<string, ESLint.Plugin>,
   options: RuleOptionsTypeGenOptions = {},
