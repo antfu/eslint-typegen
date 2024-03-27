@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest'
-import { pluginsToRulesOptions } from '../src'
+import { pluginsToRuleOptions } from '../src'
 
 it('pluginsToRulesOptions', async () => {
-  expect(await pluginsToRulesOptions({
+  expect(await pluginsToRuleOptions({
     // @ts-expect-error missing types
     node: await import('eslint-plugin-n').then(m => m.default),
     // @ts-expect-error missing types
