@@ -36,6 +36,10 @@ await fs.writeFile('eslint-rules.d.ts', dts)
   </a>
 </p>
 
+## Credits
+
+The initial idea comes from [@Shinigami92](https://github.com/Shinigami92) via [this PR](https://github.com/eslint-stylistic/eslint-stylistic/pull/14), thanks to him!
+
 ## License
 
 [MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/antfu)
