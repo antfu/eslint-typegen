@@ -26,13 +26,13 @@ export async function pluginsToRulesOptions(plugins: Record<string, ESLint.Plugi
     ]).filter(Boolean),
     `}`,
   ].join('\n')
-  const typeDeclrations = resolved.flatMap(({ typeDeclrations }) => typeDeclrations).join('\n')
+  const typeDeclarations = resolved.flatMap(({ typeDeclarations }) => typeDeclarations).join('\n')
 
   return [
     exports,
     '',
-    '/** ===== Declrations ===== **/',
-    typeDeclrations,
+    '/** ===== Declarations ===== **/',
+    typeDeclarations,
   ].join('\n')
 }
 
@@ -48,7 +48,7 @@ export async function ruleToOptions(name: string, rule: Rule.RuleModule) {
     return {
       name,
       typeName: '[]',
-      typeDeclrations: [],
+      typeDeclarations: [],
     }
   }
 
@@ -95,6 +95,6 @@ export async function ruleToOptions(name: string, rule: Rule.RuleModule) {
     name,
     jsdoc,
     typeName: capitalizedName,
-    typeDeclrations: lines,
+    typeDeclarations: lines,
   }
 }
