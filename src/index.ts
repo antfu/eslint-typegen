@@ -41,7 +41,7 @@ export async function ruleToOptions(name: string, rule: Rule.RuleModule) {
   if (!Array.isArray(schemas))
     schemas = [schemas]
 
-  const capitalizedName = name.replace(/(?:^|[\/_-])([a-z])/g, (_, c) => c.toUpperCase())
+  const capitalizedName = name.replace(/(?:^|[^\w])([a-z])/g, (_, c) => c.toUpperCase())
 
   if (!schemas.length) {
     return {
