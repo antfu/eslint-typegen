@@ -160,7 +160,7 @@ export async function compileRule(
   if (!Array.isArray(schemas))
     schemas = [schemas]
 
-  const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z])/g, (_, c) => c.toUpperCase())
+  const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z|\d])/g, (_, c) => c.toUpperCase())
 
   const jsdoc: string[] = []
   if (meta.docs?.description)
