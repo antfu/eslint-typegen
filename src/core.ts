@@ -207,7 +207,7 @@ export async function compileRule(
   let lines: string[] = [
     await compile(
       Array.isArray(meta.schema)
-        ? { type: 'array', items: meta.schema }
+        ? { type: 'array', items: meta.schema, definitions: meta.schema?.[0]?.definitions }
         : meta.schema,
       capitalizedName,
       name,
