@@ -96,12 +96,16 @@ export async function pluginsToRulesDTS(
 
   const rules: [name: string, rule: Rule.RuleModule][] = []
 
-  for (const pluginName in plugins) {
-    const plugin = plugins[pluginName]
-    for (const ruleName in plugin.rules) {
-      const rule = plugin.rules[ruleName]
-      if ('meta' in rule)
-        rules.push([`${pluginName}/${ruleName}`, rule])
+  for (const [pluginName, plugin] of Object.entries(plugins)) {
+    for (const [ruleName, rule] of Object.entries(plugin.rules || {})) {
+      if ('meta' in rule) {
+        rules.push([
+          pluginName
+            ? `${pluginName}/${ruleName}`
+            : ruleName,
+          rule,
+        ])
+      }
     }
   }
 
@@ -123,6 +127,7 @@ export async function pluginsToRulesDTS(
       : []),
     ...(includeAugmentation
       ? [
+          '',
           `declare module 'eslint' {`,
           `  namespace Linter {`,
           `    interface RulesRecord extends ${exportTypeName} {}`,
@@ -134,7 +139,7 @@ export async function pluginsToRulesDTS(
     `export interface ${exportTypeName} {`,
     ...resolved.flatMap(({ typeName, name, jsdoc }) => [
       jsdoc?.length
-        ? `  /**\n${jsdoc.map(i => `   * ${i}`).join('\n')}\n   */`
+        ? `  /**\n${jsdoc.map(i => `   * ${i}`).join('\n').replaceAll(/\*\//g, '*\\/')}\n   */`
         : undefined,
       `  '${name}'?: Linter.RuleEntry<${typeName}>`,
     ]).filter(Boolean),

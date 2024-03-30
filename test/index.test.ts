@@ -18,6 +18,15 @@ it('pluginsToRuleOptions ts expect no warnings', async () => {
   })
 })
 
+it('core rules', async () => {
+  const { builtinRules } = await import('eslint/use-at-your-own-risk')
+
+  expect(await pluginsToRulesDTS({
+    '': { rules: Object.fromEntries(builtinRules.entries()) },
+  }))
+    .toMatchSnapshot()
+})
+
 it('flatConfigsToRuleOptions', async () => {
   expect(await flatConfigsToRulesDTS(await vue() as any))
     .toMatchSnapshot()

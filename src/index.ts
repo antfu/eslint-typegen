@@ -8,6 +8,13 @@ import { flatConfigsToPlugins, pluginsToRulesDTS } from './core'
 
 export interface TypeGenOptions extends FlatConfigsToPluginsOptions {
   /**
+   * Include core rules in the generated types.
+   *
+   * @default true
+   */
+  includeCoreRules?: boolean
+
+  /**
    * Path to the generated types file.
    */
   dtsPath?: string
@@ -21,10 +28,21 @@ export default async function typegen(
   options: TypeGenOptions = {},
 ): Promise<Linter.FlatConfig[]> {
   const {
+    includeCoreRules = true,
     dtsPath = 'eslint-typegen.d.ts',
   } = options
 
   const resolved = await configs
+
+  if (includeCoreRules) {
+    const { builtinRules } = await import('eslint/use-at-your-own-risk')
+    resolved.push({
+      plugins: {
+        '': { rules: Object.fromEntries(builtinRules.entries()) },
+      },
+    })
+  }
+
   const plugins = await flatConfigsToPlugins(resolved, options)
   const hashSource = Object.entries(plugins)
     .map(([n, p]) => [p.meta?.name, p.meta?.version].filter(Boolean).join('@') || p.name || n)
