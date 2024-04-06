@@ -1075,7 +1075,7 @@ export interface RuleOptions {
    */
   'no-trailing-spaces'?: Linter.RuleEntry<NoTrailingSpaces>
   /**
-   * Disallow the use of undeclared variables unless mentioned in \`/*global */\` comments
+   * Disallow the use of undeclared variables unless mentioned in \`/*global *\\/\` comments
    * @see https://eslint.org/docs/latest/rules/no-undef
    */
   'no-undef'?: Linter.RuleEntry<NoUndef>
