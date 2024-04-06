@@ -65,6 +65,8 @@ export default async function typegen(
     fs.writeFile(dtsPath, dts, 'utf-8')
   }
 
-  resolved.pop()
+  if (includeCoreRules)
+    resolved.pop()
+
   return resolved
 }
