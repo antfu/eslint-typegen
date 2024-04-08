@@ -33,17 +33,21 @@ export default async function typegen(
   } = options
 
   const resolved = await configs
+  let configsInput = resolved
 
   if (includeCoreRules) {
     const { builtinRules } = await import('eslint/use-at-your-own-risk')
-    resolved.push({
-      plugins: {
-        '': { rules: Object.fromEntries(builtinRules.entries()) },
+    configsInput = [
+      {
+        plugins: {
+          '': { rules: Object.fromEntries(builtinRules.entries()) },
+        },
+        ...configsInput,
       },
-    })
+    ]
   }
 
-  const plugins = await flatConfigsToPlugins(resolved, options)
+  const plugins = await flatConfigsToPlugins(configsInput, options)
   const hashSource = Object.entries(plugins)
     .map(([n, p]) => [p.meta?.name, p.meta?.version].filter(Boolean).join('@') || p.name || n)
     .sort()
