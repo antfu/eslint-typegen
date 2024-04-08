@@ -2,7 +2,7 @@
   "name": "eslint-typegen",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@8.15.6",
   "description": "Generate types from ESLint rule schemas automatically, with auto-completion and type-checking for rule options.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -57,28 +57,31 @@
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
+  "peerDependencies": {
+    "eslint": "^8.45.0 || ^9.0.0"
+  },
   "dependencies": {
-    "@types/eslint": "^8.56.6",
+    "@types/eslint": "^8.56.7",
     "json-schema-to-typescript-lite": "^14.0.0",
     "ohash": "^1.1.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.1",
+    "@antfu/eslint-config": "^2.13.0",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.5",
     "bumpp": "^9.4.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "esno": "^4.7.0",
     "json-schema-to-typescript": "^13.1.2",
     "lint-staged": "^15.2.2",
-    "pnpm": "^8.15.5",
+    "pnpm": "^8.15.6",
     "rimraf": "^5.0.5",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "unbuild": "^2.0.0",
-    "vite": "^5.2.6",
+    "vite": "^5.2.8",
     "vitest": "^1.4.0"
   },
   "pnpm": {
