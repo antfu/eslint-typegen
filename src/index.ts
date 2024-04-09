@@ -42,8 +42,8 @@ export default async function typegen(
         plugins: {
           '': { rules: Object.fromEntries(builtinRules.entries()) },
         },
-        ...configsInput,
       },
+      ...configsInput,
     ]
   }
 
