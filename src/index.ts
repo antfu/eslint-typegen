@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 import type { Linter } from 'eslint'
 import { hash as makeHash } from 'ohash'
 import { version } from '../package.json'
-import type { FlatConfigsToPluginsOptions, FlatConfigsToRulesOptions } from './core'
+import type { FlatConfigsToRulesOptions } from './core'
 import { flatConfigsToPlugins, pluginsToRulesDTS } from './core'
 
 export interface TypeGenOptions extends FlatConfigsToRulesOptions {
