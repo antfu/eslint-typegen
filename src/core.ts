@@ -26,6 +26,15 @@ export interface RulesTypeGenOptions {
   includeAugmentation?: boolean
 
   /**
+   * Augment the `DefaultConfigNamesMap` interface for `eslint-flat-config-utils`
+   * For auto-completion of config names etc.
+   *
+   * @see https://github.com/antfu/eslint-flat-config-utils
+   * @default false
+   */
+  augmentFlatConfigUtils?: boolean
+
+  /**
    * The name of the exported type.
    *
    * @default 'RuleOptions'
@@ -84,14 +93,16 @@ export async function flatConfigsToRulesDTS(
  */
 export async function pluginsToRulesDTS(
   plugins: Record<string, ESLint.Plugin>,
-  options: RulesTypeGenOptions = {},
+  options: RulesTypeGenOptions & { configNames?: string[] } = {},
 ) {
   const {
     includeTypeImports = true,
     includeIgnoreComments = true,
     includeAugmentation = true,
+    augmentFlatConfigUtils = false,
     exportTypeName = 'RuleOptions',
     compileOptions = {},
+    configNames = [],
   } = options
 
   const rules: [name: string, rule: Rule.RuleModule][] = []
@@ -131,6 +142,17 @@ export async function pluginsToRulesDTS(
           `declare module 'eslint' {`,
           `  namespace Linter {`,
           `    interface RulesRecord extends ${exportTypeName} {}`,
+          `  }`,
+          `}`,
+        ]
+      : []),
+    ...(augmentFlatConfigUtils && configNames.length
+      ? [
+          '',
+          '// @ts-ignore - In case the package is not installed',
+          `declare module 'eslint-flat-config-utils' {`,
+          `  interface DefaultConfigNamesMap {`,
+          ...configNames.map(name => `    '${name}'?: true,`),
           `  }`,
           `}`,
         ]

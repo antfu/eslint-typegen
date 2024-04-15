@@ -3,10 +3,10 @@ import fs from 'node:fs/promises'
 import type { Linter } from 'eslint'
 import { hash as makeHash } from 'ohash'
 import { version } from '../package.json'
-import type { FlatConfigsToPluginsOptions } from './core'
+import type { FlatConfigsToPluginsOptions, FlatConfigsToRulesOptions } from './core'
 import { flatConfigsToPlugins, pluginsToRulesDTS } from './core'
 
-export interface TypeGenOptions extends FlatConfigsToPluginsOptions {
+export interface TypeGenOptions extends FlatConfigsToRulesOptions {
   /**
    * Include core rules in the generated types.
    *
@@ -48,10 +48,18 @@ export default async function typegen(
   }
 
   const plugins = await flatConfigsToPlugins(configsInput, options)
-  const hashSource = Object.entries(plugins)
-    .map(([n, p]) => [p.meta?.name, p.meta?.version].filter(Boolean).join('@') || p.name || n)
-    .sort()
-  const hash = makeHash(`${hashSource} ${version}`)
+  const configNames = configsInput.flatMap(c => c.name).filter(Boolean) as string[]
+  const hashSource = [
+    // version of eslint-typegen
+    version,
+    // plugins name and version
+    ...Object.entries(plugins)
+      .map(([n, p]) => [p.meta?.name, p.meta?.version].filter(Boolean).join('@') || p.name || n)
+      .sort(),
+    // config names
+    ...configNames,
+  ].join(' ')
+  const hash = makeHash(hashSource)
 
   const previousHash = existsSync(dtsPath)
     ? (await fs.readFile(dtsPath, 'utf-8')).match(/\/\* eslint-typegen-hash: ([^\s]*)? \*\//)?.[1]?.trim()
@@ -63,7 +71,10 @@ export default async function typegen(
       '/* You might want to include this file in tsconfig.json but excluded from git */',
       `/* eslint-typegen-hash: ${hash} */`,
       '',
-      await pluginsToRulesDTS(plugins),
+      await pluginsToRulesDTS(plugins, {
+        ...options,
+        configNames,
+      }),
     ].join('\n')
 
     fs.writeFile(dtsPath, dts, 'utf-8')
