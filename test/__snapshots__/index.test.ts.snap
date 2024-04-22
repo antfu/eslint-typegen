@@ -2379,7 +2379,7 @@ type NoConsole = []|[{
 }]
 // ----- no-constant-condition -----
 type NoConstantCondition = []|[{
-  checkLoops?: boolean
+  checkLoops?: ("all" | "allExceptWhileTrue" | "none" | true | false)
 }]
 // ----- no-duplicate-imports -----
 type NoDuplicateImports = []|[{
@@ -4935,7 +4935,7 @@ type VueNoConsole = []|[{
 }]
 // ----- vue/no-constant-condition -----
 type VueNoConstantCondition = []|[{
-  checkLoops?: boolean
+  checkLoops?: ("all" | "allExceptWhileTrue" | "none" | true | false)
 }]
 // ----- vue/no-deprecated-model-definition -----
 type VueNoDeprecatedModelDefinition = []|[{
