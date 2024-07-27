@@ -8,12 +8,3 @@ export default typegen(antfu({
   vue: true,
   typescript: true,
 }))
-
-/**
- * @type {import('eslint').Linter.FlatConfig}
- */
-// eslint-disable-next-line unused-imports/no-unused-vars
-const config = {
-  rules: {
-  },
-}

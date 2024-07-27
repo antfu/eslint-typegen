@@ -48,7 +48,7 @@ export interface RulesTypeGenOptions {
 }
 
 export interface FlatConfigsToPluginsOptions {
-  filterConfig?: (config: Linter.FlatConfig) => boolean
+  filterConfig?: (config: Linter.Config) => boolean
   filterPlugin?: (name: string, plugin: ESLint.Plugin) => boolean
 }
 
@@ -57,7 +57,7 @@ export interface FlatConfigsToRulesOptions
 }
 
 export async function flatConfigsToPlugins(
-  configs: Linter.FlatConfig[],
+  configs: Linter.Config[],
   options: FlatConfigsToPluginsOptions = {},
 ) {
   const plugins: Record<string, ESLint.Plugin> = {}
@@ -79,7 +79,7 @@ export async function flatConfigsToPlugins(
  * Generate types for rules from an array of ESLint configurations.
  */
 export async function flatConfigsToRulesDTS(
-  configs: Linter.FlatConfig[],
+  configs: Linter.Config[],
   options: FlatConfigsToRulesOptions = {},
 ) {
   return pluginsToRulesDTS(
@@ -187,7 +187,7 @@ export async function compileRule(
   if (!Array.isArray(schemas))
     schemas = [schemas]
 
-  const capitalizedName = name.replace(/(?:^|[^\w]+)([a-z|\d])/g, (_, c) => c.toUpperCase())
+  const capitalizedName = name.replace(/(?:^|\W+)([a-z|\d])/g, (_, c) => c.toUpperCase())
 
   const jsdoc: string[] = []
   if (meta.docs?.description)

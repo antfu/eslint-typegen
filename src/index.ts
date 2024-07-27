@@ -24,9 +24,9 @@ export interface TypeGenOptions extends FlatConfigsToRulesOptions {
  * Wrap with resolved flat configs to generates types for rules.
  */
 export default async function typegen(
-  configs: Promise<Linter.FlatConfig[]> | Linter.FlatConfig[],
+  configs: Promise<Linter.Config[]> | Linter.Config[],
   options: TypeGenOptions = {},
-): Promise<Linter.FlatConfig[]> {
+): Promise<Linter.Config[]> {
   const {
     includeCoreRules = true,
     dtsPath = 'eslint-typegen.d.ts',
@@ -62,7 +62,7 @@ export default async function typegen(
   const hash = makeHash(hashSource)
 
   const previousHash = existsSync(dtsPath)
-    ? (await fs.readFile(dtsPath, 'utf-8')).match(/\/\* eslint-typegen-hash: ([^\s]*)? \*\//)?.[1]?.trim()
+    ? (await fs.readFile(dtsPath, 'utf-8')).match(/\/\* eslint-typegen-hash: (\S*) \*\//)?.[1]?.trim()
     : undefined
 
   if (previousHash !== hash) {
