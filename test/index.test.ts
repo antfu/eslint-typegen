@@ -8,7 +8,7 @@ it('pluginsToRuleOptions', async () => {
     import: await import('eslint-plugin-import-x').then(m => m.default),
     antfu: await import('eslint-plugin-antfu').then(m => m.default),
   }))
-    .toMatchSnapshot()
+    .toMatchFileSnapshot('./output/plugins.d.ts')
 })
 
 it('pluginsToRuleOptions ts expect no warnings', async () => {
@@ -24,10 +24,18 @@ it('core rules', async () => {
   expect(await pluginsToRulesDTS({
     '': { rules: Object.fromEntries(builtinRules.entries()) },
   }))
-    .toMatchSnapshot()
+    .toMatchFileSnapshot('./output/core-rules.d.ts')
 })
 
 it('flatConfigsToRuleOptions', async () => {
   expect(await flatConfigsToRulesDTS(await vue() as any))
-    .toMatchSnapshot()
+    .toMatchFileSnapshot('./output/flat-config-vue.d.ts')
+})
+
+it('jsx-a11y', async () => {
+  expect(await pluginsToRulesDTS({
+    // @ts-expect-error missing types
+    'jsx-a11y': await import('eslint-plugin-jsx-a11y').then(m => m.default),
+  }))
+    .toMatchFileSnapshot('./output/jsx-a11y.d.ts')
 })

@@ -1,7 +1,7 @@
 import type { ESLint, Linter, Rule } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
 import type { Options as CompileOptions } from 'json-schema-to-typescript-lite'
-import { compile as compileSchema } from 'json-schema-to-typescript-lite'
+import { compile as compileSchema, normalizeIdentifier } from 'json-schema-to-typescript-lite'
 
 export interface RulesTypeGenOptions {
   /**
@@ -178,7 +178,7 @@ export async function pluginsToRulesDTS(
 }
 
 export async function compileRule(
-  name: string,
+  ruleName: string,
   rule: Rule.RuleModule,
   compileOptions: Partial<CompileOptions> = {},
 ) {
@@ -187,7 +187,7 @@ export async function compileRule(
   if (!Array.isArray(schemas))
     schemas = [schemas]
 
-  const capitalizedName = name.replace(/(?:^|\W+)([a-z|\d])/g, (_, c) => c.toUpperCase())
+  const id = normalizeIdentifier(ruleName)
 
   const jsdoc: string[] = []
   if (meta.docs?.description)
@@ -200,46 +200,43 @@ export async function compileRule(
   if (!meta.schema || !schemas.length) {
     return {
       jsdoc,
-      name,
+      name: ruleName,
       typeName: '[]',
       typeDeclarations: [],
     }
   }
 
-  async function compile(schema: JSONSchema4, name: string, ruleName: string) {
-    try {
-      const compiled = await compileSchema(schema, name, {
-        unreachableDefinitions: false,
-        strictIndexSignatures: true,
-        customName(schema, keyName) {
-          const resolved = schema.title || schema.$id || keyName
-          if (resolved === name)
-            return name
-          if (!resolved)
-            return undefined!
-          return `_${name}_${resolved}`
-        },
-        ...compileOptions,
-      })
-      return compiled
-        .replace(/\/\*[\s\S]*?\*\//g, '')
-    }
-    catch (error) {
-      console.warn(`Failed to compile schema ${name} for rule ${ruleName}. Falling back to unknown.`)
-      console.error(error)
-      return `export type ${name} = unknown\n`
-    }
-  }
+  let lines: string[] = []
 
-  let lines: string[] = [
-    await compile(
-      Array.isArray(meta.schema)
-        ? { type: 'array', items: meta.schema, definitions: meta.schema?.[0]?.definitions }
-        : meta.schema,
-      capitalizedName,
-      name,
-    ),
-  ]
+  const schema: JSONSchema4 = Array.isArray(meta.schema)
+    ? { type: 'array', items: meta.schema, definitions: meta.schema?.[0]?.definitions }
+    : meta.schema
+
+  try {
+    const compiled = await compileSchema(schema, id, {
+      unreachableDefinitions: false,
+      strictIndexSignatures: true,
+      customName(schema, keyName) {
+        const resolved = schema.title || schema.$id || keyName
+        if (resolved === id) {
+          return id
+        }
+        if (!resolved)
+          return undefined!
+        return `_${normalizeIdentifier(`${id}_${resolved}`)}`
+      },
+      ...compileOptions,
+    })
+    lines.push(
+      compiled
+        .replace(/\/\*[\s\S]*?\*\//g, ''),
+    )
+  }
+  catch (error) {
+    console.warn(`Failed to compile schema ${ruleName} for rule ${ruleName}. Falling back to unknown.`)
+    console.error(error)
+    lines.push(`export type ${ruleName} = unknown\n`)
+  }
 
   lines = lines
     .join('\n')
@@ -247,12 +244,12 @@ export async function compileRule(
     .map(line => line.replace(/^(export )/, ''))
     .filter(Boolean)
 
-  lines.unshift(`// ----- ${name} -----`)
+  lines.unshift(`// ----- ${ruleName} -----`)
 
   return {
-    name,
+    name: ruleName,
     jsdoc,
-    typeName: capitalizedName,
+    typeName: id,
     typeDeclarations: lines,
   }
 }
