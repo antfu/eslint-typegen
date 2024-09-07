@@ -61,7 +61,6 @@
     "eslint": "^8.45.0 || ^9.0.0"
   },
   "dependencies": {
-    "@types/eslint": "^9.6.1",
     "json-schema-to-typescript-lite": "^14.1.0",
     "ohash": "^1.1.3"
   },

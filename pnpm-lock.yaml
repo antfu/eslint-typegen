@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@types/eslint':
-        specifier: ^9.6.1
-        version: 9.6.1
       json-schema-to-typescript-lite:
         specifier: ^14.1.0
         version: 14.1.0
