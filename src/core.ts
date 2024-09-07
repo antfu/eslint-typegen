@@ -1,7 +1,7 @@
+import { compile as compileSchema, normalizeIdentifier } from 'json-schema-to-typescript-lite'
 import type { ESLint, Linter, Rule } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
 import type { Options as CompileOptions } from 'json-schema-to-typescript-lite'
-import { compile as compileSchema, normalizeIdentifier } from 'json-schema-to-typescript-lite'
 
 export interface RulesTypeGenOptions {
   /**

@@ -1,10 +1,10 @@
 import { existsSync } from 'node:fs'
 import fs from 'node:fs/promises'
-import type { Linter } from 'eslint'
 import { hash as makeHash } from 'ohash'
+import type { Linter } from 'eslint'
 import { version } from '../package.json'
-import type { FlatConfigsToRulesOptions } from './core'
 import { flatConfigsToPlugins, pluginsToRulesDTS } from './core'
+import type { FlatConfigsToRulesOptions } from './core'
 
 export interface TypeGenOptions extends FlatConfigsToRulesOptions {
   /**

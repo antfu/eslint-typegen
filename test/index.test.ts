@@ -1,5 +1,5 @@
-import { expect, it } from 'vitest'
 import { vue } from '@antfu/eslint-config'
+import { expect, it } from 'vitest'
 import { flatConfigsToRulesDTS, pluginsToRulesDTS } from '../src/core'
 
 it('pluginsToRuleOptions', async () => {

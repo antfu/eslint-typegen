@@ -42,9 +42,9 @@ You can find low-level APIs in the `eslint-typegen/core` modules.
 
 ```ts
 import fs from 'node:fs/promises'
-import { pluginsToRulesDTS } from 'eslint-typegen/core'
 import pluginTs from '@typescript-eslint/eslint-plugin'
 import pluginN from 'eslint-plugin-n'
+import { pluginsToRulesDTS } from 'eslint-typegen/core'
 
 const dts = await pluginsToRulesDTS({
   '@typescript-eslint': pluginTs,
