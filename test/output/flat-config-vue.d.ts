@@ -126,7 +126,7 @@ export interface RuleOptions {
    */
   'vue/define-emits-declaration'?: Linter.RuleEntry<VueDefineEmitsDeclaration>
   /**
-   * enforce order of `defineEmits` and `defineProps` compiler macros
+   * enforce order of compiler macros (`defineProps`, `defineEmits`, etc.)
    * @see https://eslint.vuejs.org/rules/define-macros-order.html
    */
   'vue/define-macros-order'?: Linter.RuleEntry<VueDefineMacrosOrder>
@@ -221,7 +221,7 @@ export interface RuleOptions {
    */
   'vue/jsx-uses-vars'?: Linter.RuleEntry<[]>
   /**
-   * Enforce consistent spacing between keys and values in object literal properties in `<template>`
+   * Enforce consistent spacing between property names and type annotations in types and interfaces in `<template>`
    * @see https://eslint.vuejs.org/rules/key-spacing.html
    */
   'vue/key-spacing'?: Linter.RuleEntry<VueKeySpacing>
@@ -255,6 +255,16 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/max-lines-per-block.html
    */
   'vue/max-lines-per-block'?: Linter.RuleEntry<VueMaxLinesPerBlock>
+  /**
+   * enforce maximum number of props in Vue component
+   * @see https://eslint.vuejs.org/rules/max-props.html
+   */
+  'vue/max-props'?: Linter.RuleEntry<VueMaxProps>
+  /**
+   * enforce maximum depth of template
+   * @see https://eslint.vuejs.org/rules/max-template-depth.html
+   */
+  'vue/max-template-depth'?: Linter.RuleEntry<VueMaxTemplateDepth>
   /**
    * require component names to be always multi-word
    * @see https://eslint.vuejs.org/rules/multi-word-component-names.html
@@ -311,7 +321,7 @@ export interface RuleOptions {
    */
   'vue/no-child-content'?: Linter.RuleEntry<VueNoChildContent>
   /**
-   * disallow accessing computed properties in `data`.
+   * disallow accessing computed properties in `data`
    * @see https://eslint.vuejs.org/rules/no-computed-properties-in-data.html
    */
   'vue/no-computed-properties-in-data'?: Linter.RuleEntry<[]>
@@ -859,7 +869,7 @@ export interface RuleOptions {
    */
   'vue/padding-lines-in-component-definition'?: Linter.RuleEntry<VuePaddingLinesInComponentDefinition>
   /**
-   * enforce use of `defineOptions` instead of default export.
+   * enforce use of `defineOptions` instead of default export
    * @see https://eslint.vuejs.org/rules/prefer-define-options.html
    */
   'vue/prefer-define-options'?: Linter.RuleEntry<[]>
@@ -894,7 +904,7 @@ export interface RuleOptions {
    */
   'vue/prop-name-casing'?: Linter.RuleEntry<VuePropNameCasing>
   /**
-   * Require quotes around object literal property names in `<template>`
+   * Require quotes around object literal, type literal, interfaces and enums property names in `<template>`
    * @see https://eslint.vuejs.org/rules/quote-props.html
    */
   'vue/quote-props'?: Linter.RuleEntry<VueQuoteProps>
@@ -903,6 +913,11 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/require-component-is.html
    */
   'vue/require-component-is'?: Linter.RuleEntry<[]>
+  /**
+   * require components to be the default export
+   * @see https://eslint.vuejs.org/rules/require-default-export.html
+   */
+  'vue/require-default-export'?: Linter.RuleEntry<[]>
   /**
    * require default value for props
    * @see https://eslint.vuejs.org/rules/require-default-prop.html
@@ -972,7 +987,7 @@ export interface RuleOptions {
    * require control the display of the content inside `<transition>`
    * @see https://eslint.vuejs.org/rules/require-toggle-inside-transition.html
    */
-  'vue/require-toggle-inside-transition'?: Linter.RuleEntry<[]>
+  'vue/require-toggle-inside-transition'?: Linter.RuleEntry<VueRequireToggleInsideTransition>
   /**
    * enforce adding type declarations to object props
    * @see https://eslint.vuejs.org/rules/require-typed-object-prop.html
@@ -1355,7 +1370,7 @@ type VueCustomEventNameCasing = ([]|[("kebab-case" | "camelCase")]|[("kebab-case
 type VueDefineEmitsDeclaration = []|[("type-based" | "type-literal" | "runtime")]
 // ----- vue/define-macros-order -----
 type VueDefineMacrosOrder = []|[{
-  order?: ("defineEmits" | "defineProps" | "defineOptions" | "defineSlots" | "defineModel")[]
+  order?: string[]
   defineExposeLast?: boolean
 }]
 // ----- vue/define-props-declaration -----
@@ -1890,6 +1905,14 @@ type VueMaxLinesPerBlock = []|[{
   script?: number
   skipBlankLines?: boolean
 }]
+// ----- vue/max-props -----
+type VueMaxProps = []|[{
+  maxProps?: number
+}]
+// ----- vue/max-template-depth -----
+type VueMaxTemplateDepth = []|[{
+  maxDepth?: number
+}]
 // ----- vue/multi-word-component-names -----
 type VueMultiWordComponentNames = []|[{
   ignores?: string[]
@@ -2303,6 +2326,10 @@ type VueRequireMacroVariableName = []|[{
 // ----- vue/require-prop-comment -----
 type VueRequirePropComment = []|[{
   type?: ("JSDoc" | "line" | "block" | "any")
+}]
+// ----- vue/require-toggle-inside-transition -----
+type VueRequireToggleInsideTransition = []|[{
+  additionalDirectives?: string[]
 }]
 // ----- vue/return-in-computed-property -----
 type VueReturnInComputedProperty = []|[{

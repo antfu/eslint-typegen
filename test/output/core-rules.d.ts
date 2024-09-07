@@ -1400,7 +1400,7 @@ export interface RuleOptions {
    * Enforce the use of `u` or `v` flag on RegExp
    * @see https://eslint.org/docs/latest/rules/require-unicode-regexp
    */
-  'require-unicode-regexp'?: Linter.RuleEntry<[]>
+  'require-unicode-regexp'?: Linter.RuleEntry<RequireUnicodeRegexp>
   /**
    * Require generator functions to contain `yield`
    * @see https://eslint.org/docs/latest/rules/require-yield
@@ -2884,6 +2884,10 @@ type Radix = []|[("always" | "as-needed")]
 // ----- require-atomic-updates -----
 type RequireAtomicUpdates = []|[{
   allowProperties?: boolean
+}]
+// ----- require-unicode-regexp -----
+type RequireUnicodeRegexp = []|[{
+  requireFlag?: ("u" | "v")
 }]
 // ----- rest-spread-spacing -----
 type RestSpreadSpacing = []|[("always" | "never")]
