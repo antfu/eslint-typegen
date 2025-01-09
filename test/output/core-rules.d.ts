@@ -147,7 +147,7 @@ export interface RuleOptions {
    */
   'default-case'?: Linter.RuleEntry<DefaultCase>
   /**
-   * Enforce default clauses in switch statements to be last
+   * Enforce `default` clauses in switch statements to be last
    * @see https://eslint.org/docs/latest/rules/default-case-last
    */
   'default-case-last'?: Linter.RuleEntry<[]>
@@ -179,7 +179,7 @@ export interface RuleOptions {
    */
   'eqeqeq'?: Linter.RuleEntry<Eqeqeq>
   /**
-   * Enforce "for" loop update clause moving the counter in the right direction
+   * Enforce `for` loop update clause moving the counter in the right direction
    * @see https://eslint.org/docs/latest/rules/for-direction
    */
   'for-direction'?: Linter.RuleEntry<[]>
@@ -487,7 +487,7 @@ export interface RuleOptions {
    */
   'no-class-assign'?: Linter.RuleEntry<[]>
   /**
-   * Disallow comparing against -0
+   * Disallow comparing against `-0`
    * @see https://eslint.org/docs/latest/rules/no-compare-neg-zero
    */
   'no-compare-neg-zero'?: Linter.RuleEntry<[]>
@@ -896,7 +896,7 @@ export interface RuleOptions {
    */
   'no-octal-escape'?: Linter.RuleEntry<[]>
   /**
-   * Disallow reassigning `function` parameters
+   * Disallow reassigning function parameters
    * @see https://eslint.org/docs/latest/rules/no-param-reassign
    */
   'no-param-reassign'?: Linter.RuleEntry<NoParamReassign>
@@ -991,7 +991,7 @@ export interface RuleOptions {
    */
   'no-return-await'?: Linter.RuleEntry<[]>
   /**
-   * Disallow `javascript:` urls
+   * Disallow `javascript:` URLs
    * @see https://eslint.org/docs/latest/rules/no-script-url
    */
   'no-script-url'?: Linter.RuleEntry<[]>
@@ -1334,7 +1334,7 @@ export interface RuleOptions {
    */
   'prefer-object-has-own'?: Linter.RuleEntry<[]>
   /**
-   * Disallow using Object.assign with an object literal as the first argument and prefer the use of object spread instead
+   * Disallow using `Object.assign` with an object literal as the first argument and prefer the use of object spread instead
    * @see https://eslint.org/docs/latest/rules/prefer-object-spread
    */
   'prefer-object-spread'?: Linter.RuleEntry<[]>
@@ -1397,7 +1397,7 @@ export interface RuleOptions {
    */
   'require-await'?: Linter.RuleEntry<[]>
   /**
-   * Enforce the use of `u` or `v` flag on RegExp
+   * Enforce the use of `u` or `v` flag on regular expressions
    * @see https://eslint.org/docs/latest/rules/require-unicode-regexp
    */
   'require-unicode-regexp'?: Linter.RuleEntry<RequireUnicodeRegexp>
@@ -1664,6 +1664,7 @@ type CommaStyle = []|[("first" | "last")]|[("first" | "last"), {
 type Complexity = []|[(number | {
   maximum?: number
   max?: number
+  variant?: ("classic" | "modified")
 })]
 // ----- computed-property-spacing -----
 type ComputedPropertySpacing = []|[("always" | "never")]|[("always" | "never"), {
@@ -2920,6 +2921,7 @@ type SortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   natural?: boolean
   minKeys?: number
   allowLineSeparatedGroups?: boolean
+  ignoreComputedKeys?: boolean
 }]
 // ----- sort-vars -----
 type SortVars = []|[{

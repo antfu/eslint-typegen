@@ -346,6 +346,11 @@ export interface RuleOptions {
    */
   'vue/no-deprecated-data-object-declaration'?: Linter.RuleEntry<[]>
   /**
+   * disallow using deprecated `$delete` and `$set` (in Vue.js 3.0.0+)
+   * @see https://eslint.vuejs.org/rules/no-deprecated-delete-set.html
+   */
+  'vue/no-deprecated-delete-set'?: Linter.RuleEntry<[]>
+  /**
    * disallow using deprecated `destroyed` and `beforeDestroy` lifecycle hooks (in Vue.js 3.0.0+)
    * @see https://eslint.vuejs.org/rules/no-deprecated-destroyed-lifecycle.html
    */
@@ -454,7 +459,7 @@ export interface RuleOptions {
    * enforce `inheritAttrs` to be set to `false` when using `v-bind="$attrs"`
    * @see https://eslint.vuejs.org/rules/no-duplicate-attr-inheritance.html
    */
-  'vue/no-duplicate-attr-inheritance'?: Linter.RuleEntry<[]>
+  'vue/no-duplicate-attr-inheritance'?: Linter.RuleEntry<VueNoDuplicateAttrInheritance>
   /**
    * disallow duplication of attributes
    * @see https://eslint.vuejs.org/rules/no-duplicate-attributes.html
@@ -899,6 +904,11 @@ export interface RuleOptions {
    */
   'vue/prefer-true-attribute-shorthand'?: Linter.RuleEntry<VuePreferTrueAttributeShorthand>
   /**
+   * require using `useTemplateRef` instead of `ref`/`shallowRef` for template refs
+   * @see https://eslint.vuejs.org/rules/prefer-use-template-ref.html
+   */
+  'vue/prefer-use-template-ref'?: Linter.RuleEntry<[]>
+  /**
    * enforce specific casing for the Prop name in Vue components
    * @see https://eslint.vuejs.org/rules/prop-name-casing.html
    */
@@ -1009,6 +1019,11 @@ export interface RuleOptions {
    */
   'vue/require-valid-default-prop'?: Linter.RuleEntry<[]>
   /**
+   * enforce using only specific component names
+   * @see https://eslint.vuejs.org/rules/restricted-component-names.html
+   */
+  'vue/restricted-component-names'?: Linter.RuleEntry<VueRestrictedComponentNames>
+  /**
    * enforce that a return statement is present in computed property
    * @see https://eslint.vuejs.org/rules/return-in-computed-property.html
    */
@@ -1034,6 +1049,11 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
    */
   'vue/singleline-html-element-content-newline'?: Linter.RuleEntry<VueSinglelineHtmlElementContentNewline>
+  /**
+   * enforce specific casing for slot names
+   * @see https://eslint.vuejs.org/rules/slot-name-casing.html
+   */
+  'vue/slot-name-casing'?: Linter.RuleEntry<VueSlotNameCasing>
   /**
    * enforce sort-keys in a manner that is compatible with order-in-components
    * @see https://eslint.vuejs.org/rules/sort-keys.html
@@ -1271,6 +1291,7 @@ type VueAttributeHyphenation = []|[("always" | "never")]|[("always" | "never"), 
   } & {
     [k: string]: unknown | undefined
   })[]
+  ignoreTags?: string[]
 }]
 // ----- vue/attributes-order -----
 type VueAttributesOrder = []|[{
@@ -1323,6 +1344,8 @@ type VueCommaDangle = []|[(_VueCommaDangleValue | {
   imports?: _VueCommaDangleValueWithIgnore
   exports?: _VueCommaDangleValueWithIgnore
   functions?: _VueCommaDangleValueWithIgnore
+  importAttributes?: _VueCommaDangleValueWithIgnore
+  dynamicImports?: _VueCommaDangleValueWithIgnore
   enums?: _VueCommaDangleValueWithIgnore
   generics?: _VueCommaDangleValueWithIgnore
   tuples?: _VueCommaDangleValueWithIgnore
@@ -1399,6 +1422,10 @@ type VueFirstAttributeLinebreak = []|[{
 // ----- vue/func-call-spacing -----
 type VueFuncCallSpacing = ([]|["never"] | []|["always"]|["always", {
   allowNewlines?: boolean
+  optionalChain?: {
+    before?: boolean
+    after?: boolean
+  }
 }])
 // ----- vue/html-button-has-type -----
 type VueHtmlButtonHasType = []|[{
@@ -1716,6 +1743,10 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
+    satisfies?: {
+      before?: boolean
+      after?: boolean
+    }
     set?: {
       before?: boolean
       after?: boolean
@@ -1977,6 +2008,10 @@ type VueNoDeprecatedSlotAttribute = []|[{
 type VueNoDupeKeys = []|[{
   groups?: unknown[]
 }]
+// ----- vue/no-duplicate-attr-inheritance -----
+type VueNoDuplicateAttrInheritance = []|[{
+  checkMultiRootNodes?: boolean
+}]
 // ----- vue/no-duplicate-attributes -----
 type VueNoDuplicateAttributes = []|[{
   allowCoexistClass?: boolean
@@ -2075,6 +2110,7 @@ type VueNoRequiredPropWithDefault = []|[{
 type VueNoReservedComponentNames = []|[{
   disallowVueBuiltInComponents?: boolean
   disallowVue3BuiltInComponents?: boolean
+  htmlElementCaseSensitive?: boolean
 }]
 // ----- vue/no-reserved-keys -----
 type VueNoReservedKeys = []|[{
@@ -2211,6 +2247,7 @@ type VueNoUselessVBind = []|[{
 // ----- vue/no-v-text-v-html-on-component -----
 type VueNoVTextVHtmlOnComponent = []|[{
   allow?: string[]
+  ignoreElementNamespaces?: boolean
 }]
 // ----- vue/object-curly-newline -----
 type VueObjectCurlyNewline = []|[((("always" | "never") | {
@@ -2331,6 +2368,10 @@ type VueRequirePropComment = []|[{
 type VueRequireToggleInsideTransition = []|[{
   additionalDirectives?: string[]
 }]
+// ----- vue/restricted-component-names -----
+type VueRestrictedComponentNames = []|[{
+  allow?: string[]
+}]
 // ----- vue/return-in-computed-property -----
 type VueReturnInComputedProperty = []|[{
   treatUndefinedAsUnspecified?: boolean
@@ -2352,6 +2393,8 @@ type VueSinglelineHtmlElementContentNewline = []|[{
   ignores?: string[]
   externalIgnores?: string[]
 }]
+// ----- vue/slot-name-casing -----
+type VueSlotNameCasing = []|[("camelCase" | "kebab-case" | "singleword")]
 // ----- vue/sort-keys -----
 type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   caseSensitive?: boolean
@@ -2395,6 +2438,7 @@ type VueVOnEventHyphenation = []|[("always" | "never")]|[("always" | "never"), {
   } & {
     [k: string]: unknown | undefined
   })[]
+  ignoreTags?: string[]
 }]
 // ----- vue/v-on-function-call -----
 type VueVOnFunctionCall = []|[("always" | "never")]|[("always" | "never"), {
