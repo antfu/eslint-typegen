@@ -109,7 +109,7 @@ export async function pluginsToRulesDTS(
 
   for (const [pluginName, plugin] of Object.entries(plugins)) {
     for (const [ruleName, rule] of Object.entries(plugin.rules || {})) {
-      if ('meta' in rule) {
+      if (rule?.meta) {
         rules.push([
           pluginName
             ? `${pluginName}/${ruleName}`
