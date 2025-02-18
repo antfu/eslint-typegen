@@ -2,7 +2,7 @@
   "name": "eslint-typegen",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@10.4.1",
   "description": "Generate types from ESLint rule schemas automatically, with auto-completion and type-checking for rule options.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -52,7 +52,7 @@
     "lint": "nr build && eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
+    "start": "tsx src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
@@ -65,23 +65,22 @@
     "ohash": "^1.1.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.12.2",
-    "@antfu/ni": "^23.2.0",
-    "@antfu/utils": "^8.0.0",
+    "@antfu/eslint-config": "^4.3.0",
+    "@antfu/ni": "^23.3.1",
+    "@antfu/utils": "^9.1.0",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^22.10.5",
-    "bumpp": "^9.10.0",
-    "eslint": "^9.17.0",
+    "@types/node": "^22.13.4",
+    "bumpp": "^10.0.3",
+    "eslint": "^9.20.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "esno": "^4.8.0",
-    "lint-staged": "^15.3.0",
-    "pnpm": "^9.15.3",
-    "rimraf": "^6.0.1",
+    "lint-staged": "^15.4.3",
+    "pnpm": "^10.4.1",
     "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3",
-    "unbuild": "^3.2.0",
-    "vite": "^6.0.7",
-    "vitest": "^2.1.8"
+    "unbuild": "^3.3.1",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
