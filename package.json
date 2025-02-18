@@ -18,31 +18,12 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./core": {
-      "types": "./dist/core.d.ts",
-      "import": "./dist/core.mjs",
-      "require": "./dist/core.cjs"
-    }
+    ".": "./dist/index.mjs",
+    "./core": "./dist/core.mjs"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "./core": [
-        "./dist/core.d.ts"
-      ],
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
@@ -58,7 +39,7 @@
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
-    "eslint": "^8.45.0 || ^9.0.0"
+    "eslint": "^9.0.0"
   },
   "dependencies": {
     "json-schema-to-typescript-lite": "^14.1.0",
@@ -67,7 +48,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.3.0",
     "@antfu/ni": "^23.3.1",
-    "@antfu/utils": "^9.1.0",
     "@types/json-schema": "^7.0.15",
     "@types/node": "^22.13.4",
     "bumpp": "^10.0.3",

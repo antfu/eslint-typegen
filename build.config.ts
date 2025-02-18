@@ -5,12 +5,8 @@ export default defineBuildConfig({
     'src/index',
     'src/core',
   ],
-  declaration: true,
+  declaration: 'node16',
   clean: true,
-  rollup: {
-    emitCJS: true,
-    inlineDependencies: true,
-  },
   externals: [
     'eslint',
   ],
