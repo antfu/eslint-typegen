@@ -1,7 +1,7 @@
 {
   "name": "eslint-typegen",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "packageManager": "pnpm@10.6.3",
   "description": "Generate types from ESLint rule schemas automatically, with auto-completion and type-checking for rule options.",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
