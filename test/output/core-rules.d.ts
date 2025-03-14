@@ -147,7 +147,7 @@ export interface RuleOptions {
    */
   'default-case'?: Linter.RuleEntry<DefaultCase>
   /**
-   * Enforce `default` clauses in switch statements to be last
+   * Enforce `default` clauses in `switch` statements to be last
    * @see https://eslint.org/docs/latest/rules/default-case-last
    */
   'default-case-last'?: Linter.RuleEntry<[]>
@@ -1431,7 +1431,7 @@ export interface RuleOptions {
    */
   'semi-style'?: Linter.RuleEntry<SemiStyle>
   /**
-   * Enforce sorted import declarations within modules
+   * Enforce sorted `import` declarations within modules
    * @see https://eslint.org/docs/latest/rules/sort-imports
    */
   'sort-imports'?: Linter.RuleEntry<SortImports>

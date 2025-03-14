@@ -7,4 +7,5 @@ import typegen from './dist/index.mjs'
 export default typegen(antfu({
   vue: true,
   typescript: true,
+  pnpm: true,
 }))
