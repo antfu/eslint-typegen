@@ -1,6 +1,7 @@
 import { vue } from '@antfu/eslint-config'
 import { expect, it } from 'vitest'
 import { flatConfigsToRulesDTS, pluginsToRulesDTS } from '../src/core'
+import { invalidJsonSchemaPlugin } from './input/invalid-json-schema-plugin'
 
 it('pluginsToRuleOptions', async () => {
   await expect(await pluginsToRulesDTS({
@@ -25,6 +26,13 @@ it('core rules', async () => {
     '': { rules: Object.fromEntries(builtinRules.entries()) },
   }))
     .toMatchFileSnapshot('./output/core-rules.d.ts')
+})
+
+it('invalid JSON schema plugin', async () => {
+  await expect(await pluginsToRulesDTS({
+    'invalid-json-schema-plugin': invalidJsonSchemaPlugin,
+  }))
+    .toMatchFileSnapshot('./output/invalid-json-schema-plugin.d.ts')
 })
 
 it('flatConfigsToRuleOptions', async () => {
