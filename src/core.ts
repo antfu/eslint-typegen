@@ -235,7 +235,7 @@ export async function compileRule(
   catch (error) {
     console.warn(`Failed to compile schema ${ruleName} for rule ${ruleName}. Falling back to unknown.`)
     console.error(error)
-    lines.push(`export type ${ruleName} = unknown\n`)
+    lines.push(`export type ${id} = unknown\n`)
   }
 
   lines = lines
