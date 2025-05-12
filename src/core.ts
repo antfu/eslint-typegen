@@ -212,11 +212,17 @@ export async function compileRule(
     ? { type: 'array', items: meta.schema, definitions: meta.schema?.[0]?.definitions }
     : meta.schema
 
+  let overriddenRootSchemaId: string | undefined
+  let isRootSchema = true
+
   try {
     const compiled = await compileSchema(schema, id, {
       unreachableDefinitions: false,
       strictIndexSignatures: true,
       customName(schema, keyName) {
+        const canOverrideRootSchemaId = isRootSchema
+        isRootSchema = false
+
         const resolved = schema.title || schema.$id || keyName
         if (resolved === id)
           return id
@@ -224,6 +230,8 @@ export async function compileRule(
           return undefined!
 
         const normalizedName = `_${normalizeIdentifier(`${id}_${resolved}`)}`
+        if (canOverrideRootSchemaId)
+          overriddenRootSchemaId = normalizedName
 
         return normalizedName
       },
@@ -251,7 +259,7 @@ export async function compileRule(
   return {
     name: ruleName,
     jsdoc,
-    typeName: id,
+    typeName: overriddenRootSchemaId ?? id,
     typeDeclarations: lines,
   }
 }
