@@ -218,12 +218,14 @@ export async function compileRule(
       strictIndexSignatures: true,
       customName(schema, keyName) {
         const resolved = schema.title || schema.$id || keyName
-        if (resolved === id) {
+        if (resolved === id)
           return id
-        }
         if (!resolved)
           return undefined!
-        return `_${normalizeIdentifier(`${id}_${resolved}`)}`
+
+        const normalizedName = `_${normalizeIdentifier(`${id}_${resolved}`)}`
+
+        return normalizedName
       },
       ...compileOptions,
     })
