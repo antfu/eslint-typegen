@@ -130,6 +130,11 @@ export interface RuleOptions {
    */
   'vue/define-props-declaration'?: Linter.RuleEntry<VueDefinePropsDeclaration>
   /**
+   * enforce consistent style for props destructuring
+   * @see https://eslint.vuejs.org/rules/define-props-destructuring.html
+   */
+  'vue/define-props-destructuring'?: Linter.RuleEntry<VueDefinePropsDestructuring>
+  /**
    * Enforce consistent newlines before and after dots in `<template>`
    * @see https://eslint.vuejs.org/rules/dot-location.html
    */
@@ -533,7 +538,7 @@ export interface RuleOptions {
    * disallow adding multiple root nodes to the template
    * @see https://eslint.vuejs.org/rules/no-multiple-template-root.html
    */
-  'vue/no-multiple-template-root'?: Linter.RuleEntry<[]>
+  'vue/no-multiple-template-root'?: Linter.RuleEntry<VueNoMultipleTemplateRoot>
   /**
    * disallow mutation of component props
    * @see https://eslint.vuejs.org/rules/no-mutating-props.html
@@ -1370,6 +1375,10 @@ type VueDefineMacrosOrder = []|[{
 }]
 // ----- vue/define-props-declaration -----
 type VueDefinePropsDeclaration = []|[("type-based" | "runtime")]
+// ----- vue/define-props-destructuring -----
+type VueDefinePropsDestructuring = []|[{
+  destructure?: ("always" | "never")
+}]
 // ----- vue/dot-location -----
 type VueDotLocation = []|[("object" | "property")]
 // ----- vue/dot-notation -----
@@ -2032,6 +2041,10 @@ type VueNoLoneTemplate = []|[{
 // ----- vue/no-multi-spaces -----
 type VueNoMultiSpaces = []|[{
   ignoreProperties?: boolean
+}]
+// ----- vue/no-multiple-template-root -----
+type VueNoMultipleTemplateRoot = []|[{
+  disallowComments?: boolean
 }]
 // ----- vue/no-mutating-props -----
 type VueNoMutatingProps = []|[{

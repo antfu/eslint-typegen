@@ -1024,7 +1024,7 @@ export interface RuleOptions {
    * Disallow identifiers from shadowing restricted names
    * @see https://eslint.org/docs/latest/rules/no-shadow-restricted-names
    */
-  'no-shadow-restricted-names'?: Linter.RuleEntry<[]>
+  'no-shadow-restricted-names'?: Linter.RuleEntry<NoShadowRestrictedNames>
   /**
    * Disallow spacing between function identifiers and their applications (deprecated)
    * @see https://eslint.org/docs/latest/rules/no-spaced-func
@@ -1638,6 +1638,8 @@ type CapitalizedComments = []|[("always" | "never")]|[("always" | "never"), ({
 type ClassMethodsUseThis = []|[{
   exceptMethods?: string[]
   enforceForClassFields?: boolean
+  ignoreOverrideMethods?: boolean
+  ignoreClassesWithImplements?: ("all" | "public-fields")
 }]
 // ----- comma-dangle -----
 type CommaDangle = []|[(_CommaDangleValue | {
@@ -2398,7 +2400,7 @@ type NoEmpty = []|[{
 }]
 // ----- no-empty-function -----
 type NoEmptyFunction = []|[{
-  allow?: ("functions" | "arrowFunctions" | "generatorFunctions" | "methods" | "generatorMethods" | "getters" | "setters" | "constructors" | "asyncFunctions" | "asyncMethods")[]
+  allow?: ("functions" | "arrowFunctions" | "generatorFunctions" | "methods" | "generatorMethods" | "getters" | "setters" | "constructors" | "asyncFunctions" | "asyncMethods" | "privateConstructors" | "protectedConstructors" | "decoratedFunctions" | "overrideMethods")[]
 }]
 // ----- no-empty-pattern -----
 type NoEmptyPattern = []|[{
@@ -2600,13 +2602,9 @@ type NoRestrictedModules = ((string | {
 }[])
 // ----- no-restricted-properties -----
 type NoRestrictedProperties = ({
-  object: string
-  property?: string
-  message?: string
+  [k: string]: unknown | undefined
 } | {
-  object?: string
-  property: string
-  message?: string
+  [k: string]: unknown | undefined
 })[]
 // ----- no-restricted-syntax -----
 type NoRestrictedSyntax = (string | {
@@ -2629,6 +2627,10 @@ type NoShadow = []|[{
   hoist?: ("all" | "functions" | "never")
   allow?: string[]
   ignoreOnInitialization?: boolean
+}]
+// ----- no-shadow-restricted-names -----
+type NoShadowRestrictedNames = []|[{
+  reportGlobalThis?: boolean
 }]
 // ----- no-sync -----
 type NoSync = []|[{
@@ -2681,6 +2683,7 @@ type NoUnusedExpressions = []|[{
   allowTernary?: boolean
   allowTaggedTemplates?: boolean
   enforceForJSX?: boolean
+  ignoreDirectives?: boolean
 }]
 // ----- no-unused-vars -----
 type NoUnusedVars = []|[(("all" | "local") | {
