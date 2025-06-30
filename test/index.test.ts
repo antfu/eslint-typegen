@@ -55,3 +55,11 @@ it('jsx-a11y', async () => {
   }))
     .toMatchFileSnapshot('./output/jsx-a11y.d.ts')
 })
+
+it('no rule `meta`', async () => {
+  await expect(await pluginsToRulesDTS({
+    // @ts-expect-error missing types
+    'you-dont-need-lodash-underscore': await import('eslint-plugin-you-dont-need-lodash-underscore').then(m => m.default),
+  }))
+    .toMatchFileSnapshot('./output/no-rule-meta.d.ts')
+})
