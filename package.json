@@ -56,6 +56,7 @@
     "eslint-plugin-antfu": "catalog:test",
     "eslint-plugin-import-x": "catalog:test",
     "eslint-plugin-jsx-a11y": "catalog:test",
+    "eslint-plugin-you-dont-need-lodash-underscore": "catalog:test",
     "lint-staged": "catalog:dev",
     "pnpm": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
