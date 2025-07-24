@@ -615,7 +615,7 @@ export interface RuleOptions {
    */
   'vue/no-restricted-custom-event'?: Linter.RuleEntry<VueNoRestrictedCustomEvent>
   /**
-   * disallow specific HTML elements
+   * disallow specific elements
    * @see https://eslint.vuejs.org/rules/no-restricted-html-elements.html
    */
   'vue/no-restricted-html-elements'?: Linter.RuleEntry<VueNoRestrictedHtmlElements>
@@ -1533,18 +1533,6 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    as?: {
-      before?: boolean
-      after?: boolean
-    }
-    async?: {
-      before?: boolean
-      after?: boolean
-    }
-    await?: {
-      before?: boolean
-      after?: boolean
-    }
     boolean?: {
       before?: boolean
       after?: boolean
@@ -1637,15 +1625,7 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    from?: {
-      before?: boolean
-      after?: boolean
-    }
     function?: {
-      before?: boolean
-      after?: boolean
-    }
-    get?: {
       before?: boolean
       after?: boolean
     }
@@ -1681,10 +1661,6 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    let?: {
-      before?: boolean
-      after?: boolean
-    }
     long?: {
       before?: boolean
       after?: boolean
@@ -1698,10 +1674,6 @@ type VueKeywordSpacing = []|[{
       after?: boolean
     }
     null?: {
-      before?: boolean
-      after?: boolean
-    }
-    of?: {
       before?: boolean
       after?: boolean
     }
@@ -1722,14 +1694,6 @@ type VueKeywordSpacing = []|[{
       after?: boolean
     }
     return?: {
-      before?: boolean
-      after?: boolean
-    }
-    satisfies?: {
-      before?: boolean
-      after?: boolean
-    }
-    set?: {
       before?: boolean
       after?: boolean
     }
@@ -1798,6 +1762,50 @@ type VueKeywordSpacing = []|[{
       after?: boolean
     }
     with?: {
+      before?: boolean
+      after?: boolean
+    }
+    accessor?: {
+      before?: boolean
+      after?: boolean
+    }
+    as?: {
+      before?: boolean
+      after?: boolean
+    }
+    async?: {
+      before?: boolean
+      after?: boolean
+    }
+    await?: {
+      before?: boolean
+      after?: boolean
+    }
+    from?: {
+      before?: boolean
+      after?: boolean
+    }
+    get?: {
+      before?: boolean
+      after?: boolean
+    }
+    let?: {
+      before?: boolean
+      after?: boolean
+    }
+    of?: {
+      before?: boolean
+      after?: boolean
+    }
+    satisfies?: {
+      before?: boolean
+      after?: boolean
+    }
+    set?: {
+      before?: boolean
+      after?: boolean
+    }
+    using?: {
       before?: boolean
       after?: boolean
     }
@@ -1939,7 +1947,6 @@ type VueMultilineHtmlElementContentNewline = []|[{
 // ----- vue/multiline-ternary -----
 type VueMultilineTernary = []|[("always" | "always-multiline" | "never")]|[("always" | "always-multiline" | "never"), {
   ignoreJSX?: boolean
-  [k: string]: unknown | undefined
 }]
 // ----- vue/mustache-interpolation-spacing -----
 type VueMustacheInterpolationSpacing = []|[("always" | "never")]
@@ -2016,6 +2023,11 @@ type VueNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
   enforceForFunctionPrototypeMethods?: boolean
   allowParensAfterCommentPattern?: string
   nestedConditionalExpressions?: boolean
+  allowNodesInSpreadElement?: {
+    ConditionalExpression?: boolean
+    LogicalExpression?: boolean
+    AwaitExpression?: boolean
+  }
 }])
 // ----- vue/no-implicit-coercion -----
 type VueNoImplicitCoercion = []|[{
@@ -2148,7 +2160,7 @@ type VueNoRestrictedCustomEvent = (string | {
 })[]
 // ----- vue/no-restricted-html-elements -----
 type VueNoRestrictedHtmlElements = (string | {
-  element: string
+  element: (string | string[])
   message?: string
 })[]
 // ----- vue/no-restricted-props -----
@@ -2280,6 +2292,11 @@ type VueObjectCurlyNewline = []|[((("always" | "never") | {
     minProperties?: number
     consistent?: boolean
   })
+  TSEnumBody?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
 })]
 // ----- vue/object-curly-spacing -----
 type VueObjectCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
@@ -2289,7 +2306,6 @@ type VueObjectCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
 // ----- vue/object-property-newline -----
 type VueObjectPropertyNewline = []|[{
   allowAllPropertiesOnSameLine?: boolean
-  allowMultiplePropertiesPerLine?: boolean
 }]
 // ----- vue/object-shorthand -----
 type VueObjectShorthand = ([]|[("always" | "methods" | "properties" | "never" | "consistent" | "consistent-as-needed")] | []|[("always" | "methods" | "properties")]|[("always" | "methods" | "properties"), {
