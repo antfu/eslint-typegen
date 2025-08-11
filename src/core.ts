@@ -247,12 +247,10 @@ export async function compileRule(
       ...compileOptions,
     })
 
-    if (typeGenOptions?.includeRuleOptionsJsDoc) {
+    if (typeGenOptions?.includeRuleOptionsJsDoc)
       lines.push(compiled)
-    }
-    else {
+    else
       lines.push(compiled.replace(/\/\*[\s\S]*?\*\//g, ''))
-    }
   }
   catch (error) {
     console.warn(`Failed to compile schema ${ruleName} for rule ${ruleName}. Falling back to unknown.`)
