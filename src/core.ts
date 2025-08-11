@@ -26,6 +26,13 @@ export interface RulesTypeGenOptions {
   includeAugmentation?: boolean
 
   /**
+   * Include JSDoc comments for rule options.
+   *
+   * @default false
+   */
+  includeRuleOptionsJsDoc?: boolean
+
+  /**
    * Augment the `DefaultConfigNamesMap` interface for `eslint-flat-config-utils`
    * For auto-completion of config names etc.
    *
@@ -99,6 +106,7 @@ export async function pluginsToRulesDTS(
     includeTypeImports = true,
     includeIgnoreComments = true,
     includeAugmentation = true,
+    includeRuleOptionsJsDoc = false,
     augmentFlatConfigUtils = false,
     exportTypeName = 'RuleOptions',
     compileOptions = {},
@@ -122,7 +130,7 @@ export async function pluginsToRulesDTS(
 
   rules.sort(([a], [b]) => a.localeCompare(b))
   const resolved = await Promise.all(rules
-    .map(([name, rule]) => compileRule(name, rule, compileOptions)))
+    .map(([name, rule]) => compileRule(name, rule, compileOptions, { includeRuleOptionsJsDoc })))
 
   const exports = [
     ...(includeIgnoreComments
@@ -181,6 +189,7 @@ export async function compileRule(
   ruleName: string,
   rule: Rule.RuleModule,
   compileOptions: Partial<CompileOptions> = {},
+  typeGenOptions: RulesTypeGenOptions = {},
 ) {
   const meta = rule.meta ?? {}
   let schemas = meta.schema as JSONSchema4[] ?? []
@@ -237,10 +246,11 @@ export async function compileRule(
       },
       ...compileOptions,
     })
-    lines.push(
-      compiled
-        .replace(/\/\*[\s\S]*?\*\//g, ''),
-    )
+
+    if (typeGenOptions?.includeRuleOptionsJsDoc)
+      lines.push(compiled)
+    else
+      lines.push(compiled.replace(/\/\*[\s\S]*?\*\//g, ''))
   }
   catch (error) {
     console.warn(`Failed to compile schema ${ruleName} for rule ${ruleName}. Falling back to unknown.`)
