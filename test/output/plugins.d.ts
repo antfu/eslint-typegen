@@ -317,6 +317,7 @@ type AntfuConsistentListNewline = []|[{
   ExportNamedDeclaration?: boolean
   FunctionDeclaration?: boolean
   FunctionExpression?: boolean
+  IfStatement?: boolean
   ImportDeclaration?: boolean
   JSONArrayExpression?: boolean
   JSONObjectExpression?: boolean

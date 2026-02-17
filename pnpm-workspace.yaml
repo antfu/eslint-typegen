@@ -1,3 +1,7 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - playground
   - docs
@@ -5,29 +9,29 @@ packages:
   - examples/*
 catalogs:
   dev:
-    '@antfu/eslint-config': ^4.19.0
-    '@antfu/ni': ^25.0.0
+    '@antfu/eslint-config': ^7.4.3
+    '@antfu/ni': ^28.2.0
     '@types/json-schema': ^7.0.15
-    '@types/node': ^24.1.0
-    bumpp: ^10.2.0
-    eslint: ^9.31.0
-    lint-staged: ^16.1.2
-    pnpm: ^10.13.1
-    simple-git-hooks: ^2.13.0
-    tsx: ^4.20.3
-    typescript: ^5.8.3
-    unbuild: ^3.6.0
-    vite: ^7.0.6
+    '@types/node': ^25.2.3
+    bumpp: ^10.4.1
+    eslint: ^10.0.0
+    lint-staged: ^16.2.7
+    pnpm: ^10.30.0
+    simple-git-hooks: ^2.13.1
+    tsx: ^4.21.0
+    typescript: ^5.9.3
+    unbuild: ^3.6.1
+    vite: ^7.3.1
   prod:
     json-schema-to-typescript-lite: ^15.0.0
     ohash: ^2.0.11
   test:
-    '@typescript-eslint/eslint-plugin': ^8.38.0
-    eslint-plugin-antfu: ^3.1.1
+    '@typescript-eslint/eslint-plugin': ^8.56.0
+    eslint-plugin-antfu: ^3.2.2
     eslint-plugin-import-x: ^4.16.1
     eslint-plugin-jsx-a11y: ^6.10.2
     eslint-plugin-you-dont-need-lodash-underscore: ^6.14.0
-    vitest: ^3.2.4
+    vitest: ^4.0.18
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks

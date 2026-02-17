@@ -303,7 +303,7 @@ export interface RuleOptions {
    * disallow asynchronous actions in computed properties
    * @see https://eslint.vuejs.org/rules/no-async-in-computed-properties.html
    */
-  'vue/no-async-in-computed-properties'?: Linter.RuleEntry<[]>
+  'vue/no-async-in-computed-properties'?: Linter.RuleEntry<VueNoAsyncInComputedProperties>
   /**
    * disallow the use of bare strings in `<template>`
    * @see https://eslint.vuejs.org/rules/no-bare-strings-in-template.html
@@ -465,6 +465,11 @@ export interface RuleOptions {
    */
   'vue/no-duplicate-attributes'?: Linter.RuleEntry<VueNoDuplicateAttributes>
   /**
+   * disallow duplication of class names in class attributes
+   * @see https://eslint.vuejs.org/rules/no-duplicate-class-names.html
+   */
+  'vue/no-duplicate-class-names'?: Linter.RuleEntry<[]>
+  /**
    * disallow the `<template>` `<script>` `<style>` block to be empty
    * @see https://eslint.vuejs.org/rules/no-empty-component-block.html
    */
@@ -510,6 +515,11 @@ export interface RuleOptions {
    */
   'vue/no-lifecycle-after-await'?: Linter.RuleEntry<[]>
   /**
+   * disallow object, array, and function literals in template
+   * @see https://eslint.vuejs.org/rules/no-literals-in-template.html
+   */
+  'vue/no-literals-in-template'?: Linter.RuleEntry<[]>
+  /**
    * disallow unnecessary `<template>`
    * @see https://eslint.vuejs.org/rules/no-lone-template.html
    */
@@ -544,6 +554,16 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-mutating-props.html
    */
   'vue/no-mutating-props'?: Linter.RuleEntry<VueNoMutatingProps>
+  /**
+   * Disallow negated conditions in `<template>`
+   * @see https://eslint.vuejs.org/rules/no-negated-condition.html
+   */
+  'vue/no-negated-condition'?: Linter.RuleEntry<[]>
+  /**
+   * disallow negated conditions in v-if/v-else
+   * @see https://eslint.vuejs.org/rules/no-negated-v-if-condition.html
+   */
+  'vue/no-negated-v-if-condition'?: Linter.RuleEntry<[]>
   /**
    * disallow parsing errors in `<template>`
    * @see https://eslint.vuejs.org/rules/no-parsing-error.html
@@ -710,6 +730,11 @@ export interface RuleOptions {
    */
   'vue/no-undef-components'?: Linter.RuleEntry<VueNoUndefComponents>
   /**
+   * disallow use of undefined custom directives
+   * @see https://eslint.vuejs.org/rules/no-undef-directives.html
+   */
+  'vue/no-undef-directives'?: Linter.RuleEntry<VueNoUndefDirectives>
+  /**
    * disallow undefined properties
    * @see https://eslint.vuejs.org/rules/no-undef-properties.html
    */
@@ -794,7 +819,7 @@ export interface RuleOptions {
    * disallow use of v-html to prevent XSS attack
    * @see https://eslint.vuejs.org/rules/no-v-html.html
    */
-  'vue/no-v-html'?: Linter.RuleEntry<[]>
+  'vue/no-v-html'?: Linter.RuleEntry<VueNoVHtml>
   /**
    * disallow adding an argument to `v-model` used in custom component
    * @see https://eslint.vuejs.org/rules/no-v-model-argument.html
@@ -1182,7 +1207,7 @@ export interface RuleOptions {
    * enforce valid `v-for` directives
    * @see https://eslint.vuejs.org/rules/valid-v-for.html
    */
-  'vue/valid-v-for'?: Linter.RuleEntry<[]>
+  'vue/valid-v-for'?: Linter.RuleEntry<VueValidVFor>
   /**
    * enforce valid `v-html` directives
    * @see https://eslint.vuejs.org/rules/valid-v-html.html
@@ -1280,6 +1305,8 @@ type VueAttributeHyphenation = []|[("always" | "never")]|[("always" | "never"), 
 type VueAttributesOrder = []|[{
   order?: (("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT") | ("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT")[])[]
   alphabetical?: boolean
+  sortLineLength?: boolean
+  ignoreVBindObject?: boolean
 }]
 // ----- vue/block-lang -----
 type VueBlockLang = []|[{
@@ -1377,7 +1404,7 @@ type VueDefineMacrosOrder = []|[{
 type VueDefinePropsDeclaration = []|[("type-based" | "runtime")]
 // ----- vue/define-props-destructuring -----
 type VueDefinePropsDestructuring = []|[{
-  destructure?: ("always" | "never")
+  destructure?: ("only-when-assigned" | "always" | "never")
 }]
 // ----- vue/dot-location -----
 type VueDotLocation = []|[("object" | "property")]
@@ -1765,7 +1792,7 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    accessor?: {
+    arguments?: {
       before?: boolean
       after?: boolean
     }
@@ -1778,6 +1805,10 @@ type VueKeywordSpacing = []|[{
       after?: boolean
     }
     await?: {
+      before?: boolean
+      after?: boolean
+    }
+    eval?: {
       before?: boolean
       after?: boolean
     }
@@ -1797,11 +1828,11 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    satisfies?: {
+    set?: {
       before?: boolean
       after?: boolean
     }
-    set?: {
+    type?: {
       before?: boolean
       after?: boolean
     }
@@ -1813,7 +1844,11 @@ type VueKeywordSpacing = []|[{
       before?: boolean
       after?: boolean
     }
-    type?: {
+    accessor?: {
+      before?: boolean
+      after?: boolean
+    }
+    satisfies?: {
       before?: boolean
       after?: boolean
     }
@@ -1956,6 +1991,10 @@ type VueNewLineBetweenMultiLineProperty = []|[{
 }]
 // ----- vue/next-tick-style -----
 type VueNextTickStyle = []|[("promise" | "callback")]
+// ----- vue/no-async-in-computed-properties -----
+type VueNoAsyncInComputedProperties = []|[{
+  ignoredObjectNames?: string[]
+}]
 // ----- vue/no-bare-strings-in-template -----
 type VueNoBareStringsInTemplate = []|[{
   allowlist?: string[]
@@ -1992,6 +2031,7 @@ type VueNoDeprecatedRouterLinkTagProp = []|[{
 // ----- vue/no-deprecated-slot-attribute -----
 type VueNoDeprecatedSlotAttribute = []|[{
   ignore?: string[]
+  ignoreParents?: string[]
 }]
 // ----- vue/no-dupe-keys -----
 type VueNoDupeKeys = []|[{
@@ -2028,6 +2068,7 @@ type VueNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
     LogicalExpression?: boolean
     AwaitExpression?: boolean
   }
+  ignoredNodes?: string[]
 }])
 // ----- vue/no-implicit-coercion -----
 type VueNoImplicitCoercion = []|[{
@@ -2053,6 +2094,7 @@ type VueNoLoneTemplate = []|[{
 // ----- vue/no-multi-spaces -----
 type VueNoMultiSpaces = []|[{
   ignoreProperties?: boolean
+  ignoreEOLComments?: boolean
 }]
 // ----- vue/no-multiple-template-root -----
 type VueNoMultipleTemplateRoot = []|[{
@@ -2213,6 +2255,10 @@ type VueNoTemplateTargetBlank = []|[{
 type VueNoUndefComponents = []|[{
   ignorePatterns?: unknown[]
 }]
+// ----- vue/no-undef-directives -----
+type VueNoUndefDirectives = []|[{
+  ignore?: string[]
+}]
 // ----- vue/no-undef-properties -----
 type VueNoUndefProperties = []|[{
   ignores?: string[]
@@ -2250,6 +2296,10 @@ type VueNoUselessMustaches = []|[{
 type VueNoUselessVBind = []|[{
   ignoreIncludesComment?: boolean
   ignoreStringEscape?: boolean
+}]
+// ----- vue/no-v-html -----
+type VueNoVHtml = []|[{
+  ignorePattern?: string
 }]
 // ----- vue/no-v-text-v-html-on-component -----
 type VueNoVTextVHtmlOnComponent = []|[{
@@ -2302,6 +2352,19 @@ type VueObjectCurlyNewline = []|[((("always" | "never") | {
 type VueObjectCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
   arraysInObjects?: boolean
   objectsInObjects?: boolean
+  overrides?: {
+    ObjectPattern?: ("always" | "never")
+    ObjectExpression?: ("always" | "never")
+    ImportDeclaration?: ("always" | "never")
+    ImportAttributes?: ("always" | "never")
+    ExportNamedDeclaration?: ("always" | "never")
+    ExportAllDeclaration?: ("always" | "never")
+    TSMappedType?: ("always" | "never")
+    TSTypeLiteral?: ("always" | "never")
+    TSInterfaceBody?: ("always" | "never")
+    TSEnumBody?: ("always" | "never")
+  }
+  emptyObjects?: ("ignore" | "always" | "never")
 }]
 // ----- vue/object-property-newline -----
 type VueObjectPropertyNewline = []|[{
@@ -2467,6 +2530,10 @@ type VueVSlotStyle = []|[(("shorthand" | "longform") | {
   default?: ("shorthand" | "longform" | "v-slot")
   named?: ("shorthand" | "longform")
 })]
+// ----- vue/valid-v-for -----
+type VueValidVFor = []|[{
+  allowEmptyAlias?: boolean
+}]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
   modifiers?: unknown[]
