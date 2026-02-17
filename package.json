@@ -39,7 +39,7 @@
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0 || ^10.0.0"
   },
   "dependencies": {
     "json-schema-to-typescript-lite": "catalog:prod",
