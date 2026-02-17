@@ -32,7 +32,7 @@
     "dev": "unbuild --stub",
     "lint": "nr build && eslint .",
     "prepublishOnly": "nr build",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp",
     "start": "tsx src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
