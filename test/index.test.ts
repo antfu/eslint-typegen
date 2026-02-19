@@ -3,6 +3,7 @@ import { expect, it } from 'vitest'
 import { flatConfigsToRulesDTS, pluginsToRulesDTS } from '../src/core'
 import { invalidJsonSchemaPlugin } from './input/invalid-json-schema-plugin'
 import { pluginWithSchemaIds } from './input/plugin-with-schema-ids'
+import { ruleWithDescriptionInJsdoc } from './input/rule-with-description-in-jsdoc'
 
 it('pluginsToRuleOptions', async () => {
   await expect(await pluginsToRulesDTS({
@@ -41,6 +42,15 @@ it('json schema with ids', async () => {
     plugin: pluginWithSchemaIds,
   }))
     .toMatchFileSnapshot('./output/plugin-with-schema-ids.d.ts')
+})
+
+it('rule with description in jsdoc', async () => {
+  await expect(await pluginsToRulesDTS({
+    plugin: ruleWithDescriptionInJsdoc,
+  }, {
+    includeRuleOptionsJsDoc: true,
+  }))
+    .toMatchFileSnapshot('./output/rule-with-description-in-jsdoc.d.ts')
 })
 
 it('flatConfigsToRuleOptions', async () => {
