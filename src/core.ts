@@ -59,7 +59,7 @@ export interface FlatConfigsToRulesOptions
 export async function flatConfigsToPlugins(
   configs: Linter.Config[],
   options: FlatConfigsToPluginsOptions = {},
-) {
+): Promise<Record<string, ESLint.Plugin>> {
   const plugins: Record<string, ESLint.Plugin> = {}
   for (const config of configs) {
     if (!config.plugins)

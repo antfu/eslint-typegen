@@ -19,17 +19,16 @@
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs",
-    "./core": "./dist/core.mjs"
+    "./core": "./dist/core.mjs",
+    "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "lint": "nr build && eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp",
@@ -60,9 +59,9 @@
     "lint-staged": "catalog:dev",
     "pnpm": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
+    "tsdown": "catalog:dev",
     "tsx": "catalog:dev",
     "typescript": "catalog:dev",
-    "unbuild": "catalog:dev",
     "vite": "catalog:dev",
     "vitest": "catalog:test"
   },
