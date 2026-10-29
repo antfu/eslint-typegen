@@ -214,6 +214,10 @@ export async function compileRule(
 
   let overriddenRootSchemaId: string | undefined
   let isRootSchema = true
+  // `customName` bypasses the compiler's own name deduplication. A `$ref` with
+  // sibling keywords (e.g. `description`) is dereferenced into a new schema, so
+  // one definition can show up as several schemas sharing the same name
+  const usedNames = new Map<string, JSONSchema4>()
 
   try {
     const compiled = await compileSchema(schema, id, {
@@ -229,7 +233,12 @@ export async function compileRule(
         if (!resolved)
           return undefined!
 
-        const normalizedName = `_${normalizeIdentifier(`${id}_${resolved}`)}`
+        const baseName = `_${normalizeIdentifier(`${id}_${resolved}`)}`
+        let normalizedName = baseName
+        for (let i = 1; usedNames.has(normalizedName) && usedNames.get(normalizedName) !== schema; i++)
+          normalizedName = `${baseName}${i}`
+        usedNames.set(normalizedName, schema)
+
         if (canOverrideRootSchemaId)
           overriddenRootSchemaId = normalizedName
 
